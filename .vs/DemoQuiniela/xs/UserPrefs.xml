@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{6ED54AE7-1BC3-44B0-AA6D-C465B9667D8B}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Registro">
+    <Files>
+      <File FileName="DemoQuiniela/Views/Movies/Index.cshtml" Line="19" Column="14" />
+      <File FileName="DemoQuiniela/Models/Movie.cs" Line="9" Column="21" />
+      <File FileName="DemoQuiniela/Web.config" Line="13" Column="185" />
+      <File FileName="DemoQuiniela/Views/Home/Index.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Listado/Test.cshtml" Line="2" Column="30" />
+      <File FileName="DemoQuiniela/Controllers/HomeController.cs" Line="23" Column="9" />
+      <File FileName="DemoQuiniela/Views/Shared/_Layout.cshtml" Line="22" Column="44" />
+      <File FileName="DemoQuiniela/Controllers/ListadoController.cs" Line="20" Column="27" />
+      <File FileName="DemoQuiniela/Controllers/MoviesController.cs" Line="15" Column="50" />
+      <File FileName="Registro" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.DemoQuiniela PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

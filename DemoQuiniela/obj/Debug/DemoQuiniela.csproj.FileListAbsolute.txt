@@ -1,0 +1,368 @@
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/ApplicationInsights.config
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CSharp.Core.targets
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.VisualBasic.Core.targets
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Collections.Immutable.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Reflection.Metadata.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.exe
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe.config
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll.config
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.pdb
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/EntityFramework.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Agent.Intercept.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.PerfCounterCollector.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Web.Infrastructure.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Owin.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/WebGrease.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.pdb
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/EntityFramework.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
+c:/users/hugoalberto/documents/visual studio 2015/Projects/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/ApplicationInsights.config
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CSharp.Core.targets
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.VisualBasic.Core.targets
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Collections.Immutable.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Reflection.Metadata.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.exe
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe.config
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll.config
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.pdb
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Agent.Intercept.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.PerfCounterCollector.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Web.Infrastructure.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Owin.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/WebGrease.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.pdb
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
+Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csproj.CoreCompileInputs.cache
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/ApplicationInsights.config
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CSharp.Core.targets
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.VisualBasic.Core.targets
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Collections.Immutable.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Reflection.Metadata.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.exe
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe.config
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll.config
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.pdb
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Agent.Intercept.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.PerfCounterCollector.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Web.Infrastructure.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Owin.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Entity.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/WebGrease.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.pdb
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
+//vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/ApplicationInsights.config
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe.config
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.rsp
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csi.exe
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csi.exe.config
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csi.rsp
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.CSharp.Core.targets
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.VisualBasic.Core.targets
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Win32.Primitives.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.AppContext.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Collections.Immutable.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Console.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Diagnostics.FileVersionInfo.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Diagnostics.Process.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Diagnostics.StackTrace.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.IO.Compression.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.IO.FileSystem.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.IO.FileSystem.DriveInfo.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.IO.FileSystem.Primitives.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.IO.Pipes.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Reflection.Metadata.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.AccessControl.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Claims.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Cryptography.Algorithms.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Cryptography.Encoding.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Cryptography.Primitives.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Cryptography.X509Certificates.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Security.Principal.Windows.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Text.Encoding.CodePages.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Threading.Thread.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.ValueTuple.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Xml.ReaderWriter.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Xml.XmlDocument.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Xml.XPath.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/System.Xml.XPath.XDocument.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.exe
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.exe.config
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/vbc.rsp
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/VBCSCompiler.exe.config
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/DemoQuiniela.pdb
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Agent.Intercept.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.PerfCounterCollector.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Web.Infrastructure.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Owin.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Entity.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/WebGrease.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.DependencyCollector.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.ServerTelemetryChannel.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.Web.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AI.WindowsServer.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.ApplicationInsights.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Optimization.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Razor.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Deployment.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.WebPages.Razor.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Antlr3.Runtime.pdb
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/EntityFramework.SqlServer.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Core.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.Owin.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.AspNet.Identity.EntityFramework.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Host.SystemWeb.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Facebook.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Cookies.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.OAuth.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.Common.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.SqlClient.dll
