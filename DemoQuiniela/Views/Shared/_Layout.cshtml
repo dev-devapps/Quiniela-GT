@@ -7,6 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @RenderSection("CssStyles", false)
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -25,6 +27,8 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Prueba", "Test", "Listado")</li>
+                    <li>@Html.ActionLink("Posiciones", "Posiciones", "Quiniela")</li>
+                    <li>@Html.ActionLink("Marcadores", "IngresoMarcadores", "Quiniela")</li>
                 </ul>
             </div>
         </div>

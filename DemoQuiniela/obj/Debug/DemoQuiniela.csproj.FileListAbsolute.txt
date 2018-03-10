@@ -162,10 +162,6 @@ Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Micros
 Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
 Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
 Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csproj.CoreCompileInputs.cache
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
 //vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/ApplicationInsights.config
 //vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/csc.exe
 //vmware-host/Shared Folders/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -326,6 +322,8 @@ Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Web.Infrastructure.dll
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Newtonsoft.Json.dll
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Owin.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.Common.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.SqlClient.dll
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Entity.dll
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Helpers.dll
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Web.Mvc.dll
@@ -364,5 +362,6 @@ Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
 /Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.Common.dll
-/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/bin/System.Data.SqlClient.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.csproj.CoreCompileInputs.cache
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.dll
+/Users/alfredo/Documents/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
