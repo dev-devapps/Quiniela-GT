@@ -30,6 +30,8 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="~/css/themes/all-themes.css" rel="stylesheet" />
+
+    @RenderSection("CssStyles", false)
 </head>
 
 <body class="theme-red">
@@ -541,6 +543,7 @@
     <script src="~/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
     <!-- Custom Js -->
+    @RenderSection("CustomJs", false)
     <script src="~/js/admin.js"></script>
     <script src="~/js/pages/cards/basic.js"></script>
 

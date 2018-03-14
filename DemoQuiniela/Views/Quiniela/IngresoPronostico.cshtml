@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MvcQuiniela.Models.Equipo>
+
+@{
+    ViewBag.Title = "IngresoPronostico";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+}
+
+<h2>IngresoPronostico</h2>
+
+@foreach (var item in Model) {
+    @Html.DisplayFor(modelItem => item.eq_descripcion) <br />
+}

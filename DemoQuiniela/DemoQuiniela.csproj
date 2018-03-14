@@ -220,6 +220,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\ListadoController.cs" />
     <Compile Include="Controllers\QuinielaController.cs" />
+    <Compile Include="Models\Quiniela.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -340,39 +341,7 @@
     <Content Include="images\user.jpg" />
     <Content Include="images\user.png" />
     <None Include="images\flags\.DS_Store" />
-    <Content Include="images\flags\arg.png" />
-    <Content Include="images\flags\aus.png" />
     <None Include="images\flags\banderas.txt" />
-    <Content Include="images\flags\bel.png" />
-    <Content Include="images\flags\bra.png" />
-    <Content Include="images\flags\col.png" />
-    <Content Include="images\flags\crc.png" />
-    <Content Include="images\flags\cro.png" />
-    <Content Include="images\flags\den.png" />
-    <Content Include="images\flags\egy.png" />
-    <Content Include="images\flags\eng.png" />
-    <Content Include="images\flags\esp.png" />
-    <Content Include="images\flags\fra.png" />
-    <Content Include="images\flags\ger.png" />
-    <Content Include="images\flags\irn.png" />
-    <Content Include="images\flags\isl.png" />
-    <Content Include="images\flags\jpn.png" />
-    <Content Include="images\flags\kor.png" />
-    <Content Include="images\flags\ksa.png" />
-    <Content Include="images\flags\mar.png" />
-    <Content Include="images\flags\mex.png" />
-    <Content Include="images\flags\nga.png" />
-    <Content Include="images\flags\pan.png" />
-    <Content Include="images\flags\per.png" />
-    <Content Include="images\flags\pol.png" />
-    <Content Include="images\flags\por.png" />
-    <Content Include="images\flags\rus.png" />
-    <Content Include="images\flags\sen.png" />
-    <Content Include="images\flags\srb.png" />
-    <Content Include="images\flags\sui.png" />
-    <Content Include="images\flags\swe.png" />
-    <Content Include="images\flags\tun.png" />
-    <Content Include="images\flags\uru.png" />
     <Content Include="images\image-gallery\1.jpg" />
     <Content Include="images\image-gallery\10.jpg" />
     <Content Include="images\image-gallery\11.jpg" />
@@ -3757,6 +3726,7 @@
     <Content Include="images\flags\30.png" />
     <Content Include="images\flags\31.png" />
     <Content Include="images\flags\32.png" />
+    <Content Include="Views\Quiniela\IngresoPronostico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

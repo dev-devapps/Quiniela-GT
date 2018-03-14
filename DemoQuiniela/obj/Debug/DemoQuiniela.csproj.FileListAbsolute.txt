@@ -482,7 +482,6 @@ Z:/Sin Nombre/Sitio/DemoQuiniela/DemoQuiniela/obj/Debug/DemoQuiniela.pdb
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/bin/Microsoft.Owin.Security.Google.xml
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/bin/Microsoft.Owin.Security.Twitter.xml
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/bin/Microsoft.Owin.Security.MicrosoftAccount.xml
-/Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/obj/Debug/DemoQuiniela.csprojResolveAssemblyReference.cache
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/obj/Debug/DemoQuiniela.csproj.CoreCompileInputs.cache
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/obj/Debug/DemoQuiniela.dll
 /Users/alfredo/Documents/DevApps/Sitio/dev-devapps/Quiniela-GT.git/DemoQuiniela/obj/Debug/DemoQuiniela.pdb

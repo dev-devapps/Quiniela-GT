@@ -1,19 +1,21 @@
 ﻿<Properties StartupConfiguration="{6ED54AE7-1BC3-44B0-AA6D-C465B9667D8B}|" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workbench ActiveDocument="Quiniela-GT.git Status">
     <Files>
-      <File FileName="DemoQuiniela/Views/Movies/Index.cshtml" Line="31" Column="13" />
-      <File FileName="DemoQuiniela/Models/Movie.cs" Line="19" Column="39" />
-      <File FileName="DemoQuiniela/Web.config" Line="13" Column="185" />
+      <File FileName="DemoQuiniela/Web.config" Line="14" Column="24" />
       <File FileName="DemoQuiniela/Views/Home/Index.cshtml" Line="1" Column="1" />
       <File FileName="DemoQuiniela/Views/Listado/Test.cshtml" Line="4" Column="1" />
       <File FileName="DemoQuiniela/Views/Shared/_Layout.cshtml" Line="31" Column="74" />
       <File FileName="DemoQuiniela/Controllers/ListadoController.cs" Line="21" Column="10" />
-      <File FileName="DemoQuiniela/Views/_ViewStart.cshtml" Line="2" Column="15" />
-      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="8" Column="2" />
-      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="350" Column="28" />
+      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="37" Column="44" />
+      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="549" Column="5" />
       <File FileName="DemoQuiniela/Views/Quiniela/Posiciones.cshtml" Line="8" Column="21" />
       <File FileName="DemoQuiniela/Views/Quiniela/IngresoMarcadores.cshtml" Line="22" Column="88" />
-      <File FileName="DemoQuiniela/Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Controllers/HomeController.cs" Line="15" Column="9" />
+      <File FileName="DemoQuiniela/Models/Movie.cs" Line="10" Column="42" />
+      <File FileName="DemoQuiniela/Models/Quiniela.cs" Line="13" Column="37" />
+      <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="11" Column="54" />
+      <File FileName="DemoQuiniela/Views/Movies/Index.cshtml" Line="32" Column="54" />
+      <File FileName="DemoQuiniela/Controllers/MoviesController.cs" Line="20" Column="29" />
       <File FileName="Quiniela-GT.git Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
