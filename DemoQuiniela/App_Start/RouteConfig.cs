@@ -16,8 +16,9 @@ namespace DemoQuiniela
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Quiniela", action = "Index", id = UrlParameter.Optional }
             );
+
             routes.MapRoute(
                 name: "Hello",
                 url: "{controller}/{action}/{name}/{id}"

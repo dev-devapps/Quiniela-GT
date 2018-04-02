@@ -278,11 +278,18 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="~/images/user.png" width="48" height="48" alt="User" />
+                    @if (ViewBag.DatosLogin.picture != "")
+                    {
+                        <img src=@ViewBag.DatosLogin.picture width="48" height="48" alt="User" />
+                    }
+                    else
+                    { 
+                         <img src="../../images/user.png" width="48" height="48" alt="User" />
+                    }
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@ViewBag.DatosLogin.nickname</div>
+                    <div class="email">@ViewBag.DatosLogin.email</div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -303,13 +310,13 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href='~/Quiniela/Posiciones/@ViewBag.DatosLogin.id_alias'>
                             <i class="material-icons">format_list_numbered</i>
                             <span>Tabla de Posiciones</span>
                         </a>
                     </li>
                     <li>
-                        <a href="pages/typography.html">
+                        <a href="@Url.Action("IngresoPronostico", "Quiniela")">
                             <i class="material-icons">edit</i>
                             <span>Ingreso de Pron&oacute;sticos</span>
                         </a>

@@ -1,6 +1,10 @@
-﻿@{
-    ViewBag.Title = "Posiciones";
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    var className = "";
+    int posicion = 0;
 }
 
 <div class="row clearfix">
@@ -16,8 +20,12 @@
                             <i class="material-icons">more_vert</i>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);">alfredoishere</a></li>
-                            <li><a href="javascript:void(0);">lacho</a></li>
+                            @foreach (var itemAlias in Model.vm_alias)
+                            {
+                                <li>
+                                   <a href='~/Quiniela/Posiciones/@itemAlias.al_id'>@itemAlias.al_nickname</a>
+                                </li>
+                            }
                         </ul>
                     </li>
                 </ul>
@@ -26,43 +34,39 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Posici&oacute;n</th>
                             <th>Nickname</th>
                             <th>Puntos</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="success">
-                            <th scope="row">1</th>
-                            <td>1</td>
-                            <td>alfredoishere</td>
-                            <td>58</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>1</td>
-                            <td>lacho</td>
-                            <td>58</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>2</td>
-                            <td>elhu</td>
-                            <td>55</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>3</td>
-                            <td>lilSu</td>
-                            <td>49</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>3</td>
-                            <td>lana</td>
-                            <td>49</td>
-                        </tr>
+                        @for (int i = 0; i < Model.vm_tablaPosiciones.Count(); i++)
+                        {
+                            if (Model.vm_tablaPosiciones.ElementAt(i).id_alias == ViewBag.DatosLogin.id_alias)
+                            {
+                                className = "success";
+                            }
+                            else
+                            {
+                                className = "";
+                            }
+
+                            if (i == 0)
+                            { posicion = 1; }
+                            else
+                            {
+                                if (Model.vm_tablaPosiciones.ElementAt(i-1).puntos > @Model.vm_tablaPosiciones.ElementAt(i).puntos)
+                                {
+                                    posicion++;
+                                }
+                            }
+
+                            <tr class="@className">
+                                <td>@posicion</td>
+                                <td>@Model.vm_tablaPosiciones.ElementAt(i).alias</td>
+                                <td>@Model.vm_tablaPosiciones.ElementAt(i).puntos</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
