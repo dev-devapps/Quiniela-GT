@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using MvcQuiniela.Models;
 using System.Data.SqlClient;
@@ -174,12 +175,93 @@ namespace DemoQuiniela.Controllers
             return View();
         }
 
-        public ActionResult IngresoPronostico()
+        public ActionResult IngresoPronostico(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            if (DatosLogin != null && DatosLogin.login){
+                
+
+                querys = "select id_partido=pa_id, id_alias= 0, id_equipo1=pa_idEquipo1, equipo1=E1.eq_descripcion, marcador1=pa_marcador1, pronostico1=0, id_equipo2=pa_idEquipo2, equipo2=E2.eq_descripcion, marcador2=pa_marcador2, pronostico2=0, puntos=0, id_estadio=es_id, estadio=es_nombre, fecha= convert(varchar(10), pa_fecha, 103), hora= convert(varchar(5), pa_hora, 108), estado=pa_estado "
+                        +"from Partido, Equipo as E1, Equipo as E2, Estadio "
+                        +"where pa_idEquipo1 = E1.eq_id "
+                        +"and pa_idEquipo2 = E2.eq_id "
+                        +"and pa_idEstadio = es_id "
+                        +"order by pa_fecha";
+
+                List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys).ToList<Pronosticos>();
+
+                querys = "SELECT *"
+                        + "FROM Marcador "
+                        + "WHERE ma_idAlias=@idalias ";
+
+                List<Marcador> pronosticosIngresados = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", id)).ToList<Marcador>();
+
+                foreach (Marcador miPronostico in pronosticosIngresados){
+                    foreach(Pronosticos itemPronostico in tablaPronosticos){
+
+                        if(itemPronostico.id_partido == miPronostico.ma_idPartido){
+                            itemPronostico.puntos = itemPronostico.CalcularPuntos(miPronostico);
+                            itemPronostico.pronostico1 = miPronostico.ma_marcador1;
+                            itemPronostico.pronostico2 = miPronostico.ma_marcador2;
+                        }
+                    }
+                }
+
+                qvm.vm_pronosticos = tablaPronosticos;
+
+                return View(qvm);
+
+            }else{
+                return HttpNotFound();
+            }
 
 
-            return View(db.Equipos.ToList());
+        }
+
+        [Route("Quiniela/ActualizaPronostico")]
+        [HttpPost]
+        public bool ActualizaPronostico(MarcadorPronostico miPronostico){
+            bool respuesta = false;
+            int idPartido = miPronostico.idPartido;
+
+            querys = "SELECT *"
+                        + "FROM Partido "
+                        + "WHERE pa_id=@idpartido ";
+
+            Partido partido = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@idpartido", idPartido)).FirstOrDefault();
+
+            if(partido.pa_estado == "V"){
+                querys = "SELECT *"
+                        + "FROM Marcador "
+                        + "WHERE ma_idAlias=@idalias "
+                        + "AND ma_idPartido = @idpartido ";
+
+                Marcador marcador = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido)).FirstOrDefault();
+
+                if(marcador != null){
+                    querys = "update Marcador "
+                            + "set ma_marcador1 = @marcador1, ma_marcador2 = @marcador2, ma_hora = getdate() "
+                            + "WHERE ma_idAlias=@idalias "
+                            + "AND ma_idPartido = @idpartido ";
+
+                    Marcador upd = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido)).FirstOrDefault();
+
+                    respuesta = true;
+                }else{
+                    querys = "insert into Marcador(ma_idAlias, ma_idEquipo1, ma_idEquipo2, ma_marcador1, ma_marcador2, ma_idPartido, ma_estado, ma_fecha, ma_hora) "
+                            + "values(@idalias, @idequipo1, @idequipo2, @marcador1, @marcador2, @idpartido, 'V', convert(varchar(10), getdate(), 101), getdate()) ";
+
+                    Marcador ins = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idequipo1", miPronostico.idEquipo1), new SqlParameter("@idequipo2", miPronostico.idEquipo2), new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idpartido", miPronostico.idPartido)).FirstOrDefault();
+
+                    respuesta = true;
+                }
+            }
+
+            return respuesta;
         }
     }
 }

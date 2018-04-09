@@ -280,7 +280,7 @@
                 <div class="image">
                     @if (ViewBag.DatosLogin.picture != "")
                     {
-                        <img src=@ViewBag.DatosLogin.picture width="48" height="48" alt="User" />
+                        <img src="@ViewBag.DatosLogin.picture" width="48" height="48" alt="User" />
                     }
                     else
                     { 
@@ -316,7 +316,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("IngresoPronostico", "Quiniela")">
+                        <a href='~/Quiniela/IngresoPronostico/@ViewBag.DatosLogin.id_alias'>
                             <i class="material-icons">edit</i>
                             <span>Ingreso de Pron&oacute;sticos</span>
                         </a>

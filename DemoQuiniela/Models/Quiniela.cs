@@ -106,10 +106,29 @@ namespace MvcQuiniela.Models
 
         public string ma_estado { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ma_fecha { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ma_hora { get; set; }
 
+    }
+
+    public class MarcadorPronostico
+    {
+        public int idAlias { get; set; }
+
+        public int idEquipo1 { get; set; }
+
+        public int idEquipo2 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int marcador2 { get; set; }
+
+        public int idPartido { get; set; }
     }
 
     public class TablaPosiciones
@@ -155,6 +174,67 @@ namespace MvcQuiniela.Models
             return puntos;
         }
 
+    }
+
+    public class Pronosticos
+    {
+        public int id_partido { get; set; }
+
+        public int id_alias { get; set; }
+
+        public int id_equipo1 { get; set; }
+
+        public string equipo1 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int pronostico1 { get; set; }
+
+        public int id_equipo2 { get; set; }
+
+        public string equipo2 { get; set; }
+
+        public int marcador2 { get; set; }
+
+        public int pronostico2 { get; set; }
+
+        public int puntos { get; set; }
+
+        public int id_estadio { get; set; }
+
+        public string estadio { get; set; }
+
+        public string fecha { get; set; }
+
+        public string hora { get; set; }
+
+        public string estado { get; set; }
+
+        public int CalcularPuntos(Marcador pronostico)
+        {
+            int rPuntos = 0;
+
+            if(pronostico.ma_marcador1 == this.marcador1 && pronostico.ma_marcador2 == this.marcador2){
+                rPuntos = 5;
+            }else{
+                if (this.marcador1 == pronostico.ma_marcador1)
+                    rPuntos++;
+
+                if (this.marcador2 == pronostico.ma_marcador2)
+                    rPuntos++;
+
+                if (this.marcador1 > this.marcador2 && pronostico.ma_marcador1 > pronostico.ma_marcador2)
+                    rPuntos += 2;
+
+                if (this.marcador2 > this.marcador1 && pronostico.ma_marcador2 > pronostico.ma_marcador1)
+                    puntos += 2;
+
+                if (this.marcador2 == this.marcador1 && pronostico.ma_marcador2 == pronostico.ma_marcador1)
+                    rPuntos = 3;
+            }
+
+            return rPuntos;
+        }
     }
 
 }

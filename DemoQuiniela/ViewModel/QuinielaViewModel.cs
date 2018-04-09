@@ -11,5 +11,7 @@ namespace MvcQuiniela.ViewModel
         public List<AliasUsuario> vm_alias;
 
         public List<TablaPosiciones> vm_tablaPosiciones;
+
+        public List<Pronosticos> vm_pronosticos;
     }
 }

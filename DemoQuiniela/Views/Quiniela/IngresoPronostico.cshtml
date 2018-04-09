@@ -1,14 +1,242 @@
-﻿@model IEnumerable<MvcQuiniela.Models.Equipo>
-
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
 @{
     TempData["DatosLogin"] = ViewBag.DatosLogin;
 
-    ViewBag.Title = "IngresoPronostico";
+    ViewBag.Title = "Ingreso Pronostico";
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    string idEquipo1 = "";
+    string idEquipo2 = "";
+
+    string idMarcadorPronostico1 = "";
+    string idMarcadorPronostico2 = "";
+
+    string estado = "";
+    string descEstado = "";
+    string classCard = "";
 }
 
-<h2>IngresoPronostico</h2>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 
-@foreach (var item in Model) {
-    @Html.DisplayFor(modelItem => item.eq_descripcion) <br />
-}
+<script type="text/javascript">
+    function aumentaMarcador(id, id2, a, eq1, eq2, p, cambio){
+        var marcador = document.getElementById(id).innerHTML;
+        var marcador2 = document.getElementById(id2).innerHTML;
+
+        if(cambio == 1){
+            marcador++;
+        }else{
+            marcador2++;
+        }
+
+
+        var _pronostico = {};
+        _pronostico.idAlias = a;
+        _pronostico.idEquipo1 = eq1;
+        _pronostico.idEquipo2 = eq2;
+        _pronostico.marcador1 = marcador;
+        _pronostico.marcador2 = marcador2;
+        _pronostico.idPartido = p;
+        
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/ActualizaPronostico",
+            data: JSON.stringify(_pronostico),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                //alert('ok');
+
+            },
+            error: function(err) {
+                //alert("Error: " + err.responseText);
+
+                if(err.responseText == "True"){
+                    if(cambio == 1){
+                        document.getElementById(id).innerHTML = marcador;
+                    }else{
+                        document.getElementById(id2).innerHTML = marcador2;
+                    }
+                }
+            }
+        });
+    }
+
+
+    function reduceMarcador(id, id2, a, eq1, eq2, p, cambio){
+        var marcador = document.getElementById(id).innerHTML;
+        var marcador2 = document.getElementById(id2).innerHTML;
+        var continua = true;
+
+        if(cambio == 1){
+            if(marcador>0){
+                marcador--;
+            }else{
+                continua = false;
+            }
+        }else{
+            if(marcador2>0){
+                marcador2--;
+            }else{
+                continua = false;
+            }
+        }
+
+        if(continua){
+            var _pronostico = {};
+            _pronostico.idAlias = a;
+            _pronostico.idEquipo1 = eq1;
+            _pronostico.idEquipo2 = eq2;
+            _pronostico.marcador1 = marcador;
+            _pronostico.marcador2 = marcador2;
+            _pronostico.idPartido = p;
+            
+            $.ajax({
+                type: "POST",
+                url: "/Quiniela/ActualizaPronostico",
+                data: JSON.stringify(_pronostico),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    //alert('ok');
+
+                },
+                error: function(err) {
+                    //alert("Error: " + err.responseText);
+
+                    if(err.responseText == "True"){
+                        if(cambio == 1){
+                            document.getElementById(id).innerHTML = marcador;
+                        }else{
+                            document.getElementById(id2).innerHTML = marcador2;
+                        }
+                    }
+                }
+            });
+        }
+    }
+</script>
+
+<h2>Ingreso de Pronosticos</h2>
+
+
+<div class="row clearfix">
+    @for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
+    {
+        idEquipo1 = Model.vm_pronosticos.ElementAt(i).id_equipo1.ToString() + ".png";
+        idEquipo2 = Model.vm_pronosticos.ElementAt(i).id_equipo2.ToString() + ".png";
+        estado = Model.vm_pronosticos.ElementAt(i).estado.ToString();
+
+        idMarcadorPronostico1 = Model.vm_pronosticos.ElementAt(i).id_partido.ToString() + "_" + Model.vm_pronosticos.ElementAt(i).id_equipo1.ToString();
+        idMarcadorPronostico2 = Model.vm_pronosticos.ElementAt(i).id_partido.ToString() + "_" + Model.vm_pronosticos.ElementAt(i).id_equipo2.ToString();
+
+        switch(estado){
+            case "V":
+                descEstado = "No iniciado";
+                classCard = "header";
+                break;
+            case "I":
+                descEstado = "Iniciado";
+                classCard = "header bg-light-green";
+                break;
+            case "T":
+                descEstado = "Finalizado";
+                classCard = "header bg-blue-grey";
+                break;
+            default:
+                descEstado = "Indefinido";
+                classCard = "header";
+                break;
+        }
+
+        if (estado == "V"){
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="@classCard">
+                        <h2>
+                            @Model.vm_pronosticos.ElementAt(i).estadio<small>@Model.vm_pronosticos.ElementAt(i).fecha &#64; @Model.vm_pronosticos.ElementAt(i).hora [@descEstado]</small>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <table width="100%" cellpadding="2" cellspacing="2" border="0">
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td align="center" colspan="3"><b>Mi Pron&oacute;stico</b></td>
+                            </tr>
+
+                            <tr>
+                                <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_pronosticos.ElementAt(i).equipo1" /></td>
+                                <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
+                                <td width="5px">
+                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </td>
+                                <td align="center" width="25px"><span id="@idMarcadorPronostico1">@Model.vm_pronosticos.ElementAt(i).pronostico1</span></td>
+                                <td width="5px">
+                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
+                                        <i class="material-icons">remove</i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="~/images/flags/@idEquipo2" alt="@Model.vm_pronosticos.ElementAt(i).equipo2" /></td>
+                                <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
+                                <td>
+                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
+                                        <i class="material-icons">add</i>
+                                    </button>
+                                </td>
+                                <td align="center"><span id="@idMarcadorPronostico2">@Model.vm_pronosticos.ElementAt(i).pronostico2</span></td>
+                                <td>
+                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
+                                        <i class="material-icons">remove</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }else{
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <div class="@classCard">
+                        <h2>
+                            @Model.vm_pronosticos.ElementAt(i).estadio<small>@Model.vm_pronosticos.ElementAt(i).fecha &#64; @Model.vm_pronosticos.ElementAt(i).hora [@descEstado]</small>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <table width="100%" cellpadding="5px" cellspacing="2" border="0">
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td align="center" width="55px"><b>Pron&oacute;stico</b></td>
+                                <td align="center" width="55px"><b>Partido</b></td>
+                            </tr>
+                            <tr>
+                                <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_pronosticos.ElementAt(i).equipo1" /></td>
+                                <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
+                                <td align="center">@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
+                                <td align="center">@Model.vm_pronosticos.ElementAt(i).marcador1</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_pronosticos.ElementAt(i).equipo2" /></td>
+                                <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
+                                <td align="center">@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
+                                <td align="center">@Model.vm_pronosticos.ElementAt(i).marcador2</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">Puntos del partido <span class="badge">@Model.vm_pronosticos.ElementAt(i).puntos</span></button>
+                    </div>
+                </div>
+            </div>
+        }
+
+    
+    }
+</div>
