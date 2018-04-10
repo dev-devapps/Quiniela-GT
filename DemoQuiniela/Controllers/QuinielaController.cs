@@ -23,6 +23,14 @@ namespace DemoQuiniela.Controllers
             return View();
         }
 
+        public ActionResult Error()
+        {
+            DatosLogin = (User)TempData["DatosLogin"];
+            ViewBag.DatosLogin = DatosLogin;
+
+            return View();
+        }
+
         public ActionResult SignInGooglePlus()
         {
             var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=" + googleParameters.googleplus_redirect_url + "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
@@ -55,6 +63,7 @@ namespace DemoQuiniela.Controllers
 
                         DatosLogin.email = userLogin.email;
                         DatosLogin.picture = userLogin.picture;
+                        DatosLogin.id_login = id_user;
                         DatosLogin.login = true;
 
                         if (id_user > 0)
@@ -179,8 +188,20 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            List<AliasUsuario> aliasDB = new List<AliasUsuario>();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
+
+            querys = "SELECT *"
+                     + "FROM AliasUsuario "
+                     + "WHERE al_idUsuario=@iduser "
+                     + "AND al_id=@idalias";
+
+            aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
+
+            if(aliasDB.Count == 0){
+                return Redirect("/Quiniela/Error");
+            }
 
             if (DatosLogin != null && DatosLogin.login){
                 
@@ -210,6 +231,12 @@ namespace DemoQuiniela.Controllers
                         }
                     }
                 }
+
+                querys = "SELECT *"
+                         + "FROM AliasUsuario "
+                         + "WHERE al_idUsuario=@iduser ";
+
+                qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
 
                 qvm.vm_pronosticos = tablaPronosticos;
 

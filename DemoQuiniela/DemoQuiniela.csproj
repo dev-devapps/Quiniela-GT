@@ -3735,6 +3735,8 @@
     <Content Include="Views\Quiniela\IngresoPronostico.cshtml" />
     <Content Include="Views\Quiniela\Index.cshtml" />
     <Content Include="Views\Quiniela\Login.cshtml" />
+    <Content Include="Views\Quiniela\Error.cshtml" />
+    <Content Include="images\error.gif" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
