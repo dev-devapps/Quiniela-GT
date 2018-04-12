@@ -10,11 +10,6 @@
 
     string idMarcadorPronostico1 = "";
     string idMarcadorPronostico2 = "";
-    string idHdMarcadorPronostico1 = "";
-    string idHdMarcadorPronostico2 = "";
-
-    string pronostico1 = "";
-    string pronostico2 = "";
 
     string estado = "";
     string descEstado = "";
@@ -27,30 +22,15 @@
 
 <script type="text/javascript">
     function aumentaMarcador(id, id2, a, eq1, eq2, p, cambio){
-        var primerMarcador = false;
         var marcador = document.getElementById(id).innerHTML;
         var marcador2 = document.getElementById(id2).innerHTML;
 
-        var valorMarcador = document.getElementById("hd_" + id).value;
-        var valorMarcador2 = document.getElementById("hd_" + id2).value;
-
         if(cambio == 1){
-            if(valorMarcador == -1){
-                marcador = 1;
-                marcador2 = 0;
-                primerMarcador = true;
-            }else{
-                marcador++;
-            }
+            marcador++;
         }else{
-            if(valorMarcador2 == -1){
-                marcador = 0;
-                marcador2 = 1;
-                primerMarcador = true;
-            }else{
-                marcador2++;
-            }
+            marcador2++;
         }
+
 
         var _pronostico = {};
         _pronostico.idAlias = a;
@@ -76,18 +56,8 @@
                 if(err.responseText == "True"){
                     if(cambio == 1){
                         document.getElementById(id).innerHTML = marcador;
-                        document.getElementById("hd_" + id).value = marcador;
-
-                        if(primerMarcador){
-                            document.getElementById(id2).innerHTML = marcador2;
-                        }
                     }else{
                         document.getElementById(id2).innerHTML = marcador2;
-                        document.getElementById("hd_" + id2).value = marcador2;
-
-                        if(primerMarcador){
-                            document.getElementById(id).innerHTML = marcador;
-                        }
                     }
                 }
             }
@@ -101,7 +71,6 @@
         var continua = true;
 
         if(cambio == 1){
-            
             if(marcador>0){
                 marcador--;
             }else{
@@ -182,23 +151,8 @@
         idEquipo2 = Model.vm_pronosticos.ElementAt(i).id_equipo2.ToString() + ".png";
         estado = Model.vm_pronosticos.ElementAt(i).estado.ToString();
 
-        if(Model.vm_pronosticos.ElementAt(i).pronostico1.ToString() == "-1"){
-            pronostico1 = "-";
-        }else{
-            pronostico1 = Model.vm_pronosticos.ElementAt(i).pronostico1.ToString();
-        }
-
-        if(Model.vm_pronosticos.ElementAt(i).pronostico2.ToString() == "-1"){
-            pronostico2 = "-";
-        }else{
-            pronostico2 = Model.vm_pronosticos.ElementAt(i).pronostico2.ToString();
-        }
-
         idMarcadorPronostico1 = Model.vm_pronosticos.ElementAt(i).id_partido.ToString() + "_" + Model.vm_pronosticos.ElementAt(i).id_equipo1.ToString();
         idMarcadorPronostico2 = Model.vm_pronosticos.ElementAt(i).id_partido.ToString() + "_" + Model.vm_pronosticos.ElementAt(i).id_equipo2.ToString();
-
-        idHdMarcadorPronostico1 = "hd_" + idMarcadorPronostico1;
-        idHdMarcadorPronostico2 = "hd_" + idMarcadorPronostico2;
 
         switch(estado){
             case "V":
@@ -242,12 +196,11 @@
                                         <i class="material-icons">add</i>
                                     </button>
                                 </td>
-                                <td align="center" width="25px"><span id="@idMarcadorPronostico1">@pronostico1</span></td>
+                                <td align="center" width="25px"><span id="@idMarcadorPronostico1">@Model.vm_pronosticos.ElementAt(i).pronostico1</span></td>
                                 <td width="5px">
                                     <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
                                         <i class="material-icons">remove</i>
                                     </button>
-                                    <input type="hidden" id="@idHdMarcadorPronostico1" value="@Model.vm_pronosticos.ElementAt(i).pronostico1.ToString()" />
                                 </td>
                             </tr>
                             <tr>
@@ -258,17 +211,14 @@
                                         <i class="material-icons">add</i>
                                     </button>
                                 </td>
-                                <td align="center"><span id="@idMarcadorPronostico2">@pronostico2</span></td>
+                                <td align="center"><span id="@idMarcadorPronostico2">@Model.vm_pronosticos.ElementAt(i).pronostico2</span></td>
                                 <td>
                                     <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
                                         <i class="material-icons">remove</i>
                                     </button>
-                                    <input type="hidden" id="@idHdMarcadorPronostico2" value="@Model.vm_pronosticos.ElementAt(i).pronostico2.ToString()" />
                                 </td>
                             </tr>
                         </table>
-                        <br />
-                        <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">Puntos del partido <span class="badge">-</span></button>
                     </div>
                 </div>
             </div>
@@ -301,7 +251,6 @@
                                 <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
                                 <td align="center">@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
                                 <td align="center">@Model.vm_pronosticos.ElementAt(i).marcador2</td>
-
                             </tr>
                         </table>
                         <br />
