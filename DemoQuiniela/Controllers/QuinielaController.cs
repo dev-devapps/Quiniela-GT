@@ -33,7 +33,7 @@ namespace DemoQuiniela.Controllers
 
         public ActionResult SignInGooglePlus()
         {
-            var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=" + googleParameters.googleplus_redirect_url + "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
+            var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http://localhost:54012/Quiniela/Login&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
             return Redirect(Googleurl);
         }
 
@@ -179,9 +179,24 @@ namespace DemoQuiniela.Controllers
 
         public ActionResult IngresoMarcadores()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            List<AliasUsuario> aliasDB = new List<AliasUsuario>();
 
-            return View();
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            querys = "select id_partido=pa_id, id_equipo1=pa_idEquipo1, equipo1=E1.eq_descripcion, marcador1=pa_marcador1, id_equipo2=pa_idEquipo2, equipo2=E2.eq_descripcion, marcador2=pa_marcador2, id_estadio=es_id, estadio=es_nombre, fecha= convert(varchar(10), pa_fecha, 103), hora= convert(varchar(5), pa_hora, 108), estado=pa_estado "
+                    + "from Partido, Equipo as E1, Equipo as E2, Estadio "
+                    + "where pa_idEquipo1 = E1.eq_id "
+                    + "and pa_idEquipo2 = E2.eq_id "
+                    + "and pa_idEstadio = es_id "
+                    + "order by pa_fecha";
+
+            List<MarcadorFinal> tablaPronosticos = db.Database.SqlQuery<MarcadorFinal>(querys).ToList<MarcadorFinal>();
+
+            qvm.vm_marcadorFinales = tablaPronosticos;
+            return View(qvm);
+
         }
 
         public ActionResult IngresoPronostico(int id)
@@ -286,6 +301,35 @@ namespace DemoQuiniela.Controllers
 
                     respuesta = true;
                 }
+            }
+
+            return respuesta;
+        }
+
+        [Route("Quiniela/ActualizaMarcador")]
+        [HttpPost]
+        public bool ActualizaMarcador(MarcadorFinalLive marcadorfinal)
+        {
+            bool respuesta = false;
+            int idPartido = marcadorfinal.idPartido;
+
+            querys = "SELECT *"
+                        + "FROM Partido "
+                        + "WHERE pa_id=@idpartido ";
+
+            Partido partido = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@idpartido", idPartido)).FirstOrDefault();
+
+            if (partido.pa_estado == "I")
+            {
+                querys = "update Partido "
+                           + "set pa_marcador1 = @marcador1, pa_marcador2 = @marcador2 "
+                           + "WHERE pa_id = @idpartido ";
+
+                db.Database.ExecuteSqlCommand(querys, new SqlParameter("@marcador1", marcadorfinal.marcador1), new SqlParameter("@marcador2", marcadorfinal.marcador2), new SqlParameter("@idpartido", marcadorfinal.idPartido));
+                //Partido upd = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@marcador1", marcadorfinal.marcador1), new SqlParameter("@marcador2", marcadorfinal.marcador2),  new SqlParameter("@idpartido", marcadorfinal.idPartido)).FirstOrDefault();
+
+                respuesta = true;
+
             }
 
             return respuesta;

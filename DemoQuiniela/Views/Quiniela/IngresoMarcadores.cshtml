@@ -1,133 +1,251 @@
-﻿@{
-    ViewBag.Title = "IngresoMarcadores";
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    string idEquipo1 = "";
+    string idEquipo2 = "";
+
+    string idMarcadorPronostico1 = "";
+    string idMarcadorPronostico2 = "";
+
+    string estado = "";
+    string descEstado = "";
+    string classCard = "";
+    string fechaActual = "";
 }
 
-<div class="block-header">
-    <h2>Fase de Grupos</h2>
-</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+<script type="text/javascript">
+    function aumentaMarcador(id, id2, eq1, eq2, p, cambio){
+        var marcador = document.getElementById(id).innerHTML;
+        var marcador2 = document.getElementById(id2).innerHTML;
+
+        if(cambio == 1){
+            marcador++;
+        }else{
+            marcador2++;
+        }
+
+
+        var _marcador = {};
+        _marcador.idEquipo1 = eq1;
+        _marcador.idEquipo2 = eq2;
+        _marcador.marcador1 = marcador;
+        _marcador.marcador2 = marcador2;
+        _marcador.idPartido = p;
+
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/ActualizaMarcador",
+            data: JSON.stringify(_marcador),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                //alert('ok');
+
+            },
+            error: function(err) {
+                //alert("Error: " + err.responseText);
+
+                if(err.responseText == "True"){
+                    if(cambio == 1){
+                        document.getElementById(id).innerHTML = marcador;
+                    }else{
+                        document.getElementById(id2).innerHTML = marcador2;
+                    }
+                }
+            }
+        });
+    }
+
+
+    function reduceMarcador(id, id2,  eq1, eq2, p, cambio){
+        var marcador = document.getElementById(id).innerHTML;
+        var marcador2 = document.getElementById(id2).innerHTML;
+        var continua = true;
+
+        if(cambio == 1){
+            if(marcador>0){
+                marcador--;
+            }else{
+                continua = false;
+            }
+        }else{
+            if(marcador2>0){
+                marcador2--;
+            }else{
+                continua = false;
+            }
+        }
+
+        if(continua){
+            var _marcador = {};
+            _marcador.idEquipo1 = eq1;
+            _marcador.idEquipo2 = eq2;
+            _marcador.marcador1 = marcador;
+            _marcador.marcador2 = marcador2;
+            _marcador.idPartido = p;
+
+            $.ajax({
+                type: "POST",
+                url: "/Quiniela/ActualizaMarcador",
+                data: JSON.stringify(_marcador),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    //alert('ok');
+
+                },
+                error: function(err) {
+                    //alert("Error: " + err.responseText);
+
+                    if(err.responseText == "True"){
+                        if(cambio == 1){
+                            document.getElementById(id).innerHTML = marcador;
+                        }else{
+                            document.getElementById(id2).innerHTML = marcador2;
+                        }
+                    }
+                }
+            });
+        }
+    }
+</script>
 
 <div class="row clearfix">
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
                 <h2>
-                    Spartak Stadium<small>1 de Junio &#64; 12:30 p.m. [No iniciado]</small>
+                    Ingreso de Pron&oacute;sticos
+                    <small>Instrucciones para cambiar de alias.</small>
                 </h2>
+
             </div>
             <div class="body">
-                <table width="100%" cellpadding="2" cellspacing="2" border="0">
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                        <td align="center" colspan="3"><b>Mi Pron&oacute;stico Lacho</b></td>
-                    </tr>
+                <div class="row clearfix">
+                    @for (int i = 0; i < Model.vm_marcadorFinales.Count(); i++)
+                    {
+                        idEquipo1 = Model.vm_marcadorFinales.ElementAt(i).id_equipo1.ToString() + ".png";
+                        idEquipo2 = Model.vm_marcadorFinales.ElementAt(i).id_equipo2.ToString() + ".png";
+                        estado = Model.vm_marcadorFinales.ElementAt(i).estado.ToString();
 
-                    <tr>
-                        <td width="50px"><img src="~/images/flags/crc.png" alt="Costa Rica" /></td>
-                        <td>Costa Rica</td>
-                        <td width="5px">
-                            <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </td>
-                        <td align="center" width="25px">0</td>
-                        <td width="5px">
-                            <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
-                                <i class="material-icons">remove</i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><img src="~/images/flags/mex.png" alt="Mexico" /></td>
-                        <td>M&eacute;xico</td>
-                        <td>
-                            <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
-                                <i class="material-icons">add</i>
-                            </button>
-                        </td>
-                        <td align="center">2</td>
-                        <td>
-                            <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
-                                <i class="material-icons">remove</i>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+                        idMarcadorPronostico1 = Model.vm_marcadorFinales.ElementAt(i).id_partido.ToString() + "_" + Model.vm_marcadorFinales.ElementAt(i).id_equipo1.ToString();
+                        idMarcadorPronostico2 = Model.vm_marcadorFinales.ElementAt(i).id_partido.ToString() + "_" + Model.vm_marcadorFinales.ElementAt(i).id_equipo2.ToString();
+
+                        switch (estado)
+                        {
+                            case "V":
+                                descEstado = "No iniciado";
+                                classCard = "header";
+                                break;
+                            case "I":
+                                descEstado = "Iniciado";
+                                classCard = "header bg-light-green";
+                                break;
+                            case "T":
+                                descEstado = "Finalizado";
+                                classCard = "header bg-blue-grey";
+                                break;
+                            default:
+                                descEstado = "Indefinido";
+                                classCard = "header";
+                                break;
+                        }
+
+                        if (estado == "I")
+                        {
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="card">
+                                    <div class="@classCard">
+                                        <h2>
+                                            @Model.vm_marcadorFinales.ElementAt(i).estadio<small>@Model.vm_marcadorFinales.ElementAt(i).fecha &#64; @Model.vm_marcadorFinales.ElementAt(i).hora [@descEstado]</small>
+                                        </h2>
+                                    </div>
+                                    <div class="body">
+                                        <table width="100%" cellpadding="2" cellspacing="2" border="0">
+                                            <tr>
+                                                <td colspan="2">&nbsp;</td>
+                                                <td align="center" colspan="3"><b>Mi Pron&oacute;stico</b></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo1" /></td>
+                                                <td>@Model.vm_marcadorFinales.ElementAt(i).equipo1</td>
+                                                <td width="5px">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @Model.vm_marcadorFinales.ElementAt(i).id_equipo1, @Model.vm_marcadorFinales.ElementAt(i).id_equipo2, @Model.vm_marcadorFinales.ElementAt(i).id_partido, 1);">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
+                                                <td align="center" width="25px"><span id="@idMarcadorPronostico1">@Model.vm_marcadorFinales.ElementAt(i).marcador1</span></td>
+                                                <td width="5px">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',   @Model.vm_marcadorFinales.ElementAt(i).id_equipo1, @Model.vm_marcadorFinales.ElementAt(i).id_equipo2, @Model.vm_marcadorFinales.ElementAt(i).id_partido, 1);">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="~/images/flags/@idEquipo2" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo2" /></td>
+                                                <td>@Model.vm_marcadorFinales.ElementAt(i).equipo2</td>
+                                                <td>
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',   @Model.vm_marcadorFinales.ElementAt(i).id_equipo1, @Model.vm_marcadorFinales.ElementAt(i).id_equipo2, @Model.vm_marcadorFinales.ElementAt(i).id_partido, 2);">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
+                                                <td align="center"><span id="@idMarcadorPronostico2">@Model.vm_marcadorFinales.ElementAt(i).marcador2</span></td>
+                                                <td>
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',   @Model.vm_marcadorFinales.ElementAt(i).id_equipo1, @Model.vm_marcadorFinales.ElementAt(i).id_equipo2, @Model.vm_marcadorFinales.ElementAt(i).id_partido, 2);">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="card">
+                                    <div class="@classCard">
+                                        <h2>
+                                            @Model.vm_marcadorFinales.ElementAt(i).estadio<small>@Model.vm_marcadorFinales.ElementAt(i).fecha &#64; @Model.vm_marcadorFinales.ElementAt(i).hora [@descEstado]</small>
+                                        </h2>
+                                    </div>
+                                    <div class="body">
+                                        <table width="100%" cellpadding="5px" cellspacing="2" border="0">
+                                            <tr>
+                                                <td colspan="2">&nbsp;</td>
+                                                <td align="center" width="55px"><b>Pron&oacute;stico</b></td>
+                                                <td align="center" width="55px"><b>Partido</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo1" /></td>
+                                                <td>@Model.vm_marcadorFinales.ElementAt(i).equipo1</td>
+                                                <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador1</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo2" /></td>
+                                                <td>@Model.vm_marcadorFinales.ElementAt(i).equipo2</td>
+                                                <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador2</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
 
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="card">
-            <div class="header bg-light-green">
-                <h2>
-                    Spartak Stadium<small>1 de Junio &#64; 12:30 p.m. [En juego]</small>
-                </h2>
-            </div>
-            <div class="body">
-                <table width="100%" cellpadding="5px" cellspacing="2" border="0">
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                        <td align="center" width="55px"><b>Pron&oacute;stico</b></td>
-                        <td align="center" width="55px"><b>Partido</b></td>
-                    </tr>
-                    <tr>
-                        <td width="50px"><img src="~/images/flags/crc.png" alt="Costa Rica" /></td>
-                        <td>Costa Rica</td>
-                        <td align="center">0</td>
-                        <td align="center">2</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td width="50px"><img src="~/images/flags/mex.png" alt="Costa Rica" /></td>
-                        <td>Mexico</td>
-                        <td align="center">1</td>
-                        <td align="center">1</td>
-                    </tr>
-                </table>
-                <br />
-                <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">Puntos del partido <span class="badge">1</span></button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <div class="card">
-            <div class="header bg-blue-grey">
-                <h2>
-                    Spartak Stadium<small>1 de Junio &#64; 12:30 p.m. [Finalizado]</small>
-                </h2>
-            </div>
-            <div class="body">
-                <table width="100%" cellpadding="5px" cellspacing="2" border="0">
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                        <td align="center" width="55px"><b>Pron&oacute;stico</b></td>
-                        <td align="center" width="55px"><b>Partido</b></td>
-                    </tr>
-                    <tr>
-                        <td width="50px"><img src="~/images/flags/crc.png" alt="Costa Rica" /></td>
-                        <td>Costa Rica</td>
-                        <td align="center">0</td>
-                        <td align="center">3</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td width="50px"><img src="~/images/flags/mex.png" alt="Costa Rica" /></td>
-                        <td>Mexico</td>
-                        <td align="center">1</td>
-                        <td align="center">2</td>
-                    </tr>
-                </table>
-                <br />
-                <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">Puntos del partido <span class="badge">0</span></button>
+                    }
+                </div>
             </div>
         </div>
     </div>
 </div>
-

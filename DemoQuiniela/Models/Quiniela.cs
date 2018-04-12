@@ -131,6 +131,18 @@ namespace MvcQuiniela.Models
         public int idPartido { get; set; }
     }
 
+    public class MarcadorFinalLive
+    {
+        public int idEquipo1 { get; set; }
+
+        public int idEquipo2 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int marcador2 { get; set; }
+
+        public int idPartido { get; set; }
+    }
     public class TablaPosiciones
     {
 
@@ -235,6 +247,34 @@ namespace MvcQuiniela.Models
 
             return rPuntos;
         }
+    }
+
+    public class MarcadorFinal
+    {
+        public int id_partido { get; set; }
+
+        public int id_equipo1 { get; set; }
+
+        public string equipo1 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int id_equipo2 { get; set; }
+
+        public string equipo2 { get; set; }
+
+        public int marcador2 { get; set; }
+        
+        public int id_estadio { get; set; }
+
+        public string estadio { get; set; }
+
+        public string fecha { get; set; }
+
+        public string hora { get; set; }
+
+        public string estado { get; set; }
+
     }
 
 }
