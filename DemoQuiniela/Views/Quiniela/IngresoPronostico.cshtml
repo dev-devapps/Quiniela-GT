@@ -19,13 +19,19 @@
     string estado = "";
     string descEstado = "";
     string classCard = "";
-    string fechaActual = "";
+    string fechaActual = "//";
+    string[] fecha = fechaActual.Split('/');
+    string mes = "";
 }
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 
 <script type="text/javascript">
+    function mensajeError(mensaje){
+        showNotification("bg-black", mensaje, "top", "center", "animated bounceInDown", "animated bounceOutDown");
+    }
+    
     function aumentaMarcador(id, id2, a, eq1, eq2, p, cambio){
         var primerMarcador = false;
         var marcador = document.getElementById(id).innerHTML;
@@ -73,7 +79,7 @@
             error: function(err) {
                 //alert("Error: " + err.responseText);
 
-                if(err.responseText == "True"){
+                if(err.responseText == "OK"){
                     if(cambio == 1){
                         document.getElementById(id).innerHTML = marcador;
                         document.getElementById("hd_" + id).value = marcador;
@@ -89,6 +95,8 @@
                             document.getElementById(id).innerHTML = marcador;
                         }
                     }
+                }else{
+                    mensajeError(err.responseText);
                 }
             }
         });
@@ -137,12 +145,14 @@
                 error: function(err) {
                     //alert("Error: " + err.responseText);
 
-                    if(err.responseText == "True"){
+                    if(err.responseText == "OK"){
                         if(cambio == 1){
                             document.getElementById(id).innerHTML = marcador;
                         }else{
                             document.getElementById(id2).innerHTML = marcador2;
                         }
+                    }else{
+                        mensajeError(err.responseText);
                     }
                 }
             });
@@ -176,6 +186,7 @@
             </div>
             <div class="body">
                 <div class="row clearfix">
+                    
     @for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
     {
         idEquipo1 = Model.vm_pronosticos.ElementAt(i).id_equipo1.ToString() + ".png";
@@ -205,6 +216,10 @@
                 descEstado = "No iniciado";
                 classCard = "header";
                 break;
+            case "C":
+                descEstado = "Cierre de ingreso de pronosticos";
+                classCard = "header bg-lime";
+                break;
             case "I":
                 descEstado = "Iniciado";
                 classCard = "header bg-light-green";
@@ -217,6 +232,57 @@
                 descEstado = "Indefinido";
                 classCard = "header";
                 break;
+        }
+
+        if(fechaActual != Model.vm_pronosticos.ElementAt(i).fecha){
+            fechaActual = Model.vm_pronosticos.ElementAt(i).fecha;
+
+            fecha = fechaActual.Split('/');
+
+            switch(Convert.ToInt32(fecha[1])){
+                case 1:
+                    mes = "Enero";
+                    break;
+                case 2:
+                    mes = "Febrero";
+                    break;
+                case 3:
+                    mes = "Marzo";
+                    break;
+                case 4:
+                    mes = "Abril";
+                    break;
+                case 5:
+                    mes = "Mayo";
+                    break;
+                case 6:
+                    mes = "Junio";
+                    break;
+                case 7:
+                    mes = "Julio";
+                    break;
+                case 8:
+                    mes = "Agosto";
+                    break;
+                case 9:
+                    mes = "Septiembre";
+                    break;
+                case 10:
+                    mes = "Octubre";
+                    break;
+                case 11:
+                    mes = "Noviembre";
+                    break;
+                case 12:
+                    mes = "Diciembre";
+                    break;
+            }
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="alert bg-indigo" align="center">
+                            @fecha[0] de @mes
+                        </div>
+                    </div>
         }
 
         if (estado == "V"){
@@ -318,3 +384,10 @@
         </div>
     </div>
 </div>
+
+
+@section CustomJs {
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="../../js/pages/ui/notifications.js"></script>
+}

@@ -33,7 +33,7 @@ namespace DemoQuiniela.Controllers
 
         public ActionResult SignInGooglePlus()
         {
-            var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=http://localhost:54012/Quiniela/Login&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
+            var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=" + googleParameters.googleplus_redirect_url + "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
             return Redirect(Googleurl);
         }
 
@@ -132,7 +132,7 @@ namespace DemoQuiniela.Controllers
 
                         querys = "SELECT * "
                                + "FROM Partido "
-                               + "WHERE pa_estado = 'T'";
+                               + "WHERE pa_estado in('T','I')";
 
                         List<Partido> PartidosJugados = db.Database.SqlQuery<Partido>(querys).ToList<Partido>();
 
@@ -266,44 +266,59 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/ActualizaPronostico")]
         [HttpPost]
-        public bool ActualizaPronostico(MarcadorPronostico miPronostico){
-            bool respuesta = false;
+        public string ActualizaPronostico(MarcadorPronostico miPronostico){
+            string res = "Ocurrio un error inesperado";
             int idPartido = miPronostico.idPartido;
 
-            querys = "SELECT *"
+            /*
+             * Aqui debe de ir una validación de sesión
+            */
+
+            try{
+                querys = "SELECT *"
                         + "FROM Partido "
                         + "WHERE pa_id=@idpartido ";
 
-            Partido partido = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@idpartido", idPartido)).FirstOrDefault();
+                Partido partido = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@idpartido", idPartido)).FirstOrDefault();
 
-            if(partido.pa_estado == "V"){
-                querys = "SELECT *"
-                        + "FROM Marcador "
-                        + "WHERE ma_idAlias=@idalias "
-                        + "AND ma_idPartido = @idpartido ";
-
-                Marcador marcador = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido)).FirstOrDefault();
-
-                if(marcador != null){
-                    querys = "update Marcador "
-                            + "set ma_marcador1 = @marcador1, ma_marcador2 = @marcador2, ma_hora = getdate() "
+                if (partido.pa_estado == "V")
+                {
+                    querys = "SELECT *"
+                            + "FROM Marcador "
                             + "WHERE ma_idAlias=@idalias "
                             + "AND ma_idPartido = @idpartido ";
 
-                    db.Database.ExecuteSqlCommand(querys, new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido));
+                    Marcador marcador = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido)).FirstOrDefault();
 
-                    respuesta = true;
+                    if (marcador != null)
+                    {
+                        querys = "update Marcador "
+                                + "set ma_marcador1 = @marcador1, ma_marcador2 = @marcador2, ma_hora = getdate() "
+                                + "WHERE ma_idAlias=@idalias "
+                                + "AND ma_idPartido = @idpartido ";
+
+                        db.Database.ExecuteSqlCommand(querys, new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idpartido", miPronostico.idPartido));
+
+                        res = "OK";
+                    }
+                    else
+                    {
+                        querys = "insert into Marcador(ma_idAlias, ma_idEquipo1, ma_idEquipo2, ma_marcador1, ma_marcador2, ma_idPartido, ma_estado, ma_fecha, ma_hora) "
+                                + "values(@idalias, @idequipo1, @idequipo2, @marcador1, @marcador2, @idpartido, 'V', convert(varchar(10), getdate(), 101), getdate()) ";
+
+                        db.Database.ExecuteSqlCommand(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idequipo1", miPronostico.idEquipo1), new SqlParameter("@idequipo2", miPronostico.idEquipo2), new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idpartido", miPronostico.idPartido));
+
+                        res = "OK";
+                    }
                 }else{
-                    querys = "insert into Marcador(ma_idAlias, ma_idEquipo1, ma_idEquipo2, ma_marcador1, ma_marcador2, ma_idPartido, ma_estado, ma_fecha, ma_hora) "
-                            + "values(@idalias, @idequipo1, @idequipo2, @marcador1, @marcador2, @idpartido, 'V', convert(varchar(10), getdate(), 101), getdate()) ";
-
-                    db.Database.ExecuteSqlCommand(querys, new SqlParameter("@idalias", miPronostico.idAlias), new SqlParameter("@idequipo1", miPronostico.idEquipo1), new SqlParameter("@idequipo2", miPronostico.idEquipo2), new SqlParameter("@marcador1", miPronostico.marcador1), new SqlParameter("@marcador2", miPronostico.marcador2), new SqlParameter("@idpartido", miPronostico.idPartido));
-
-                    respuesta = true;
+                    res = "Ya no se pueden ingresar pronosticos para este partido :(";
                 }
+            }catch(Exception ex){
+                res = ex.Message;
+                res = "Ocurrio un error al actualizar el pronostico";
             }
 
-            return respuesta;
+            return res;
         }
 
         [Route("Quiniela/ActualizaMarcador")]

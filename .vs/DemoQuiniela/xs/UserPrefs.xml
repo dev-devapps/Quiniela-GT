@@ -2,19 +2,15 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Quiniela-GT.git Status">
     <Files>
       <File FileName="DemoQuiniela/Global.asax" Line="1" Column="1" />
-      <File FileName="DemoQuiniela/Web.config" Line="15" Column="134" />
-      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="285" Column="21" />
-      <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="271" Column="137" />
+      <File FileName="DemoQuiniela/Web.config" Line="37" Column="27" />
+      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="314" Column="85" />
+      <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="220" Column="51" />
       <File FileName="DemoQuiniela/Views/Quiniela/Posiciones.cshtml" Line="4" Column="43" />
-      <File FileName="DemoQuiniela/ViewModel/QuinielaViewModel.cs" Line="17" Column="2" />
       <File FileName="DemoQuiniela/Views/Quiniela/IngresoMarcadores.cshtml" Line="129" Column="19" />
-      <File FileName="DemoQuiniela/Views/Quiniela/Login.cshtml" Line="46" Column="59" />
-      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="63" Column="17" />
-      <File FileName="DemoQuiniela/Controllers/MoviesController.cs" Line="4" Column="1" />
+      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="23" Column="44" />
       <File FileName="DemoQuiniela/Views/Movies/Index.cshtml" Line="32" Column="54" />
-      <File FileName="DemoQuiniela/Models/Movie.cs" Line="14" Column="91" />
       <File FileName="DemoQuiniela/Models/Login.cs" Line="1" Column="1" />
-      <File FileName="DemoQuiniela/Models/Quiniela.cs" Line="191" Column="31" />
+      <File FileName="DemoQuiniela/Models/Quiniela.cs" Line="1" Column="1" />
       <File FileName="DemoQuiniela/Views/Quiniela/Error.cshtml" Line="10" Column="86" />
       <File FileName="Quiniela-GT.git Status" />
     </Files>
