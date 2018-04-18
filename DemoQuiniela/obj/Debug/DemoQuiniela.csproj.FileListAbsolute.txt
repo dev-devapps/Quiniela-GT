@@ -724,6 +724,6 @@ C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\bin\Microsoft.Owin.S
 C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\obj\Debug\DemoQuiniela.csprojResolveAssemblyReference.cache
 C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\obj\Debug\DemoQuiniela.dll
 C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\obj\Debug\DemoQuiniela.pdb
+C:\Users\HugoAlberto\Source\Repos\Quiniela-GT2\DemoQuiniela\obj\Debug\DemoQuiniela.csprojResolveAssemblyReference.cache
