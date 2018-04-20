@@ -1,0 +1,74 @@
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+
+    ViewBag.Title = "Lista de alias";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    string estado = "";
+    string descEstado = "";
+}
+<!-- Basic Table -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Alias
+                    <small>lista de alias del usuario: @Model.vm_usuarios.ElementAt(0).us_primerNombre  @Model.vm_usuarios.ElementAt(0).us_primerApellido</small>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a  href="~/Quiniela/IngresoAlias/@Model.vm_alias.ElementAt(0).al_idUsuario">Creacion de alias</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Alias</th>
+                            <th>No. Boleta</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @for (int i = 0; i < Model.vm_alias.Count(); i++)
+                        {
+                            estado = Model.vm_alias.ElementAt(i).al_estado;
+                            switch (estado)
+                            {
+                                case "V":
+                                    descEstado = "Vigente";
+                                    break;
+                                case "B":
+                                    descEstado = "Bloqueado";
+                                    break;
+                                default:
+                                    descEstado = "Indefinido";
+                                    break;
+                            }
+                            <tr>
+                                <th scope="row">@(i+1)</th>
+                                <td>@Model.vm_alias.ElementAt(i).al_nickname</td>
+                                <td>@Model.vm_alias.ElementAt(i).al_codigoDeposito</td>
+                                <td>@descEstado</td>
+
+                                <td><a href="~/Quiniela/EditarAlias/@Model.vm_alias.ElementAt(i).al_id" class="btn btn-info waves-effectt" data-toggle="tooltip" title="Editar"><i class="material-icons">mode_edit</i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Basic Table -->
+

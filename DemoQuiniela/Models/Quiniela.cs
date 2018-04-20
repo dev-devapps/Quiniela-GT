@@ -46,6 +46,7 @@ namespace MvcQuiniela.Models
         public string us_correoElectronico { get; set; }
 
         public string us_cui { get; set; }
+        public string us_estado { get; set; }
 
 
     }
@@ -61,6 +62,8 @@ namespace MvcQuiniela.Models
         public string al_nickname { get; set; }
 
         public int al_codigoDeposito { get; set; }
+
+        public string al_estado { get; set; }
     }
 
     [Table("Partido")]

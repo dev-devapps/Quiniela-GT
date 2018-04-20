@@ -1,0 +1,123 @@
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+
+    ViewBag.Title = "Ingreso Usuario";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+}
+
+<script type="text/javascript">
+    function guardarUsuario(){
+        var primerNombre = document.getElementById("primer_nombre").value;
+        var segundoNombre = document.getElementById("segundo_nombre").value;
+        var primerApellido = document.getElementById("primer_apellido").value;
+        var segundoApellido = document.getElementById("segundo_apellido").value;
+        var identificacion = document.getElementById("identificacion").value;
+        var correoElectronico = document.getElementById("correo_electronico").value;
+
+        var _usuario = {};
+        _usuario.us_primerNombre = primerNombre;
+        _usuario.us_segundoNombre = segundoNombre;
+        _usuario.us_primerApellido = primerApellido;
+        _usuario.us_segundoApellido = segundoApellido;
+        _usuario.us_correoElectronico = correoElectronico;
+        _usuario.us_cui = identificacion;
+
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/GuardarUsuario",
+            data: JSON.stringify(_usuario),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                alert('ok');
+            },
+            error: function(err) {
+                alert("Error: " + err.responseText);
+
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ <!-- Basic Validation -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Ingreso de usuario</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="~/Quiniela/ListaUsuario">Lista de usuarios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <form id="form_validation" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="primer_nombre" name="primer_nombre" required>
+                            <label class="form-label">Primer Nombre</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control"  id="segundo_nombre" name="segundo_nombre">
+                            <label class="form-label">Segundo Nombre</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="primer_apellido" name="primer_apellido" required>
+                            <label class="form-label">Primer Apellido</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido">
+                            <label class="form-label">Segundo Apellido</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="identificacion" name="identificacion" required>
+                            <label class="form-label">DPI</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" required>
+                            <label class="form-label">Correo electronico</label>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <button type="submit" class="btn btn-primary waves-effect" onclick="guardarUsuario();">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Basic Validation -->
+  <!-- Jquery Core Js -->
+<script href="~/plugins/jquery/jquery.min.js"></script>
+   <!-- Bootstrap Core Js -->
+<script href="~/plugins/bootstrap/js/bootstrap.js"></script>
+  <!-- Select Plugin Js -->
+<script href="~/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<!-- Slimscroll Plugin Js -->
+<script href="~/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- Jquery Validation Plugin Css -->
+<script href="~/plugins/jquery-validation/jquery.validate.js"></script>
+ <!-- JQuery Steps Plugin Js -->
+<script href="~/plugins/jquery-steps/jquery.steps.js"></script>
+
+ <!-- Custom Js -->
+<script href="~/js/pages/forms/form-validation.js"></script>

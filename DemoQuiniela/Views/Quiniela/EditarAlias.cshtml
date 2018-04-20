@@ -1,0 +1,112 @@
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+
+    ViewBag.Title = "Editar Alias";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+}
+
+<script type="text/javascript">
+    function EditarAlias(id, idUsuario){
+        var alias = document.getElementById("alias").value;
+        var boleta = document.getElementById("numeroBoleta").value;
+        var estado = document.getElementById("estado").value;
+        
+        var _alias = {};
+        _alias.al_id = id;
+        _alias.al_idUsuario = idUsuario;
+        _alias.al_nickname = alias;
+        _alias.al_codigoDeposito = boleta;
+        _alias.al_estado = estado;
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/ModificarAlias",
+            data: JSON.stringify(_alias),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                alert('ok');
+            },
+            error: function(err) {
+                alert("Error: " + err.responseText);
+
+            }
+        });
+    }
+</script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <!-- Bootstrap Select Css -->
+<link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+ <!-- Waves Effect Css -->
+<link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+<!-- Basic Validation -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Editar Alias
+                    <small>lista de alias del usuario: @Model.vm_usuarios.ElementAt(0).us_primerNombre  @Model.vm_usuarios.ElementAt(0).us_primerApellido</small>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="~/Quiniela/ListaALias/@Model.vm_alias.ElementAt(0).al_idUsuario">Lista de alias</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <form id="form_validation" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="alias" name="alias" value="@Model.vm_alias.ElementAt(0).al_nickname" required>
+                            <label class="form-label">Alias</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="numeroBoleta" name="numeroBoleta" value="@Model.vm_alias.ElementAt(0).al_codigoDeposito">
+
+                            <label class="form-label">Numero de boleta</label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">Estado</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            
+                            <select  class="form-control"id="estado" name="estado">
+                                <option value="">-- Seleccione estado --</option>
+                                <option value="V">Vigente</option>
+                                <option value="B">Bloqueado</option>
+                            </select>
+                    
+                        </div>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-primary waves-effect" onclick="EditarAlias(@Model.vm_alias.ElementAt(0).al_id, @Model.vm_alias.ElementAt(0).al_idUsuario);">Modificar</button>
+                </form>
+                
+            
+        </div>
+    </div>
+</div>
+<!-- #END# Basic Validation -->
+<!-- Jquery Validation Plugin Css -->
+<script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+
+

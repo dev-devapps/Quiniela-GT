@@ -31,6 +31,18 @@ namespace DemoQuiniela.Controllers
             return View();
         }
 
+        public Object NullHandler(Object instance)
+        {
+            if(instance != null)
+            {
+                return instance;
+            }
+            else
+            {
+                return DBNull.Value;
+            }
+        }
+  
         public ActionResult SignInGooglePlus()
         {
             var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=" + googleParameters.googleplus_redirect_url + "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
@@ -85,7 +97,7 @@ namespace DemoQuiniela.Controllers
                 {
                     return HttpNotFound();
                 }
-                
+
             }
             else
             {
@@ -94,6 +106,117 @@ namespace DemoQuiniela.Controllers
 
         }
 
+        public ActionResult ListaUsuario()
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            querys = "SELECT * "
+                               + "FROM Usuario ";
+            List<Usuario> tablaUsuarios = db.Database.SqlQuery<Usuario>(querys).ToList<Usuario>();
+            qvm.vm_usuarios = tablaUsuarios;
+            return View(qvm);
+        }
+
+        public ActionResult IngresoUsuario()
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+            return View();
+        }
+
+        public ActionResult EditarUsuario(int id)
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            QuinielaViewModel qvm = new QuinielaViewModel();
+            querys = "SELECT * "
+                     + "FROM Usuario "
+                     + "WHERE us_id=@id";
+            List<Usuario> tablaUsuarios = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@id", id)).ToList<Usuario>();
+            qvm.vm_usuarios = tablaUsuarios;
+            return View(qvm);
+        }
+
+        public ActionResult ListaAlias(int id)
+        {
+            
+            string url = "";
+            
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+
+            List<AliasUsuario> aliasDB = new List<AliasUsuario>();
+            List<Usuario> usuarioDB = new List<Usuario>();
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            querys = "SELECT *"
+                    + "FROM Usuario "
+                    + "WHERE us_id=@iduser ";
+
+            usuarioDB = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@iduser", id)).ToList();
+
+            querys = "SELECT *"
+                    + "FROM AliasUsuario "
+                    + "WHERE al_idUsuario=@iduser ";
+
+            aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", id)).ToList();
+            if (aliasDB.Count == 0)
+            {
+                url = "~/Quiniela/IngresoAlias/" + id.ToString();
+                return Redirect(url);
+            }
+            qvm.vm_alias = aliasDB;
+            qvm.vm_usuarios = usuarioDB;
+            return View(qvm);
+
+        }
+        public ActionResult IngresoAlias(int id)
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+            querys = "SELECT * "
+                               + "FROM Usuario "
+                               + "WHERE us_id=@idUser";
+            List<Usuario> tablaUsuarios = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@idUser", id)).ToList<Usuario>();
+            qvm.vm_usuarios = tablaUsuarios;
+            return View(qvm);
+            
+        }
+
+        public ActionResult EditarAlias(int id)
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            List<Usuario> usuarioDB = new List<Usuario>();
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            querys = "SELECT * "
+                     + "FROM AliasUsuario "
+                     + "WHERE al_id=@id";
+
+            List<AliasUsuario> aliasSeleccionado = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@id", id)).ToList<AliasUsuario>();
+
+            querys = "SELECT *"
+                   + "FROM Usuario "
+                   + "WHERE us_id=@iduser ";
+
+            usuarioDB = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@iduser", aliasSeleccionado.ElementAt(0).al_idUsuario)).ToList();
+
+            qvm.vm_usuarios = usuarioDB;
+            qvm.vm_alias = aliasSeleccionado;
+
+            return View(qvm);
+        }
         public ActionResult Posiciones(int id)
         {
             DatosLogin = (User)TempData["DatosLogin"];
@@ -247,6 +370,51 @@ namespace DemoQuiniela.Controllers
             }
 
 
+        }
+
+        [Route("Quiniela/GuardarUsuario")]
+        [HttpPost]
+        public JsonResult  GuardarUsuario(Usuario usuario)
+        {
+            querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", 'V'));
+            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("Quiniela/ModificarUsuario")]
+        [HttpPost]
+        public JsonResult ModificarUsuario(Usuario usuario)
+        {
+            
+            querys = "update Usuario "
+                           + "set us_primerNombre = @primerNombre, us_segundoNombre = @segundoNombre, us_primerApellido = @primerApellido, us_segundoApellido = @segundoApellido, us_correoElectronico = @correoElectronico, us_cui = @identificacion, us_estado = @estado "
+                           + "WHERE us_id=@id ";
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", NullHandler(usuario.us_estado)), new SqlParameter("@id", NullHandler(usuario.us_id)));
+
+            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("Quiniela/GuardarAlias")]
+        [HttpPost]
+        public JsonResult GuardarAlias(AliasUsuario alias)
+        {
+            querys = "insert into AliasUsuario values(@id_usuario, @alias, @boleta)";
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@id_usuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@alias", NullHandler(alias.al_nickname)), new SqlParameter("@boleta", NullHandler(alias.al_codigoDeposito)));
+
+            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+        }
+        [Route("Quiniela/ModificarAlias")]
+        [HttpPost]
+        public JsonResult ModificarAlias(AliasUsuario alias)
+        {
+
+            querys = "UPDATE AliasUsuario "
+                           + "SET al_nickname = @nickname, al_codigoDeposito = @numeroDeposito, al_estado = @estado "
+                           + "WHERE al_id=@id "
+                           + "AND al_idUsuario=@idUsuario";
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@nickname", NullHandler(alias.al_nickname)), new SqlParameter("@numeroDeposito", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@estado", NullHandler(alias.al_estado)), new SqlParameter("@id", NullHandler(alias.al_id)), new SqlParameter("@idUsuario", NullHandler(alias.al_idUsuario)));
+
+            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("Quiniela/ActualizaPronostico")]

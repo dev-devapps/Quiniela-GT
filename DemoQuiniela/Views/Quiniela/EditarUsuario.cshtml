@@ -1,0 +1,127 @@
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+
+    ViewBag.Title = "Editar usuario";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+}
+
+<script type="text/javascript">
+    function EditarUsuario(id){
+        var primerNombre = document.getElementById("primer_nombre").value;
+        var segundoNombre = document.getElementById("segundo_nombre").value;
+        var primerApellido = document.getElementById("primer_apellido").value;
+        var segundoApellido = document.getElementById("segundo_apellido").value;
+        var identificacion = document.getElementById("identificacion").value;
+        var correoElectronico = document.getElementById("correo_electronico").value;
+        var estado = document.getElementById("estado").value;
+        alert(estado);
+        var _usuario = {};
+        _usuario.us_id = id;
+        _usuario.us_primerNombre = primerNombre;
+        _usuario.us_segundoNombre = segundoNombre;
+        _usuario.us_primerApellido = primerApellido;
+        _usuario.us_segundoApellido = segundoApellido;
+        _usuario.us_correoElectronico = correoElectronico;
+        _usuario.us_cui = identificacion;
+        _usuario.us_estado = estado;
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/ModificarUsuario",
+            data: JSON.stringify(_usuario),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                alert('ok');
+            },
+            error: function(err) {
+                alert("Error: " + err.responseText);
+
+            }
+        });
+    }
+</script>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Basic Validation -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Editar usuario</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="~/Quiniela/ListaUsuario">Lista de usuarios</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <form id="form_validation" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="primer_nombre" name="primer_nombre" value="@Model.vm_usuarios.ElementAt(0).us_primerNombre" required>
+                            <label class="form-label">Primer Nombre</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" value="@Model.vm_usuarios.ElementAt(0).us_segundoNombre">
+
+                            <label class="form-label">Segundo Nombre</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="primer_apellido" name="primer_apellido" value="@Model.vm_usuarios.ElementAt(0).us_primerApellido" required>
+
+                            <label class="form-label">Primer Apellido</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="segundo_apellido" name="segundo_apellido" value="@Model.vm_usuarios.ElementAt(0).us_segundoApellido">
+
+                            <label class="form-label">Segundo Apellido</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="identificacion" name="identificacion" value="@Model.vm_usuarios.ElementAt(0).us_cui" required>
+
+                            <label class="form-label">DPI</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="@Model.vm_usuarios.ElementAt(0).us_correoElectronico" required>
+
+                            <label class="form-label">Correo electronico</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="estado" name="estado" value="@Model.vm_usuarios.ElementAt(0).us_estado" required>
+
+                            <label class="form-label">Estado</label>
+                        </div>
+                    </div>
+                        <br>
+                        <button type="button" class="btn btn-primary waves-effect" onclick="EditarUsuario(@Model.vm_usuarios.ElementAt(0).us_id);">Modificar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Basic Validation -->
+<!-- Jquery Validation Plugin Css -->
+<script src="~/plugins/jquery-validation/jquery.validate.js"></script>
+
+
