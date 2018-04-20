@@ -134,6 +134,18 @@ namespace MvcQuiniela.Models
         public int idPartido { get; set; }
     }
 
+    public class MarcadorFinalLive
+    {
+        public int idEquipo1 { get; set; }
+
+        public int idEquipo2 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int marcador2 { get; set; }
+
+        public int idPartido { get; set; }
+    }
     public class TablaPosiciones
     {
 
@@ -163,10 +175,10 @@ namespace MvcQuiniela.Models
                         puntos++;
 
                     if (partidoJugado.pa_marcador1 > partidoJugado.pa_marcador2 && pronostico.ma_marcador1 > pronostico.ma_marcador2)
-                        puntos = puntos + 2;
+                        puntos = puntos + 3;
 
                     if (partidoJugado.pa_marcador2 > partidoJugado.pa_marcador1 && pronostico.ma_marcador2 > pronostico.ma_marcador1)
-                        puntos = puntos + 2;
+                        puntos = puntos + 3;
 
                     if (partidoJugado.pa_marcador2 == partidoJugado.pa_marcador1 && pronostico.ma_marcador2 == pronostico.ma_marcador1)
                         puntos = 3;
@@ -217,27 +229,59 @@ namespace MvcQuiniela.Models
         {
             int rPuntos = 0;
 
-            if(pronostico.ma_marcador1 == this.marcador1 && pronostico.ma_marcador2 == this.marcador2){
+            if (pronostico.ma_marcador1 == this.marcador1 && pronostico.ma_marcador2 == this.marcador2)
+            {
                 rPuntos = 5;
-            }else{
+            }
+            else
+            {
                 if (this.marcador1 == pronostico.ma_marcador1)
                     rPuntos++;
 
                 if (this.marcador2 == pronostico.ma_marcador2)
                     rPuntos++;
 
+                if (this.marcador1 == this.marcador2 && pronostico.ma_marcador1 == pronostico.ma_marcador2)
+                    rPuntos += 3;
+                
                 if (this.marcador1 > this.marcador2 && pronostico.ma_marcador1 > pronostico.ma_marcador2)
-                    rPuntos += 2;
+                    rPuntos += 3;
 
                 if (this.marcador2 > this.marcador1 && pronostico.ma_marcador2 > pronostico.ma_marcador1)
-                    puntos += 2;
-
-                if (this.marcador2 == this.marcador1 && pronostico.ma_marcador2 == pronostico.ma_marcador1)
-                    rPuntos = 3;
+                    rPuntos += 3;
             }
+
 
             return rPuntos;
         }
+    }
+
+    public class MarcadorFinal
+    {
+        public int id_partido { get; set; }
+
+        public int id_equipo1 { get; set; }
+
+        public string equipo1 { get; set; }
+
+        public int marcador1 { get; set; }
+
+        public int id_equipo2 { get; set; }
+
+        public string equipo2 { get; set; }
+
+        public int marcador2 { get; set; }
+        
+        public int id_estadio { get; set; }
+
+        public string estadio { get; set; }
+
+        public string fecha { get; set; }
+
+        public string hora { get; set; }
+
+        public string estado { get; set; }
+
     }
 
 }

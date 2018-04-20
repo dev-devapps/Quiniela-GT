@@ -14,6 +14,8 @@ namespace MvcQuiniela.ViewModel
 
         public List<Pronosticos> vm_pronosticos;
 
+        public List<MarcadorFinal> vm_marcadorFinales;
+
         public List<Usuario> vm_usuarios;
 
     }
