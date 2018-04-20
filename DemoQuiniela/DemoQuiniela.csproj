@@ -3737,6 +3737,12 @@
     <Content Include="Views\Quiniela\Login.cshtml" />
     <Content Include="Views\Quiniela\Error.cshtml" />
     <Content Include="images\error.gif" />
+    <Content Include="Views\Quiniela\IngresoUsuario.cshtml" />
+    <Content Include="Views\Quiniela\ListaUsuario.cshtml" />
+    <Content Include="Views\Quiniela\IngresoAlias.cshtml" />
+    <Content Include="Views\Quiniela\ListaAlias.cshtml" />
+    <Content Include="Views\Quiniela\EditarUsuario.cshtml" />
+    <Content Include="Views\Quiniela\EditarAlias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
