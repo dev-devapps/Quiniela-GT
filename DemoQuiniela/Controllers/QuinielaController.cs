@@ -17,6 +17,7 @@ namespace DemoQuiniela.Controllers
         private GoogleUserOutputData userLogin = new GoogleUserOutputData();
         private User DatosLogin = new User();
         private string querys;
+        private string urlLogout = "~/Quiniela";
 
         public ActionResult Index()
         {
@@ -80,6 +81,8 @@ namespace DemoQuiniela.Controllers
 
                         if (id_user > 0)
                         {
+                            Session["UserInfo"] = DatosLogin;
+
                             querys = "SELECT *"
                             + "FROM AliasUsuario "
                             + "WHERE al_idUsuario=@iduser "
@@ -95,13 +98,13 @@ namespace DemoQuiniela.Controllers
                 }
                 else
                 {
-                    return HttpNotFound();
+                    return Redirect(urlLogout);
                 }
 
             }
             else
             {
-                return HttpNotFound();
+                return Redirect(urlLogout);
             }
 
         }
@@ -291,12 +294,12 @@ namespace DemoQuiniela.Controllers
                 }
                 else
                 {
-                    return HttpNotFound();
+                    return Redirect(urlLogout);
                 }
             }
             else
             {
-                return HttpNotFound();
+                return Redirect(urlLogout);
             }
         }
 
@@ -381,7 +384,7 @@ namespace DemoQuiniela.Controllers
                 return View(qvm);
 
             }else{
-                return HttpNotFound();
+                return Redirect(urlLogout);
             }
 
 
