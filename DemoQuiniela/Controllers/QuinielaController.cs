@@ -108,7 +108,7 @@ namespace DemoQuiniela.Controllers
             }
 
         }
-
+        [SessionCheck]
         public ActionResult ListaUsuario()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -122,7 +122,7 @@ namespace DemoQuiniela.Controllers
             qvm.vm_usuarios = tablaUsuarios;
             return View(qvm);
         }
-
+        [SessionCheck]
         public ActionResult IngresoUsuario()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -132,7 +132,7 @@ namespace DemoQuiniela.Controllers
             QuinielaViewModel qvm = new QuinielaViewModel();
             return View();
         }
-
+        [SessionCheck]
         public ActionResult EditarUsuario(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -146,6 +146,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
         }
 
+        [SessionCheck]
         public ActionResult ListaAlias(int id)
         {
             
@@ -179,6 +180,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
 
         }
+        [SessionCheck]
         public ActionResult IngresoAlias(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -194,7 +196,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
             
         }
-
+        [SessionCheck]
         public ActionResult EditarAlias(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -220,6 +222,7 @@ namespace DemoQuiniela.Controllers
 
             return View(qvm);
         }
+        [SessionCheck]
         public ActionResult Posiciones(int id)
         {
             DatosLogin = (User)TempData["DatosLogin"];
@@ -302,7 +305,7 @@ namespace DemoQuiniela.Controllers
                 return Redirect(urlLogout);
             }
         }
-
+        [SessionCheck]
         public ActionResult IngresoMarcadores()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -324,7 +327,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
 
         }
-
+        [SessionCheck]
         public ActionResult IngresoPronostico(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
