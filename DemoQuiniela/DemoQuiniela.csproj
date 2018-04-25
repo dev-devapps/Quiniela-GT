@@ -209,7 +209,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
-    <Compile Include="Controllers\ValidateSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +223,7 @@
     <Compile Include="Controllers\QuinielaController.cs" />
     <Compile Include="Models\Quiniela.cs" />
     <Compile Include="ViewModel\QuinielaViewModel.cs" />
+    <Compile Include="Controllers\SessionCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

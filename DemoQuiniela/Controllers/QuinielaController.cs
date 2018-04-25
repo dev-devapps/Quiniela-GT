@@ -78,6 +78,7 @@ namespace DemoQuiniela.Controllers
                         DatosLogin.picture = userLogin.picture;
                         DatosLogin.id_login = id_user;
                         DatosLogin.login = true;
+                        DatosLogin.id_menu = 1;
 
                         if (id_user > 0)
                         {
@@ -113,6 +114,7 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
 
@@ -127,7 +129,7 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
-            
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
             return View();
@@ -137,6 +139,8 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
+
             QuinielaViewModel qvm = new QuinielaViewModel();
             querys = "SELECT * "
                      + "FROM Usuario "
@@ -154,6 +158,7 @@ namespace DemoQuiniela.Controllers
             
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
 
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
             List<Usuario> usuarioDB = new List<Usuario>();
@@ -185,7 +190,7 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
-            
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
             querys = "SELECT * "
@@ -201,6 +206,8 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
+
             List<Usuario> usuarioDB = new List<Usuario>();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
@@ -290,6 +297,7 @@ namespace DemoQuiniela.Controllers
                                                                      select s).ToList();
 
                     vm.vm_tablaPosiciones = tablaPosicionesOrdenada;
+                    DatosLogin.id_menu = 1;
 
                     ViewBag.DatosLogin = DatosLogin;
 
@@ -310,6 +318,8 @@ namespace DemoQuiniela.Controllers
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 5;
+
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
@@ -341,9 +351,11 @@ namespace DemoQuiniela.Controllers
                      + "WHERE al_idUsuario=@iduser "
                      + "AND al_id=@idalias";
 
-            aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
+            //aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
 
-            if(aliasDB.Count == 0){
+            AliasUsuario aliasSeleccionado = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).FirstOrDefault();
+
+            if(aliasSeleccionado == null){
                 return Redirect("/Quiniela/Error");
             }
 
@@ -383,6 +395,10 @@ namespace DemoQuiniela.Controllers
                 qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
 
                 qvm.vm_pronosticos = tablaPronosticos;
+
+                DatosLogin.id_alias = id;
+                DatosLogin.nickname = aliasSeleccionado.al_nickname;
+                DatosLogin.id_menu = 2;
 
                 return View(qvm);
 
