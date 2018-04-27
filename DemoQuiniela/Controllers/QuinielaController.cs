@@ -484,7 +484,7 @@ namespace DemoQuiniela.Controllers
         [Route("Quiniela/GuardarUsuario")]
         [HttpPost]
         [SessionCheck(Transaccion = 6)]
-        public JsonResult  GuardarUsuario(Usuario usuario)
+        public JsonResult  GuardarUsuario(Usuario usuario, int rol)
         {
             int Resultado = 0;
            // querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
