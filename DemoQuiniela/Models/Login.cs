@@ -119,4 +119,6 @@ namespace MvcQuiniela.Models
         public int id_login { get; set; }
         public int id_rol { get; set; }
 }
+        public int id_menu { get; set; }
+    }
 }
