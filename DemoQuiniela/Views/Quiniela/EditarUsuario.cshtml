@@ -4,7 +4,8 @@
 
     ViewBag.Title = "Editar usuario";
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
-
+    string estado = "";
+    string selected = "selected";
 }
 
 <script type="text/javascript">
@@ -45,6 +46,12 @@
 
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Bootstrap Select Css -->
+<link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+<!-- Waves Effect Css -->
+<link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
 <!-- Basic Validation -->
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -106,11 +113,39 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-group form-float">
+                    <!--div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" id="estado" name="estado" value="@Model.vm_usuarios.ElementAt(0).us_estado" required>
 
                             <label class="form-label">Estado</label>
+                        </div>
+                    </div-->
+                    @{
+                        //estado = Model.vm_alias.ElementAt(0).al_estado;
+                        if (Model.vm_usuarios.ElementAt(0).us_estado != null)
+                        {
+                            estado = Model.vm_usuarios.ElementAt(0).us_estado;
+                        }
+                        else
+                        {
+                            estado = "I";
+                        }
+                    }
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">Estado</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+
+                            <select class="form-control" id="estado" name="estado">
+                                <option value="">-- Seleccione estado --</option>
+                                <option value="V" @if (estado.Equals("V")) { @selected ; }>Vigente</option>
+                                <option value="B" @if (estado.Equals("B")) { @selected ; }>Bloqueado</option>
+                            </select>
+
                         </div>
                     </div>
                         <br>

@@ -4,6 +4,8 @@
 
     ViewBag.Title = "Lista de usuario";
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+    string estado = "";
+    string descEstado = "";
 
 }
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -35,25 +37,33 @@
                                         <th>Apellidos</th>
                                         <th>Correo electronico</th>
                                         <th>Identificacion</th>
+                                        <th>Estado</th>
                                         <th> </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @for (int i = 0; i < Model.vm_usuarios.Count(); i++)
                                     {
+                                        estado = Model.vm_usuarios.ElementAt(i).us_estado;
+                                        switch (estado)
+                                        {
+                                            case "V":
+                                                descEstado = "Vigente";
+                                                break;
+                                            case "B":
+                                                descEstado = "Bloqueado";
+                                                break;
+                                            default:
+                                                descEstado = "Indefinido";
+                                                break;
+                                        }
                                         <tr>
                                             <td>@Model.vm_usuarios.ElementAt(i).us_primerNombre</td>
                                             <td>@Model.vm_usuarios.ElementAt(i).us_primerApellido</td>
                                             <td>@Model.vm_usuarios.ElementAt(i).us_correoElectronico</td>
                                             <td>@Model.vm_usuarios.ElementAt(i).us_cui</td>
+                                            <td>@descEstado</td>
                                             <td>
-                                                <!--button type="button" class="btn btn-info waves-effect" data-toggle="tooltip" title="Editar">
-                                                    <i class="material-icons">mode_edit</i>
-                                                </!--button>
-
-                                                <button id="alias" type="button" class="btn btn-warning waves-effect" data-toggle="tooltip" title="Alias" onclick = "javascript: Alias('@Model.vm_usuarios.ElementAt(i).us_id');">
-                                                    <i class="material-icons">assignment_ind</i>
-                                                </button-->
                                                 <a href="~/Quiniela/ListaAlias/@Model.vm_usuarios.ElementAt(i).us_id" class="btn btn-warning waves-effect" data-toggle="tooltip" title="Alias"><i class="material-icons">assignment_ind</i></a>
                                                 <a href="~/Quiniela/EditarUsuario/@Model.vm_usuarios.ElementAt(i).us_id" class="btn btn-info waves-effectt"  data-toggle="tooltip" title="Editar"><i class="material-icons">mode_edit</i></a>
                                             </td>

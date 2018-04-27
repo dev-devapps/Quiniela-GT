@@ -395,11 +395,32 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/GuardarUsuario")]
         [HttpPost]
-        public JsonResult  GuardarUsuario(Usuario usuario)
+        public JsonResult  GuardarUsuario(Usuario usuario, int rol)
         {
-            querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
-            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", 'V'));
-            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+            int Resultado = 0;
+           // querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
+            //db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", 'V'));
+
+            querys = "EXEC	quiniela..sp_usuario_mant "
+                    + "@operacion = @txtOperacion,"
+                    + "@primerNombre = @txtPrimerNombre,"
+                    + "@segundoNombre = @txtSegundoNombre,"
+                    + "@primerApellido = @txtPrimerApellido,"
+                    + "@segundoApellido = @txtSegundoApellido,"
+                    + "@correoElectronico = @txtCorreo,"
+                    + "@cui = @txtCui,"
+                    + "@estado = @txtEstado,"
+                    + "@rol = @txtRol";
+
+            Resultado = db.Database.ExecuteSqlCommand(querys, new SqlParameter("@txtOperacion", 'I'), new SqlParameter("@txtPrimerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@txtSegundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@txtPrimerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@txtSegundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@txtCorreo", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@txtCui", NullHandler(usuario.us_cui)), new SqlParameter("@txtEstado", 'V'),new SqlParameter("@txtRol", rol));
+            if (Resultado == 0) {
+                return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Error = false, responseText = "false" }, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         [Route("Quiniela/ModificarUsuario")]
@@ -419,7 +440,7 @@ namespace DemoQuiniela.Controllers
         [HttpPost]
         public JsonResult GuardarAlias(AliasUsuario alias)
         {
-            querys = "insert into AliasUsuario values(@id_usuario, @alias, @boleta)";
+            querys = "insert into AliasUsuario(al_idUsuario, al_nickname, al_codigoDeposito, al_estado) values(@id_usuario, @alias, @boleta, 'V')";
             db.Database.ExecuteSqlCommand(querys, new SqlParameter("@id_usuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@alias", NullHandler(alias.al_nickname)), new SqlParameter("@boleta", NullHandler(alias.al_codigoDeposito)));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);

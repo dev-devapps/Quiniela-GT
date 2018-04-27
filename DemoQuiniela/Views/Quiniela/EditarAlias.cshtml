@@ -4,7 +4,8 @@
 
     ViewBag.Title = "Editar Alias";
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
-
+    string estado = "";
+    string selected = "selected";
 }
 
 <script type="text/javascript">
@@ -78,7 +79,15 @@
                             <label class="form-label">Numero de boleta</label>
                         </div>
                     </div>
-
+                    @{
+                        //estado = Model.vm_alias.ElementAt(0).al_estado;
+                        if(Model.vm_alias.ElementAt(0).al_estado != null) {
+                            estado = Model.vm_alias.ElementAt(0).al_estado;
+                        }else
+                        {
+                            estado = "I";
+                        }
+                    }
                     <br>
                     <div class="form-group form-float">
                         <div class="form-line">
@@ -91,8 +100,8 @@
                             
                             <select  class="form-control"id="estado" name="estado">
                                 <option value="">-- Seleccione estado --</option>
-                                <option value="V">Vigente</option>
-                                <option value="B">Bloqueado</option>
+                                <option value="V" @if (estado.Equals("V")) { @selected; } >Vigente</option>
+                                <option value="B" @if (estado.Equals("B")) { @selected; }>Bloqueado</option>
                             </select>
                     
                         </div>
