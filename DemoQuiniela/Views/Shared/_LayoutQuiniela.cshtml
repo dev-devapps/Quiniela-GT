@@ -124,6 +124,8 @@
                             <span>Ayuda</span>
                         </a>
                     </li>
+                        @if (ViewBag.DatosLogin.id_rol == 1)
+                        {
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
@@ -140,6 +142,7 @@
 </li>
                         </ul>
                     </li>
+                        }
 
                 </ul>
             </div>
