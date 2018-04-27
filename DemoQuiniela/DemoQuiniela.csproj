@@ -228,10 +228,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\querys.css" />
+    <Content Include="css\stylelogin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\foto.jpg" />
+    <Content Include="images\Google-Login-hover.png" />
+    <Content Include="images\Google-Login.png" />
     <Content Include="images\login.jpg" />
     <Content Include="images\login_alias.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -240,6 +245,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
