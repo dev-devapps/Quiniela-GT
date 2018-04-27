@@ -57,6 +57,7 @@ namespace DemoQuiniela.Controllers
 
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
             List<Usuario> userDB = new List<Usuario>();
+            List<UsuarioRol> userRol = new List<UsuarioRol>();
 
             if (url != "")
             {
@@ -78,9 +79,19 @@ namespace DemoQuiniela.Controllers
                         DatosLogin.picture = userLogin.picture;
                         DatosLogin.id_login = id_user;
                         DatosLogin.login = true;
+                        DatosLogin.id_menu = 1;
+
+                        querys = "SELECT *"
+                         + "FROM UsuarioRol "
+                         + "WHERE ur_idUsuario=@id";
+
+                        userRol = db.UsuarioRol.SqlQuery(querys, new SqlParameter("@id", id_user)).ToList();
 
                         if (id_user > 0)
                         {
+
+                            DatosLogin.id_rol = userRol.ElementAt(0).ur_idRol;
+
                             Session["UserInfo"] = DatosLogin;
 
                             querys = "SELECT *"
@@ -108,11 +119,12 @@ namespace DemoQuiniela.Controllers
             }
 
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult ListaUsuario()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
 
@@ -122,21 +134,23 @@ namespace DemoQuiniela.Controllers
             qvm.vm_usuarios = tablaUsuarios;
             return View(qvm);
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult IngresoUsuario()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
-            
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
             return View();
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult EditarUsuario(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
+
             QuinielaViewModel qvm = new QuinielaViewModel();
             querys = "SELECT * "
                      + "FROM Usuario "
@@ -146,7 +160,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
         }
 
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult ListaAlias(int id)
         {
             
@@ -154,6 +168,7 @@ namespace DemoQuiniela.Controllers
             
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
 
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
             List<Usuario> usuarioDB = new List<Usuario>();
@@ -180,12 +195,12 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
 
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult IngresoAlias(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
-            
+            DatosLogin.id_menu = 6;
 
             QuinielaViewModel qvm = new QuinielaViewModel();
             querys = "SELECT * "
@@ -196,11 +211,13 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
             
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 6)]
         public ActionResult EditarAlias(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 6;
+
             List<Usuario> usuarioDB = new List<Usuario>();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
@@ -222,7 +239,7 @@ namespace DemoQuiniela.Controllers
 
             return View(qvm);
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 1)]
         public ActionResult Posiciones(int id)
         {
             DatosLogin = (User)TempData["DatosLogin"];
@@ -290,6 +307,7 @@ namespace DemoQuiniela.Controllers
                                                                      select s).ToList();
 
                     vm.vm_tablaPosiciones = tablaPosicionesOrdenada;
+                    DatosLogin.id_menu = 1;
 
                     ViewBag.DatosLogin = DatosLogin;
 
@@ -305,11 +323,74 @@ namespace DemoQuiniela.Controllers
                 return Redirect(urlLogout);
             }
         }
-        [SessionCheck]
+
+        [SessionCheck(Transaccion = 1)]
+        public ActionResult DetallePorPartido(int id)
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            List<AliasUsuario> aliasDB = new List<AliasUsuario>();
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            if (DatosLogin != null && DatosLogin.login)
+            {
+
+
+                querys = "select id_partido=pa_id, id_alias= 0, id_equipo1=pa_idEquipo1, equipo1=E1.eq_descripcion, marcador1=pa_marcador1, pronostico1=-1, id_equipo2=pa_idEquipo2, equipo2=E2.eq_descripcion, marcador2=pa_marcador2, pronostico2=-1, puntos=0, id_estadio=es_id, estadio=es_nombre, fecha= convert(varchar(10), pa_fecha, 103), hora= convert(varchar(5), pa_hora, 108), estado=pa_estado "
+                        + "from Partido, Equipo as E1, Equipo as E2, Estadio "
+                        + "where pa_idEquipo1 = E1.eq_id "
+                        + "and pa_idEquipo2 = E2.eq_id "
+                        + "and pa_idEstadio = es_id "
+                        + "order by pa_fecha";
+
+                List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys).ToList<Pronosticos>();
+
+                querys = "SELECT *"
+                        + "FROM Marcador "
+                        + "WHERE ma_idAlias=@idalias ";
+
+                List<Marcador> pronosticosIngresados = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", id)).ToList<Marcador>();
+
+                foreach (Marcador miPronostico in pronosticosIngresados)
+                {
+                    foreach (Pronosticos itemPronostico in tablaPronosticos)
+                    {
+
+                        if (itemPronostico.id_partido == miPronostico.ma_idPartido)
+                        {
+                            itemPronostico.puntos = itemPronostico.CalcularPuntos(miPronostico);
+                            itemPronostico.pronostico1 = miPronostico.ma_marcador1;
+                            itemPronostico.pronostico2 = miPronostico.ma_marcador2;
+                        }
+                    }
+                }
+
+                querys = "SELECT *"
+                         + "FROM AliasUsuario "
+                         + "WHERE al_idUsuario=@iduser ";
+
+                qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
+
+                qvm.vm_pronosticos = tablaPronosticos;
+
+                return View(qvm);
+
+            }
+            else
+            {
+                return Redirect(urlLogout);
+            }
+
+        }
+
+        [SessionCheck(Transaccion = 5)]
         public ActionResult IngresoMarcadores()
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
+            DatosLogin.id_menu = 5;
+
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
@@ -327,7 +408,7 @@ namespace DemoQuiniela.Controllers
             return View(qvm);
 
         }
-        [SessionCheck]
+        [SessionCheck(Transaccion = 2)]
         public ActionResult IngresoPronostico(int id)
         {
             ViewBag.DatosLogin = TempData["DatosLogin"];
@@ -341,9 +422,11 @@ namespace DemoQuiniela.Controllers
                      + "WHERE al_idUsuario=@iduser "
                      + "AND al_id=@idalias";
 
-            aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
+            //aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
 
-            if(aliasDB.Count == 0){
+            AliasUsuario aliasSeleccionado = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).FirstOrDefault();
+
+            if(aliasSeleccionado == null){
                 return Redirect("/Quiniela/Error");
             }
 
@@ -384,6 +467,10 @@ namespace DemoQuiniela.Controllers
 
                 qvm.vm_pronosticos = tablaPronosticos;
 
+                DatosLogin.id_alias = id;
+                DatosLogin.nickname = aliasSeleccionado.al_nickname;
+                DatosLogin.id_menu = 2;
+
                 return View(qvm);
 
             }else{
@@ -393,9 +480,11 @@ namespace DemoQuiniela.Controllers
 
         }
 
+
         [Route("Quiniela/GuardarUsuario")]
         [HttpPost]
-        public JsonResult  GuardarUsuario(Usuario usuario, int rol)
+        [SessionCheck(Transaccion = 6)]
+        public JsonResult  GuardarUsuario(Usuario usuario)
         {
             int Resultado = 0;
            // querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
@@ -425,6 +514,7 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/ModificarUsuario")]
         [HttpPost]
+        [SessionCheck(Transaccion = 6)]
         public JsonResult ModificarUsuario(Usuario usuario)
         {
             
@@ -438,6 +528,7 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/GuardarAlias")]
         [HttpPost]
+        [SessionCheck(Transaccion = 6)]
         public JsonResult GuardarAlias(AliasUsuario alias)
         {
             querys = "insert into AliasUsuario(al_idUsuario, al_nickname, al_codigoDeposito, al_estado) values(@id_usuario, @alias, @boleta, 'V')";
@@ -447,6 +538,7 @@ namespace DemoQuiniela.Controllers
         }
         [Route("Quiniela/ModificarAlias")]
         [HttpPost]
+        [SessionCheck(Transaccion = 6)]
         public JsonResult ModificarAlias(AliasUsuario alias)
         {
 
@@ -461,6 +553,7 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/ActualizaPronostico")]
         [HttpPost]
+        [SessionCheck(Transaccion = 2)]
         public string ActualizaPronostico(MarcadorPronostico miPronostico){
             string res = "Ocurrio un error inesperado";
             int idPartido = miPronostico.idPartido;
@@ -518,6 +611,7 @@ namespace DemoQuiniela.Controllers
 
         [Route("Quiniela/ActualizaMarcador")]
         [HttpPost]
+        [SessionCheck(Transaccion = 5)]
         public bool ActualizaMarcador(MarcadorFinalLive marcadorfinal)
         {
             bool respuesta = false;

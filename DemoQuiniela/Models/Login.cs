@@ -117,5 +117,7 @@ namespace MvcQuiniela.Models
         public string picture { get; set; }
         public bool login { get; set; }
         public int id_login { get; set; }
+        public int id_rol { get; set; }
+        public int id_menu { get; set; }
     }
 }

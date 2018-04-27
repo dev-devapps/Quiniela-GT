@@ -36,7 +36,33 @@
 
     @RenderSection("CssStyles", false)
 </head>
-
+@{
+    string classTablaPosiciones = "", classPronostico = "", classEstadistica = "", classAyuda = "", classIngresoMarcadores = "", classUsuarios = "", classAdmin = "";
+    int idMenu = ViewBag.DatosLogin.id_menu;
+    
+    switch (idMenu){
+        case 1:
+            classTablaPosiciones = "active";
+            break;
+        case 2:
+            classPronostico = "active";
+            break;
+        case 3:
+            classEstadistica = "active";
+            break;
+        case 4:
+            classAyuda = "active";
+            break;
+        case 5:
+            classAdmin = "active";
+            classIngresoMarcadores = "active";
+            break;
+        case 6:
+            classAdmin = "active";
+            classUsuarios = "active";
+            break;
+    }
+}
 <body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
@@ -100,46 +126,47 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MUNDIAL RUSIA 2018</li>
-                    <li class="active">
+                    <li class="@classTablaPosiciones">
                         <a href='~/Quiniela/Posiciones/@ViewBag.DatosLogin.id_alias'>
                             <i class="material-icons">format_list_numbered</i>
                             <span>Tabla de Posiciones</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="@classPronostico">
                         <a href='~/Quiniela/IngresoPronostico/@ViewBag.DatosLogin.id_alias'>
                             <i class="material-icons">edit</i>
                             <span>Ingreso de Pron&oacute;sticos</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="@classEstadistica">
                         <a href="pages/helper-classes.html">
                             <i class="material-icons">poll</i>
                             <span>Estad&iacute;sticas</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="@classAyuda">
                         <a href="pages/helper-classes.html">
                             <i class="material-icons">help_outline</i>
                             <span>Ayuda</span>
                         </a>
                     </li>
-                    <li>
+                        @if (ViewBag.DatosLogin.id_rol == 1)
+                        {
+                    <li class="@classAdmin">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">settings</i>
                             <span>Administradores</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="@classIngresoMarcadores">
                                 <a href='~/Quiniela/IngresoMarcadores/'>Ingreso Marcadores</a>
                             </li>
-                            <li>
-                            
-                                <!--a href='~/Quiniela/IngresoUsuario/'>Usuarios</!--a>-->
+                            <li class="@classUsuarios">
                                 <a href='~/Quiniela/ListaUsuario/'>Usuarios</a>
-</li>
+                            </li>
                         </ul>
                     </li>
+                        }
 
                 </ul>
             </div>
