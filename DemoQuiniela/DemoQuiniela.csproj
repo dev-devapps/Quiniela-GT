@@ -3750,6 +3750,8 @@
     <Content Include="Views\Quiniela\ListaAlias.cshtml" />
     <Content Include="Views\Quiniela\EditarUsuario.cshtml" />
     <Content Include="Views\Quiniela\EditarAlias.cshtml" />
+    <Content Include="Views\Quiniela\DetallePorPartido.cshtml" />
+    <Content Include="Views\Quiniela\DetallePorAlias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
