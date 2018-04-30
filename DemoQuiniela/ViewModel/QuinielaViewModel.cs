@@ -18,5 +18,6 @@ namespace MvcQuiniela.ViewModel
 
         public List<Usuario> vm_usuarios;
 
+        public List<int> permisos;
     }
 }
