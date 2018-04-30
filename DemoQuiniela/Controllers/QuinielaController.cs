@@ -330,6 +330,7 @@ namespace DemoQuiniela.Controllers
             ViewBag.DatosLogin = TempData["DatosLogin"];
             DatosLogin = (User)TempData["DatosLogin"];
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
+            Marcador miPronostico = new Marcador();
 
             QuinielaViewModel qvm = new QuinielaViewModel();
 
@@ -337,40 +338,69 @@ namespace DemoQuiniela.Controllers
             {
 
 
-                querys = "select id_partido=pa_id, id_alias= 0, id_equipo1=pa_idEquipo1, equipo1=E1.eq_descripcion, marcador1=pa_marcador1, pronostico1=-1, id_equipo2=pa_idEquipo2, equipo2=E2.eq_descripcion, marcador2=pa_marcador2, pronostico2=-1, puntos=0, id_estadio=es_id, estadio=es_nombre, fecha= convert(varchar(10), pa_fecha, 103), hora= convert(varchar(5), pa_hora, 108), estado=pa_estado "
-                        + "from Partido, Equipo as E1, Equipo as E2, Estadio "
+                querys = "select pa_id, al_id, id_equipo1 = pa_idEquipo1, equipo1 = E1.eq_descripcion, marcador1 = pa_marcador1, pronostico1 = ma_marcador1, id_equipo2 = pa_idEquipo2, equipo2 = E2.eq_descripcion, marcador2 = pa_marcador2, pronostico2 = ma_marcador2, puntos = isnull(al_puntos, 0), id_estadio = es_id, estadio = es_nombre, fecha = convert(varchar(10), pa_fecha, 103), hora = convert(varchar(5), pa_hora, 108), estado = pa_estado, alias = al_nickname "
+                        + "from Partido, Equipo as E1, Equipo as E2, Estadio, Marcador, AliasUsuario "
                         + "where pa_idEquipo1 = E1.eq_id "
                         + "and pa_idEquipo2 = E2.eq_id "
                         + "and pa_idEstadio = es_id "
-                        + "order by pa_fecha";
-
-                List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys).ToList<Pronosticos>();
-
-                querys = "SELECT *"
-                        + "FROM Marcador "
-                        + "WHERE ma_idAlias=@idalias ";
-
-                List<Marcador> pronosticosIngresados = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idalias", id)).ToList<Marcador>();
-
-                foreach (Marcador miPronostico in pronosticosIngresados)
+                        + "and ma_idPartido = pa_id "
+                        + "and ma_idEquipo1 = E1.eq_id "
+                        + "and ma_idEquipo2 = E2.eq_id "
+                        + "and ma_idAlias = al_id "
+                        + "and pa_id = @id_partido "
+                        + "order by pa_fecha; ";
+                
+                List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id_partido", id)).ToList<Pronosticos>();
+                foreach (Pronosticos itemPronostico in tablaPronosticos)
                 {
-                    foreach (Pronosticos itemPronostico in tablaPronosticos)
-                    {
+                    itemPronostico.puntos = itemPronostico.CalcularPuntosDetallePartido();
+                }
+                
 
-                        if (itemPronostico.id_partido == miPronostico.ma_idPartido)
-                        {
-                            itemPronostico.puntos = itemPronostico.CalcularPuntos(miPronostico);
-                            itemPronostico.pronostico1 = miPronostico.ma_marcador1;
-                            itemPronostico.pronostico2 = miPronostico.ma_marcador2;
-                        }
-                    }
+                qvm.vm_pronosticos = tablaPronosticos;
+
+                return View(qvm);
+
+            }
+            else
+            {
+                return Redirect(urlLogout);
+            }
+
+        }
+
+        [SessionCheck(Transaccion = 1)]
+        public ActionResult DetallePorAlias(int id)
+        {
+            ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)TempData["DatosLogin"];
+            List<AliasUsuario> aliasDB = new List<AliasUsuario>();
+            Marcador miPronostico = new Marcador();
+
+            QuinielaViewModel qvm = new QuinielaViewModel();
+
+            if (DatosLogin != null && DatosLogin.login)
+            {
+
+
+                querys = "select pa_id, al_id, id_equipo1 = pa_idEquipo1, equipo1 = E1.eq_descripcion, marcador1 = pa_marcador1, pronostico1 = ma_marcador1, id_equipo2 = pa_idEquipo2, equipo2 = E2.eq_descripcion, marcador2 = pa_marcador2, pronostico2 = ma_marcador2, puntos = isnull(al_puntos, 0), id_estadio = es_id, estadio = es_nombre, fecha = convert(varchar(10), pa_fecha, 103), hora = convert(varchar(5), pa_hora, 108), estado = pa_estado, alias = al_nickname "
+                        + "from Partido, Equipo as E1, Equipo as E2, Estadio, Marcador, AliasUsuario "
+                        + "where pa_idEquipo1 = E1.eq_id "
+                        + "and pa_idEquipo2 = E2.eq_id "
+                        + "and pa_idEstadio = es_id "
+                        + "and ma_idPartido = pa_id "
+                        + "and ma_idEquipo1 = E1.eq_id "
+                        + "and ma_idEquipo2 = E2.eq_id "
+                        + "and ma_idAlias = al_id "
+                        + "and al_id = @id "
+                        + "order by pa_fecha; ";
+
+                List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id", id)).ToList<Pronosticos>();
+                foreach (Pronosticos itemPronostico in tablaPronosticos)
+                {
+                    itemPronostico.puntos = itemPronostico.CalcularPuntosDetallePartido();
                 }
 
-                querys = "SELECT *"
-                         + "FROM AliasUsuario "
-                         + "WHERE al_idUsuario=@iduser ";
-
-                qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
 
                 qvm.vm_pronosticos = tablaPronosticos;
 
@@ -595,12 +625,15 @@ namespace DemoQuiniela.Controllers
         {
             bool respuesta = false;
             int idPartido = marcadorfinal.idPartido;
+            int Resultado;
 
             querys = "SELECT *"
                         + "FROM Partido "
                         + "WHERE pa_id=@idpartido ";
 
             Partido partido = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@idpartido", idPartido)).FirstOrDefault();
+
+            
 
             if (partido.pa_estado == "I")
             {
@@ -610,6 +643,8 @@ namespace DemoQuiniela.Controllers
 
                 db.Database.ExecuteSqlCommand(querys, new SqlParameter("@marcador1", marcadorfinal.marcador1), new SqlParameter("@marcador2", marcadorfinal.marcador2), new SqlParameter("@idpartido", marcadorfinal.idPartido));
                 //Partido upd = db.Database.SqlQuery<Partido>(querys, new SqlParameter("@marcador1", marcadorfinal.marcador1), new SqlParameter("@marcador2", marcadorfinal.marcador2),  new SqlParameter("@idpartido", marcadorfinal.idPartido)).FirstOrDefault();
+                querys = "EXEC sp_actualiza_puntos ";
+                Resultado = db.Database.ExecuteSqlCommand(querys);
 
                 respuesta = true;
 

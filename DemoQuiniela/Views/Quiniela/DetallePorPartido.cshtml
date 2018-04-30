@@ -1,0 +1,112 @@
+﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@{
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+
+    ViewBag.Title = "Detalle de Puntos Por Partido";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    string idEquipo1 = "";
+    string idEquipo2 = "";
+
+
+    string estado = "";
+    string descEstado = "";
+    string classCard = "";
+
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Basic Examples -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    Detalle de Puntos Por Partido
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    @{
+                        idEquipo1 = Model.vm_pronosticos.ElementAt(0).id_equipo1.ToString() + ".png";
+                        idEquipo2 = Model.vm_pronosticos.ElementAt(0).id_equipo2.ToString() + ".png";
+                        estado = Model.vm_pronosticos.ElementAt(0).estado.ToString();
+
+                        switch (estado)
+                        {
+                            case "V":
+                                descEstado = "No iniciado";
+                                classCard = "header";
+                                break;
+                            case "I":
+                                descEstado = "Iniciado";
+                                classCard = "header bg-light-green";
+                                break;
+                            case "T":
+                                descEstado = "Finalizado";
+                                classCard = "header bg-blue-grey";
+                                break;
+                            default:
+                                descEstado = "Indefinido";
+                                classCard = "header";
+                                break;
+                        }
+                    }
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <div class="@classCard">
+                                <h2>
+                                    @Model.vm_pronosticos.ElementAt(0).estadio<small>@Model.vm_pronosticos.ElementAt(0).fecha &#64; @Model.vm_pronosticos.ElementAt(0).hora [@descEstado]</small>
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <table width="100%" cellpadding="5px" cellspacing="2" border="0">
+                                    <tr>
+                                        <td colspan="2">&nbsp;</td>
+                                        <td align="center" width="55px"><b>Marcador</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_pronosticos.ElementAt(0).equipo1" /></td>
+                                        <td>@Model.vm_pronosticos.ElementAt(0).equipo1</td>
+                                        <td align="center">@Model.vm_pronosticos.ElementAt(0).marcador1</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_pronosticos.ElementAt(0).equipo2" /></td>
+                                        <td>@Model.vm_pronosticos.ElementAt(0).equipo2</td>
+                                        <td align="center">@Model.vm_pronosticos.ElementAt(0).marcador2</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th>Alias</th>
+                                    <th>@Model.vm_pronosticos.ElementAt(0).equipo1</th>
+                                    <th>@Model.vm_pronosticos.ElementAt(0).equipo2</th>
+                                <th>Puntos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
+                            {
+                                <tr>
+                                    <td>@Model.vm_pronosticos.ElementAt(i).alias</td>
+                                    <td>@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
+                                    <td>@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
+                                    <td>@Model.vm_pronosticos.ElementAt(i).puntos</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Basic Examples -->

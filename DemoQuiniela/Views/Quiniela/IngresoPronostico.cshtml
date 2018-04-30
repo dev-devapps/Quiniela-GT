@@ -371,7 +371,7 @@
                             </tr>
                         </table>
                         <br />
-                        <button class="btn bg-blue btn-lg btn-block waves-effect" type="button">Puntos del partido <span class="badge">@Model.vm_pronosticos.ElementAt(i).puntos</span></button>
+                        <button class="btn bg-blue btn-lg btn-block waves-effect" type="button" onclick="location.href='/Quiniela/DetallePorPartido/@Model.vm_pronosticos.ElementAt(i).id_partido';">Puntos del partido <span class="badge">@Model.vm_pronosticos.ElementAt(i).puntos</span></button>
                     </div>
                 </div>
             </div>
