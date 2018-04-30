@@ -27,7 +27,8 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                alert('ok');
+                //alert('ok');
+                document.getElementById("form_validation").submit();
             },
             error: function(err) {
                 alert("Error: " + err.responseText);
@@ -65,7 +66,7 @@
                 </ul>
             </div>
             <div class="body">
-                <form id="form_validation" method="POST">
+                <form id="form_validation" method="POST" action="~/Quiniela/ListaAlias/@Model.vm_alias.ElementAt(0).al_idUsuario">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" id="alias" name="alias" value="@Model.vm_alias.ElementAt(0).al_nickname" required>

@@ -116,10 +116,15 @@
 
                             <select class="form-control" id="rol" name="rol">
                                 <option value="">-- Seleccione rol --</option>
-                                <option value="1">Administrador</option>
-                                <option value="2">Participante</option>
+                                @for (int i = 0; i < Model.vm_roles.Count(); i++)
+                                {
+                                    if (Model.vm_roles.ElementAt(i).ro_estado.ToString() == "V")
+                                        {
+                                <option value="@Model.vm_roles.ElementAt(i).ro_id">@Model.vm_roles.ElementAt(i).ro_nombre</option>
+                                    }
+                                }
                             </select>
-
+                              
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary waves-effect" onclick="guardarUsuario();" >Guardar</button>
