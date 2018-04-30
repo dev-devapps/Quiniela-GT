@@ -54,10 +54,13 @@ namespace DemoQuiniela.Controllers
         {
             var url = Request.Url.Query;
             int id_user = 0;
+            int id_rol = 0;
 
             List<AliasUsuario> aliasDB = new List<AliasUsuario>();
             List<Usuario> userDB = new List<Usuario>();
             List<UsuarioRol> userRol = new List<UsuarioRol>();
+            List<TransaccionRol> tranRol = new List<TransaccionRol>();
+            List<int> permisosMenu = new List<int>();
 
             if (url != "")
             {
@@ -75,31 +78,58 @@ namespace DemoQuiniela.Controllers
                     {
                         id_user = userDB.ElementAt(0).us_id;
 
-                        DatosLogin.email = userLogin.email;
-                        DatosLogin.picture = userLogin.picture;
-                        DatosLogin.id_login = id_user;
-                        DatosLogin.login = true;
-                        DatosLogin.id_menu = 1;
-
                         querys = "SELECT *"
                          + "FROM UsuarioRol "
-                         + "WHERE ur_idUsuario=@id";
+                            + "WHERE ur_idUsuario=@id "+
+                            "AND ur_estado = 'V'";
 
                         userRol = db.UsuarioRol.SqlQuery(querys, new SqlParameter("@id", id_user)).ToList();
 
-                        if (id_user > 0)
-                        {
+                        if(userRol.Count == 0){
+                            return Redirect(urlLogout);
+                        }else{
+                            id_rol = userRol.ElementAt(0).ur_idRol;
 
-                            DatosLogin.id_rol = userRol.ElementAt(0).ur_idRol;
+                            DatosLogin.email = userLogin.email;
+                            DatosLogin.picture = userLogin.picture;
+                            DatosLogin.id_login = id_user;
+                            DatosLogin.login = true;
+                            DatosLogin.id_menu = 1;
+                            DatosLogin.id_rol = id_rol;
+                            DatosLogin.nombre = userDB.ElementAt(0).us_primerNombre;
 
-                            Session["UserInfo"] = DatosLogin;
+                            if (id_user > 0)
+                            {
+                                Session["UserInfo"] = DatosLogin;
 
-                            querys = "SELECT *"
-                            + "FROM AliasUsuario "
-                            + "WHERE al_idUsuario=@iduser "
-                            + "AND  al_codigoDeposito is not null";
+                                querys = "select * "
+                                + "from TransaccionRol "
+                                + "where tr_id_rol = @idrol";
 
-                            aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", id_user)).ToList();
+                                tranRol = db.TransaccionRol.SqlQuery(querys, new SqlParameter("idrol", id_rol)).ToList();
+
+                                foreach(TransaccionRol trn in tranRol){
+                                    permisosMenu.Add(trn.tr_id_transaccion);
+                                }
+
+                                //Session["Menu"] = permisosMenu;
+                                //Session["Menu"] = tranRol;
+                                DatosLogin.permisos = permisosMenu;
+
+                                querys = "SELECT *"
+                                + "FROM AliasUsuario "
+                                + "WHERE al_idUsuario=@iduser "
+                                + "AND  al_codigoDeposito is not null";
+
+                                aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", id_user)).ToList();
+
+                                if (aliasDB.Count == 1)
+                                {
+                                    AliasUsuario alias = aliasDB.First();
+
+                                    return Redirect("/Quiniela/Posiciones/" + alias.al_id.ToString());
+                                }
+                            }
                         }
                     }
 
@@ -244,6 +274,10 @@ namespace DemoQuiniela.Controllers
         {
             DatosLogin = (User)TempData["DatosLogin"];
 
+            if(DatosLogin == null){
+                DatosLogin = (User)Session["UserInfo"];
+            }
+
             if (DatosLogin != null && DatosLogin.login)
             {
                 QuinielaViewModel vm = new QuinielaViewModel();
@@ -266,41 +300,11 @@ namespace DemoQuiniela.Controllers
 
                     vm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", aliasSeleccionado.al_idUsuario)).ToList();
 
-                    querys = "SELECT id_alias=al_id, alias=al_nickname, puntos= 0 "
+                    querys = "SELECT id_alias=al_id, alias=al_nickname, puntos = al_puntos "
                                  + "FROM AliasUsuario "
                                  + "WHERE al_codigoDeposito is not null";
 
                     List<TablaPosiciones> tablaPosiciones = db.Database.SqlQuery<TablaPosiciones>(querys).ToList<TablaPosiciones>();
-
-                    if (tablaPosiciones != null && tablaPosiciones.Count > 0)
-                    {
-                        vm.vm_tablaPosiciones = tablaPosiciones;
-
-                        querys = "SELECT * "
-                               + "FROM Partido "
-                               + "WHERE pa_estado in('T','I')";
-
-                        List<Partido> PartidosJugados = db.Database.SqlQuery<Partido>(querys).ToList<Partido>();
-
-                        if (PartidosJugados != null && PartidosJugados.Count > 0)
-                        {
-                            foreach (Partido partidoJugado in PartidosJugados)
-                            {
-                                foreach (TablaPosiciones itemTabla in tablaPosiciones)
-                                {
-                                    querys = "SELECT *"
-                                     + "FROM Marcador "
-                                     + "WHERE ma_idAlias = @idAlias "
-                                     + "AND  ma_idPartido = @idPartido ";
-
-                                    Marcador pronosticoAlias = db.Database.SqlQuery<Marcador>(querys, new SqlParameter("@idAlias", itemTabla.id_alias), new SqlParameter("@idPartido", partidoJugado.pa_id)).FirstOrDefault();
-
-                                    if (pronosticoAlias != null)
-                                        itemTabla.puntos = itemTabla.puntos + itemTabla.CalcularPuntos(pronosticoAlias, partidoJugado);
-                                }
-                            }
-                        }
-                    }
 
                     List<TablaPosiciones> tablaPosicionesOrdenada = (from s in tablaPosiciones
                                                                      orderby s.puntos descending
@@ -514,11 +518,32 @@ namespace DemoQuiniela.Controllers
         [Route("Quiniela/GuardarUsuario")]
         [HttpPost]
         [SessionCheck(Transaccion = 6)]
-        public JsonResult  GuardarUsuario(Usuario usuario)
+        public JsonResult  GuardarUsuario(Usuario usuario, int rol)
         {
-            querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
-            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", 'V'));
-            return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+            int Resultado = 0;
+           // querys = "insert into Usuario values(@primerNombre, @segundoNombre, @primerApellido, @segundoApellido, @correoElectronico, @identificacion, @estado)";
+            //db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", 'V'));
+
+            querys = "EXEC	quiniela..sp_usuario_mant "
+                    + "@operacion = @txtOperacion,"
+                    + "@primerNombre = @txtPrimerNombre,"
+                    + "@segundoNombre = @txtSegundoNombre,"
+                    + "@primerApellido = @txtPrimerApellido,"
+                    + "@segundoApellido = @txtSegundoApellido,"
+                    + "@correoElectronico = @txtCorreo,"
+                    + "@cui = @txtCui,"
+                    + "@estado = @txtEstado,"
+                    + "@rol = @txtRol";
+
+            Resultado = db.Database.ExecuteSqlCommand(querys, new SqlParameter("@txtOperacion", 'I'), new SqlParameter("@txtPrimerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@txtSegundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@txtPrimerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@txtSegundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@txtCorreo", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@txtCui", NullHandler(usuario.us_cui)), new SqlParameter("@txtEstado", 'V'),new SqlParameter("@txtRol", rol));
+            if (Resultado == 0) {
+                return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { Error = false, responseText = "false" }, JsonRequestBehavior.AllowGet);
+            }
+            
         }
 
         [Route("Quiniela/ModificarUsuario")]
@@ -540,7 +565,7 @@ namespace DemoQuiniela.Controllers
         [SessionCheck(Transaccion = 6)]
         public JsonResult GuardarAlias(AliasUsuario alias)
         {
-            querys = "insert into AliasUsuario values(@id_usuario, @alias, @boleta)";
+            querys = "insert into AliasUsuario(al_idUsuario, al_nickname, al_codigoDeposito, al_estado) values(@id_usuario, @alias, @boleta, 'V')";
             db.Database.ExecuteSqlCommand(querys, new SqlParameter("@id_usuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@alias", NullHandler(alias.al_nickname)), new SqlParameter("@boleta", NullHandler(alias.al_codigoDeposito)));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);

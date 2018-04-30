@@ -21,8 +21,8 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                alert('ok');
-                window.redirect();
+                //alert('ok');
+                document.getElementById("form_validation").submit();
             },
             error: function (err) {
                 alert("Error: " + err.responseText);
@@ -53,7 +53,7 @@
                 </ul>
             </div>
             <div class="body">
-                <form>
+                <form id="form_validation" method="POST" action="~/Quiniela/ListaAlias/@Model.vm_usuarios.ElementAt(0).us_id">
                     <label for="email_address">Alias</label>
                     <div class="form-group">
                         <div class="form-line">
