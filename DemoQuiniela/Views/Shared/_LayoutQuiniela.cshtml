@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -39,6 +40,10 @@
 @{
     string classTablaPosiciones = "", classPronostico = "", classEstadistica = "", classAyuda = "", classIngresoMarcadores = "", classUsuarios = "", classAdmin = "";
     int idMenu = ViewBag.DatosLogin.id_menu;
+    bool pintaMenuAdmin = false;
+    bool ingresoMarcador = false;
+    bool creaUsuario = false;
+    List<int> permisos = ViewBag.DatosLogin.permisos;
     
     switch (idMenu){
         case 1:
@@ -126,48 +131,72 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MUNDIAL RUSIA 2018</li>
-                    <li class="@classTablaPosiciones">
-                        <a href='~/Quiniela/Posiciones/@ViewBag.DatosLogin.id_alias'>
-                            <i class="material-icons">format_list_numbered</i>
-                            <span>Tabla de Posiciones</span>
-                        </a>
-                    </li>
-                    <li class="@classPronostico">
-                        <a href='~/Quiniela/IngresoPronostico/@ViewBag.DatosLogin.id_alias'>
-                            <i class="material-icons">edit</i>
-                            <span>Ingreso de Pron&oacute;sticos</span>
-                        </a>
-                    </li>
-                    <li class="@classEstadistica">
-                        <a href="pages/helper-classes.html">
-                            <i class="material-icons">poll</i>
-                            <span>Estad&iacute;sticas</span>
-                        </a>
-                    </li>
-                    <li class="@classAyuda">
-                        <a href="pages/helper-classes.html">
-                            <i class="material-icons">help_outline</i>
-                            <span>Ayuda</span>
-                        </a>
-                    </li>
-                        @if (ViewBag.DatosLogin.id_rol == 1)
-                        {
-                    <li class="@classAdmin">
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">settings</i>
-                            <span>Administradores</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li class="@classIngresoMarcadores">
-                                <a href='~/Quiniela/IngresoMarcadores/'>Ingreso Marcadores</a>
-                            </li>
-                            <li class="@classUsuarios">
-                                <a href='~/Quiniela/ListaUsuario/'>Usuarios</a>
-                            </li>
-                        </ul>
-                    </li>
-                        }
 
+                    @foreach(int p in permisos){
+                        switch(p){
+                            case 1:
+                                <li class="@classTablaPosiciones">
+                                    <a href='~/Quiniela/Posiciones/@ViewBag.DatosLogin.id_alias'>
+                                        <i class="material-icons">format_list_numbered</i>
+                                        <span>Tabla de Posiciones</span>
+                                    </a>
+                                </li>
+                            break;
+                            case 2:
+                                <li class="@classPronostico">
+                                    <a href='~/Quiniela/IngresoPronostico/@ViewBag.DatosLogin.id_alias'>
+                                        <i class="material-icons">edit</i>
+                                        <span>Ingreso de Pron&oacute;sticos</span>
+                                    </a>
+                                </li>
+                            break;
+                            case 3:
+                                <li class="@classEstadistica">
+                                    <a href="pages/helper-classes.html">
+                                        <i class="material-icons">poll</i>
+                                        <span>Estad&iacute;sticas</span>
+                                    </a>
+                                </li>
+                            break;
+                            case 4:
+                                <li class="@classAyuda">
+                                    <a href="pages/helper-classes.html">
+                                        <i class="material-icons">help_outline</i>
+                                        <span>Ayuda</span>
+                                    </a>
+                                </li>
+                            break;
+                            case 5:
+                                pintaMenuAdmin = true;
+                                ingresoMarcador = true;
+                            break;
+                            case 6:
+                                pintaMenuAdmin = true;
+                                creaUsuario = true;
+                            break;
+                        }
+                    }
+
+                    @if(pintaMenuAdmin){
+                        <li class="@classAdmin">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <i class="material-icons">settings</i>
+                                <span>Administradores</span>
+                            </a>
+                            <ul class="ml-menu">
+                                @if(ingresoMarcador){
+                                    <li class="@classIngresoMarcadores">
+                                        <a href='~/Quiniela/IngresoMarcadores/'>Ingreso Marcadores</a>
+                                    </li>
+                                }
+                                @if(creaUsuario){
+                                    <li class="@classUsuarios">
+                                        <a href='~/Quiniela/ListaUsuario/'>Usuarios</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </div>
             <!-- #Menu -->

@@ -1,4 +1,4 @@
-﻿using MvcQuiniela.Models;
+using MvcQuiniela.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,25 +21,25 @@ namespace DemoQuiniela.Controllers
         {
             HttpSessionStateBase Session = filterContext.HttpContext.Session;
             if (Session != null && Session["UserInfo"] == null)
+            {
+                HttpContext.Current.Response.Redirect("~/Quiniela");
+            }
+            else
+            {
+
+                DatosLogin = (User)Session["UserInfo"];
+                querys = "SELECT *"
+                         + "FROM TransaccionRol "
+                         + "WHERE tr_id_transaccion=@id_transaccion "
+                         + "AND tr_id_rol=@id_rol ";
+
+                transaccionRol = db.TransaccionRol.SqlQuery(querys, new SqlParameter("@id_transaccion", Transaccion), new SqlParameter("@id_rol", DatosLogin.id_rol)).ToList();
+
+                if (transaccionRol.Count == 0)
                 {
                     HttpContext.Current.Response.Redirect("~/Quiniela");
                 }
-            else
-                {
-
-                    DatosLogin = (User)Session["UserInfo"];
-                    querys = "SELECT *"
-                             + "FROM TransaccionRol "
-                             + "WHERE tr_id_transaccion=@id_transaccion "
-                             + "AND tr_id_rol=@id_rol ";
-
-                    transaccionRol = db.TransaccionRol.SqlQuery(querys, new SqlParameter("@id_transaccion", Transaccion), new SqlParameter("@id_rol", DatosLogin.id_rol)).ToList();
-
-                    if (transaccionRol.Count == 0)
-                        {
-                            HttpContext.Current.Response.Redirect("~/Quiniela");
-                        }
-                }
+            }
         }
     }
 }
