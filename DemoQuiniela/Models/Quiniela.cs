@@ -105,6 +105,8 @@ namespace MvcQuiniela.Models
         public int al_puntos { get; set; }
 
         public string al_estado { get; set; }
+
+        public int al_puntos { get; set; }
     }
 
     [Table("Partido")]
@@ -266,6 +268,8 @@ namespace MvcQuiniela.Models
 
         public string estado { get; set; }
 
+        public string alias { get; set; }
+
         public int CalcularPuntos(Marcador pronostico)
         {
             int rPuntos = 0;
@@ -295,6 +299,36 @@ namespace MvcQuiniela.Models
 
             return rPuntos;
         }
+        public int CalcularPuntosDetallePartido()
+        {
+            int rPuntos = 0;
+
+            if (this.pronostico1 == this.marcador1 && this.pronostico2 == this.marcador2)
+            {
+                rPuntos = 5;
+            }
+            else
+            {
+                if (this.marcador1 == this.pronostico1)
+                    rPuntos++;
+
+                if (this.marcador2 == this.pronostico2)
+                    rPuntos++;
+
+                if (this.marcador1 == this.marcador2 && this.pronostico1 == this.pronostico2)
+                    rPuntos += 3;
+
+                if (this.marcador1 > this.marcador2 && this.pronostico1 > this.pronostico2)
+                    rPuntos += 3;
+
+                if (this.marcador2 > this.marcador1 && this.pronostico2 > this.pronostico1)
+                    rPuntos += 3;
+            }
+
+
+            return rPuntos;
+        }
+
     }
 
     public class MarcadorFinal

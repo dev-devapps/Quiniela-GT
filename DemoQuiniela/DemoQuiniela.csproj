@@ -3716,6 +3716,8 @@
     <Content Include="Views\Quiniela\ListaAlias.cshtml" />
     <Content Include="Views\Quiniela\EditarUsuario.cshtml" />
     <Content Include="Views\Quiniela\EditarAlias.cshtml" />
+    <Content Include="Views\Quiniela\DetallePorPartido.cshtml" />
+    <Content Include="Views\Quiniela\DetallePorAlias.cshtml" />
     <Content Include="css\main.css" />
     <Content Include="css\util.css" />
     <Content Include="images\img-01.jpg" />
