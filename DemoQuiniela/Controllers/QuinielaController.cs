@@ -112,8 +112,6 @@ namespace DemoQuiniela.Controllers
                                     permisosMenu.Add(trn.tr_id_transaccion);
                                 }
 
-                                //Session["Menu"] = permisosMenu;
-                                //Session["Menu"] = tranRol;
                                 DatosLogin.permisos = permisosMenu;
 
                                 querys = "SELECT *"
@@ -131,6 +129,8 @@ namespace DemoQuiniela.Controllers
                                 }
                             }
                         }
+                    }else{
+                        return Redirect(urlLogout);
                     }
 
                     ViewBag.DatosLogin = DatosLogin;
