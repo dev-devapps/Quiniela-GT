@@ -32,6 +32,16 @@ namespace DemoQuiniela.Controllers
             return View();
         }
 
+        [SessionCheck(Transaccion = 4)]
+        public ActionResult Ayuda()
+        {
+            DatosLogin = (User)TempData["DatosLogin"];
+            ViewBag.DatosLogin = DatosLogin;
+            DatosLogin.id_menu = 4;
+
+            return View();
+        }
+
         public Object NullHandler(Object instance)
         {
             if (instance != null)

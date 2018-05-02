@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Ayuda";
+    Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+    TempData["DatosLogin"] = ViewBag.DatosLogin;
+}
+
+<!-- Tabs With Icon Title -->
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    AYUDA
+                </h2>
+            </div>
+            <div class="body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#reglas" data-toggle="tab">
+                            <i class="material-icons">assignment</i> Reglas
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#uso_sitio" data-toggle="tab">
+                            <i class="material-icons">announcement</i> Uso del sitio
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="reglas">
+                        <h3>Reglas de la Quiniela</h3>
+                        <b>Ingreso de pronósticos</b>
+                        <p>
+                            Los ingresos de pronósticos estarán disponibles hasta media hora antes del juego. Es decir si el partido empieza a las 3 de la tarde, tendrás hasta las 2:30 de la tarde para ingresar tus marcadores, luego de esto nadie podrá ingresar sus marcadores (sin excepción alguna).
+                        </p>
+                        <b>Estados de un partido</b>
+                        <p>
+                            Cada partido poseerá un estado y un color asociado.
+                            <ul>
+                                <li><b>No iniciado (blanco):</b> estado en el cual se podrá realizar el ingreso de pronósticos</br>
+                                <li><b>Cierre de ingreso de pronósticos (lima):</b> tiempo durante el cual no se podrán ingresar pronósticos. Al momento de cambiar a este estado, te llegará un correo electrónico con el pronóstico ingresado por todos los usuarios y la hora en la cual se ingresó el pronóstico.</li>
+                                <li><b>Iniciado (verde):</b> indicará que el partido se encuentra en juego y tampoco podrás ingresar tus pronósticos.</li>
+                                <li><b>Finalizado (gris):</b> 120 minutos luego de iniciado el partido, este finalizará y recibirás un correo electrónico con el ranking actualizado</li>
+                            </ul>
+                        </p>
+                        <b>Puntos por partido</b>
+                        <p>
+                            El cálculo de puntos se realizará durante los 90 minutos de juego y minutos adicionales que el árbitro indique dentro de estos 90 minutos de juego (no se tomarán en cuenta los tiempos extra o en última instancia, la tanda de penales).<br /><br />
+                            El cálculo de puntos por partido será de la siguiente manera.
+                            <ul>
+                                <li>1 punto por marcador acertado (cantidad de goles por equipo)</li>
+                                <li>3 puntos por resultado acertado.</li>
+                            </ul>
+
+                            Logrando obtener 5 puntos como máximo por partido.<br /><br />
+                            <b><u>Por ejemplo:</u></b><br /><br />
+                            <u>Resultado de partido</u><br />
+                            <i>Equipo1:</i> 3 goles<br />
+                            <i>Equipo2:</i> 1 gol<br /><br />
+
+                            <u>Pronóstico ingresado</u><br />
+                            <i>Equipo1:</i> 3 goles<br />
+                            <i>Equipo2:</i> 0 goles<br /><br />
+
+                            Se tendrían 4 puntos donde estos 4 puntos están desglosados de la siguiente manera:
+                            <ul>
+                                <li>3 puntos por haber acertado que el Equipo1 ganaba</li>
+                                <li>1 punto por acertar a que el Equipo1 metía 3 goles</li>
+                            </ul>
+                            Con esto haciendo un total de 4 puntos.
+                        </p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="uso_sitio">
+                        <p>
+                            El sitio cuenta con dos opciones principales en su men&uacute;:<br /><br />
+                            <ul>
+                                <li><b>Tabla de posiciones:</b> acá podrás visualizar en qué posición de la tabla te encuentras (marcando tu alias en color verde), al final de la tabla estará disponible un botón para poder ver como cada alias ha ido haciendo sus puntos.</li>
+                                <li><b>Ingreso de pronósticos:</b> esta pantalla te mostrará todos los partidos disponibles agrupados por fecha, donde podrás ingresar tus pronósticos por partido, para conocer cuales son las reglas del ingreso de pronósticos podes ir a la pestaña “Reglas” para conocer más detalle. </li>
+                            </ul>
+                            Podes participar con más de un alias (solicita más información enviando un correo a info@devappsgt.com), y para poder alternar entre tus diferentes alias, una vez ingresado en el sitio verás el siguiente ícono <i class="material-icons">more_vert</i> dónde al hacer clic en él, verás listado tus alias y al seleccionar uno podrás ingresar pronósticos y ver la posición del ranking en donde se encuentra el alias seleccionado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #END# Tabs With Icon Title -->

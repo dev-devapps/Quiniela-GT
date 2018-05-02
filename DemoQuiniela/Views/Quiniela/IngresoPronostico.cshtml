@@ -86,6 +86,7 @@
 
                         if(primerMarcador){
                             document.getElementById(id2).innerHTML = marcador2;
+                            document.getElementById("hd_" + id2).value = marcador2;
                         }
                     }else{
                         document.getElementById(id2).innerHTML = marcador2;
@@ -93,6 +94,7 @@
 
                         if(primerMarcador){
                             document.getElementById(id).innerHTML = marcador;
+                            document.getElementById("hd_" + id).value = marcador;
                         }
                     }
                 }else{
@@ -356,7 +358,7 @@
                             <tr>
                                 <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_pronosticos.ElementAt(i).equipo1" /></td>
                                 <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
-                                <td align="center">@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
+                                <td align="center">@pronostico1</td>
                                 <td align="center">@Model.vm_pronosticos.ElementAt(i).marcador1</td>
                             </tr>
                             <tr>
@@ -365,7 +367,7 @@
                             <tr>
                                 <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_pronosticos.ElementAt(i).equipo2" /></td>
                                 <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
-                                <td align="center">@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
+                                <td align="center">@pronostico2</td>
                                 <td align="center">@Model.vm_pronosticos.ElementAt(i).marcador2</td>
 
                             </tr>
