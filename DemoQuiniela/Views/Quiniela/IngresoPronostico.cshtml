@@ -7,6 +7,10 @@
 
     string idEquipo1 = "";
     string idEquipo2 = "";
+    string idBotonMasE1 = "";
+    string idBotonMenosE1 = "";
+    string idBotonMasE2 = "";
+    string idBotonMenosE2 = "";
 
     string idMarcadorPronostico1 = "";
     string idMarcadorPronostico2 = "";
@@ -40,6 +44,12 @@
         var valorMarcador = document.getElementById("hd_" + id).value;
         var valorMarcador2 = document.getElementById("hd_" + id2).value;
 
+        var btnMasEq1 = document.getElementById("hd_BMasE1_" + id);
+        var btnMenosEq1 = document.getElementById("hd_BMenosE1_" + id);
+    
+        var btnMasEq2 = document.getElementById("hd_BMasE2_" + id2);
+        var btnMenosEq2 = document.getElementById("hd_BMenosE2_" + id2);
+
         if(cambio == 1){
             if(valorMarcador == -1){
                 marcador = 1;
@@ -57,6 +67,12 @@
                 marcador2++;
             }
         }
+
+        //Deshabilita botones
+        btnMasEq1.disabled = true;
+        btnMasEq2.disabled = true;
+        btnMenosEq1.disabled = true;
+        btnMenosEq2.disabled = true;
 
         var _pronostico = {};
         _pronostico.idAlias = a;
@@ -100,6 +116,12 @@
                 }else{
                     mensajeError(err.responseText);
                 }
+
+                //Habilita botones de nuevo
+                btnMasEq1.disabled = false;
+                btnMasEq2.disabled = false;
+                btnMenosEq1.disabled = false;
+                btnMenosEq2.disabled = false;
             }
         });
     }
@@ -109,6 +131,12 @@
         var marcador = document.getElementById(id).innerHTML;
         var marcador2 = document.getElementById(id2).innerHTML;
         var continua = true;
+
+        var btnMasEq1 = document.getElementById("hd_BMasE1_" + id);
+        var btnMenosEq1 = document.getElementById("hd_BMenosE1_" + id);
+    
+        var btnMasEq2 = document.getElementById("hd_BMasE2_" + id2);
+        var btnMenosEq2 = document.getElementById("hd_BMenosE2_" + id2);
 
         if(cambio == 1){
             
@@ -133,6 +161,12 @@
             _pronostico.marcador1 = marcador;
             _pronostico.marcador2 = marcador2;
             _pronostico.idPartido = p;
+
+            //Deshabilita botones
+            btnMasEq1.disabled = true;
+            btnMasEq2.disabled = true;
+            btnMenosEq1.disabled = true;
+            btnMenosEq2.disabled = true;
             
             $.ajax({
                 type: "POST",
@@ -156,6 +190,12 @@
                     }else{
                         mensajeError(err.responseText);
                     }
+
+                    //Habilita botones de nuevo
+                    btnMasEq1.disabled = false;
+                    btnMasEq2.disabled = false;
+                    btnMenosEq1.disabled = false;
+                    btnMenosEq2.disabled = false;
                 }
             });
         }
@@ -212,6 +252,11 @@
 
         idHdMarcadorPronostico1 = "hd_" + idMarcadorPronostico1;
         idHdMarcadorPronostico2 = "hd_" + idMarcadorPronostico2;
+
+        idBotonMasE1 = "hd_BMasE1_" + idMarcadorPronostico1;
+        idBotonMenosE1 = "hd_BMenosE1_" + idMarcadorPronostico1;
+        idBotonMasE2 = "hd_BMasE2_" + idMarcadorPronostico2;
+        idBotonMenosE2 = "hd_BMenosE2_" + idMarcadorPronostico2;
 
         switch(estado){
             case "V":
@@ -306,13 +351,13 @@
                                 <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_pronosticos.ElementAt(i).equipo1" /></td>
                                 <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
                                 <td width="5px">
-                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
+                                    <button id="@idBotonMasE1" type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
                                         <i class="material-icons">add</i>
                                     </button>
                                 </td>
                                 <td align="center" width="25px"><span id="@idMarcadorPronostico1">@pronostico1</span></td>
                                 <td width="5px">
-                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
+                                    <button id="@idBotonMenosE1" type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 1);">
                                         <i class="material-icons">remove</i>
                                     </button>
                                     <input type="hidden" id="@idHdMarcadorPronostico1" value="@Model.vm_pronosticos.ElementAt(i).pronostico1.ToString()" />
@@ -322,13 +367,13 @@
                                 <td><img src="~/images/flags/@idEquipo2" alt="@Model.vm_pronosticos.ElementAt(i).equipo2" /></td>
                                 <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
                                 <td>
-                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
+                                    <button id="@idBotonMasE2" type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="aumentaMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
                                         <i class="material-icons">add</i>
                                     </button>
                                 </td>
                                 <td align="center"><span id="@idMarcadorPronostico2">@pronostico2</span></td>
                                 <td>
-                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
+                                    <button id="@idBotonMenosE2" type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float" onclick="reduceMarcador('@idMarcadorPronostico1', '@idMarcadorPronostico2',  @ViewBag.DatosLogin.id_alias, @Model.vm_pronosticos.ElementAt(i).id_equipo1, @Model.vm_pronosticos.ElementAt(i).id_equipo2, @Model.vm_pronosticos.ElementAt(i).id_partido, 2);">
                                         <i class="material-icons">remove</i>
                                     </button>
                                     <input type="hidden" id="@idHdMarcadorPronostico2" value="@Model.vm_pronosticos.ElementAt(i).pronostico2.ToString()" />
