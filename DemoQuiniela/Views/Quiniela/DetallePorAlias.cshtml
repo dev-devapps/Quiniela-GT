@@ -13,9 +13,20 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="header">
+              @if (Model.vm_pronosticos.Count() > 0)
+              {
                 <h2>
-                    Detalle de Puntos De @Model.vm_pronosticos.ElementAt(0).alias
+                    Detalle de Puntos De @Model.vm_pronosticos.ElementAt(0).alias 
+                        
                 </h2>
+              }
+              else
+              {
+                <h2>
+                    Alias no ha realizado el ingreso de ningùn pronostico.
+
+                </h2>
+              }
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -32,17 +43,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
+                            @if (Model.vm_pronosticos.Count() > 0 )
                             {
-                                <tr>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).marcador1</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).marcador2</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
-                                    <td>@Model.vm_pronosticos.ElementAt(i).puntos</td>
-                                </tr>
+                               for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
+                                {
+                                    <tr>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).marcador1</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).marcador2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).puntos</td>
+                                    </tr>
+                                }
                             }
                         </tbody>
                     </table>

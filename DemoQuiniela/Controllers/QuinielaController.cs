@@ -384,27 +384,31 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idEquipo2 = E2.eq_id "
                         + "and ma_idAlias = al_id "
                         + "and pa_id = @id_partido "
+                        + "and pa_estado in ('C', 'I', 'T')"
                         + "order by pa_fecha; ";
                 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id_partido", id)).ToList<Pronosticos>();
-                foreach (Pronosticos itemPronostico in tablaPronosticos)
+                if (tablaPronosticos.Count > 0)
                 {
+                    foreach (Pronosticos itemPronostico in tablaPronosticos)
+                    {
                     itemPronostico.puntos = itemPronostico.CalcularPuntosDetallePartido();
-                }
+                    }
                 
 
-                qvm.vm_pronosticos = tablaPronosticos;
+                    qvm.vm_pronosticos = tablaPronosticos;
 
-                return View(qvm);
-
+                    return View(qvm);
+                }else
+                {
+                    return Redirect("/Quiniela/Error");
+                }
             }
             else
             {
                 return Redirect(urlLogout);
             }
-
         }
-
         [SessionCheck(Transaccion = 1)]
         public ActionResult DetallePorAlias(int id)
         {
