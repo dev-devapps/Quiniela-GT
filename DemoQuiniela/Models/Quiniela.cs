@@ -23,6 +23,8 @@ namespace MvcQuiniela.Models
 
         public DbSet<TransaccionRol> TransaccionRol { get; set; }
 
+        public DbSet<Rol> Rol { get; set; }
+
     }
 
     [Table("Equipo")]
@@ -33,6 +35,17 @@ namespace MvcQuiniela.Models
         public string eq_descripcion { get; set; }
         public string eq_estado { get; set; }
     }
+
+
+    [Table("Rol")]
+    public class Rol
+    {
+        [Key]
+        public int ro_id { get; set; }
+        public string ro_nombre { get; set; }
+        public string ro_estado { get; set; }
+    }
+
 
     [Table("UsuarioRol")]
     public class UsuarioRol
@@ -90,9 +103,9 @@ namespace MvcQuiniela.Models
 
         public int al_codigoDeposito { get; set; }
 
-        public string al_estado { get; set; }
-
         public int al_puntos { get; set; }
+
+        public string al_estado { get; set; }
     }
 
     [Table("Partido")]

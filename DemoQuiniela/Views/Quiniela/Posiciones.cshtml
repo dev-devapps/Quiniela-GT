@@ -67,7 +67,9 @@
                             <tr class="@className">
                                 <td>@posicion</td>
                                 <td>@Model.vm_tablaPosiciones.ElementAt(i).alias</td>
-                                <td><a href='~/Quiniela/DetallePorAlias/@Model.vm_tablaPosiciones.ElementAt(i).id_alias'>@Model.vm_tablaPosiciones.ElementAt(i).puntos</a></td>
+                                <td>
+                                    <button class="btn bg-light-blue btn-lg btn-block waves-effect" type="button" onclick="location.href='/Quiniela/DetallePorAlias/@Model.vm_tablaPosiciones.ElementAt(i).id_alias';"><span class="badge">@Model.vm_tablaPosiciones.ElementAt(i).puntos</span></button>
+                                </td>
                             </tr>
                         }
                     </tbody>

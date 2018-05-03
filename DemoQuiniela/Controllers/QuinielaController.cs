@@ -32,9 +32,19 @@ namespace DemoQuiniela.Controllers
             return View();
         }
 
+        [SessionCheck(Transaccion = 4)]
+        public ActionResult Ayuda()
+        {
+            DatosLogin = (User)TempData["DatosLogin"];
+            ViewBag.DatosLogin = DatosLogin;
+            DatosLogin.id_menu = 4;
+
+            return View();
+        }
+
         public Object NullHandler(Object instance)
         {
-            if(instance != null)
+            if (instance != null)
             {
                 return instance;
             }
@@ -43,7 +53,7 @@ namespace DemoQuiniela.Controllers
                 return DBNull.Value;
             }
         }
-  
+
         public ActionResult SignInGooglePlus()
         {
             var Googleurl = "https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=" + googleParameters.googleplus_redirect_url + "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&client_id=" + googleParameters.googleplus_client_id + "&prompt=select_account";
@@ -80,14 +90,14 @@ namespace DemoQuiniela.Controllers
 
                         querys = "SELECT *"
                          + "FROM UsuarioRol "
-                            + "WHERE ur_idUsuario=@id "+
+                            + "WHERE ur_idUsuario=@id " +
                             "AND ur_estado = 'V'";
 
                         userRol = db.UsuarioRol.SqlQuery(querys, new SqlParameter("@id", id_user)).ToList();
 
-                        if(userRol.Count == 0){
+                        if (userRol.Count == 0) {
                             return Redirect(urlLogout);
-                        }else{
+                        } else {
                             id_rol = userRol.ElementAt(0).ur_idRol;
 
                             DatosLogin.email = userLogin.email;
@@ -108,12 +118,10 @@ namespace DemoQuiniela.Controllers
 
                                 tranRol = db.TransaccionRol.SqlQuery(querys, new SqlParameter("idrol", id_rol)).ToList();
 
-                                foreach(TransaccionRol trn in tranRol){
+                                foreach (TransaccionRol trn in tranRol) {
                                     permisosMenu.Add(trn.tr_id_transaccion);
                                 }
 
-                                //Session["Menu"] = permisosMenu;
-                                //Session["Menu"] = tranRol;
                                 DatosLogin.permisos = permisosMenu;
 
                                 querys = "SELECT *"
@@ -131,6 +139,8 @@ namespace DemoQuiniela.Controllers
                                 }
                             }
                         }
+                    }else{
+                        return Redirect(urlLogout);
                     }
 
                     ViewBag.DatosLogin = DatosLogin;
@@ -171,8 +181,15 @@ namespace DemoQuiniela.Controllers
             DatosLogin = (User)TempData["DatosLogin"];
             DatosLogin.id_menu = 6;
 
+            List<Rol> rolesDB = new List<Rol>();
             QuinielaViewModel qvm = new QuinielaViewModel();
-            return View();
+
+            querys = "SELECT *"
+                    + "FROM Rol ";
+
+            rolesDB = db.Database.SqlQuery<Rol>(querys).ToList();
+            qvm.vm_roles = rolesDB;
+            return View(qvm);
         }
         [SessionCheck(Transaccion = 6)]
         public ActionResult EditarUsuario(int id)
@@ -186,7 +203,22 @@ namespace DemoQuiniela.Controllers
                      + "FROM Usuario "
                      + "WHERE us_id=@id";
             List<Usuario> tablaUsuarios = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@id", id)).ToList<Usuario>();
+            querys = "SELECT *"
+                    + "FROM UsuarioRol "
+                    + "WHERE ur_idUsuario=@id "
+                    + "AND ur_estado = 'V'";
+            List<UsuarioRol> tablaUsuarioRol = db.Database.SqlQuery<UsuarioRol>(querys, new SqlParameter("@id", id)).ToList<UsuarioRol>();
+            qvm.vm_usuarioRol = tablaUsuarioRol;
+
+
+            List<Rol> rolesDB = new List<Rol>();
+            querys = "SELECT *"
+                    + "FROM Rol ";
+
+            rolesDB = db.Database.SqlQuery<Rol>(querys).ToList();
             qvm.vm_usuarios = tablaUsuarios;
+            qvm.vm_roles = rolesDB;
+            
             return View(qvm);
         }
 
@@ -515,6 +547,13 @@ namespace DemoQuiniela.Controllers
         }
 
 
+        public ActionResult Salir()
+        {
+            Session["UserInfo"] = null;
+            return View();
+        }
+
+
         [Route("Quiniela/GuardarUsuario")]
         [HttpPost]
         [SessionCheck(Transaccion = 6)]
@@ -549,13 +588,22 @@ namespace DemoQuiniela.Controllers
         [Route("Quiniela/ModificarUsuario")]
         [HttpPost]
         [SessionCheck(Transaccion = 6)]
-        public JsonResult ModificarUsuario(Usuario usuario)
+        public JsonResult ModificarUsuario(Usuario usuario, int rol)
         {
-            
-            querys = "update Usuario "
-                           + "set us_primerNombre = @primerNombre, us_segundoNombre = @segundoNombre, us_primerApellido = @primerApellido, us_segundoApellido = @segundoApellido, us_correoElectronico = @correoElectronico, us_cui = @identificacion, us_estado = @estado "
-                           + "WHERE us_id=@id ";
-            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", NullHandler(usuario.us_estado)), new SqlParameter("@id", NullHandler(usuario.us_id)));
+            querys = "EXEC	quiniela..sp_usuario_mant "
+                    + "@operacion = @txtOperacion,"
+                    + "@primerNombre = @primerNombre,"
+                    + "@segundoNombre = @segundoNombre,"
+                    + "@primerApellido = @primerApellido,"
+                    + "@segundoApellido = @segundoApellido,"
+                    + "@correoElectronico = @correoElectronico,"
+                    + "@cui = @identificacion,"
+                    + "@estado = @estado,"
+                    + "@rol = @rol,"
+                    + "@id  = @id";
+
+ 
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@txtOperacion", 'U'), new SqlParameter("@primerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@segundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@primerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@segundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@correoElectronico", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@identificacion", NullHandler(usuario.us_cui)), new SqlParameter("@estado", NullHandler(usuario.us_estado)), new SqlParameter("@rol", NullHandler(rol)), new SqlParameter("@id", NullHandler(usuario.us_id)));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
         }

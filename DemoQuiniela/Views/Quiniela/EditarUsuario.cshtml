@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
     string estado = "";
     string selected = "selected";
+    int rol;
 }
 
 <script type="text/javascript">
@@ -17,7 +18,7 @@
         var identificacion = document.getElementById("identificacion").value;
         var correoElectronico = document.getElementById("correo_electronico").value;
         var estado = document.getElementById("estado").value;
-        alert(estado);
+        var rol = document.getElementById("rol").value;
         var _usuario = {};
         _usuario.us_id = id;
         _usuario.us_primerNombre = primerNombre;
@@ -29,12 +30,13 @@
         _usuario.us_estado = estado;
         $.ajax({
             type: "POST",
-            url: "/Quiniela/ModificarUsuario",
+            url: "/Quiniela/ModificarUsuario?rol=" + rol,
             data: JSON.stringify(_usuario),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                alert('ok');
+                //alert('ok');
+                document.getElementById("form_validation").submit();
             },
             error: function(err) {
                 alert("Error: " + err.responseText);
@@ -70,7 +72,7 @@
                 </ul>
             </div>
             <div class="body">
-                <form id="form_validation" method="POST">
+                <form id="form_validation" method="POST" action="~/Quiniela/ListaUsuario">
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" id="primer_nombre" name="primer_nombre" value="@Model.vm_usuarios.ElementAt(0).us_primerNombre" required>
@@ -128,9 +130,38 @@
                         }
                         else
                         {
-                            estado = "I";
+                            estado = "B";
                         }
                     }
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <label class="form-label">Rol</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+
+                            <select class="form-control" id="rol" name="rol">
+                                <option value="">-- Seleccione rol --</option>
+                                @if ((Model.vm_usuarioRol.ElementAt(0).ur_idRol).ToString() != null)
+                                {
+                                    rol = Model.vm_usuarioRol.ElementAt(0).ur_idRol;
+                                }
+                                else
+                                {
+                                    rol = 0;
+                                }
+                                @for (int i = 0; i < Model.vm_roles.Count(); i++)
+                                {
+                                   
+                                <option value="@Model.vm_roles.ElementAt(i).ro_id" @if (Model.vm_roles.ElementAt(i).ro_id == rol) { @selected ; }>@Model.vm_roles.ElementAt(i).ro_nombre</option>
+                                    
+                                }
+                            </select>
+
+                        </div>
+                    </div>
                     <div class="form-group form-float">
                         <div class="form-line">
                             <label class="form-label">Estado</label>

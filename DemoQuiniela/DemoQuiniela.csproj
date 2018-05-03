@@ -3846,20 +3846,10 @@
     <Content Include="fonts\raleway\Raleway-SemiBoldItalic.ttf" />
     <Content Include="fonts\raleway\Raleway-Thin.ttf" />
     <Content Include="fonts\raleway\Raleway-ThinItalic.ttf" />
+    <Content Include="Views\Quiniela\Salir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="vendor\" />
-    <Folder Include="vendor\animate\" />
-    <Folder Include="vendor\bootstrap\" />
-    <Folder Include="vendor\css-hamburgers\" />
-    <Folder Include="vendor\jquery\" />
-    <Folder Include="vendor\select2\" />
-    <Folder Include="fonts\font-awesome-4.7.0\" />
-    <Folder Include="fonts\Linearicons-Free-v1.0.0\" />
-    <Folder Include="fonts\montserrat\" />
-    <Folder Include="fonts\poppins\" />
-    <Folder Include="fonts\raleway\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
