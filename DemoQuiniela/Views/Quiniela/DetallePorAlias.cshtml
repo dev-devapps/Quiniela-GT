@@ -33,12 +33,9 @@
                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                         <thead>
                             <tr>
-                                <th>Equipo</th>
+                                <th>Partido</th>
                                 <th>Marcador</th>
-                                <th>Pronostico</th>
-                                <th>Pronostico</th>
-                                <th>Marcador</th>
-                                <th>Equipo</th>
+                                <th>Pronostico Ingresado</th>
                                 <th>Puntos</th>
                             </tr>
                         </thead>
@@ -48,12 +45,9 @@
                                for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
                                 {
                                     <tr>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).equipo1</td>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).marcador1</td>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).pronostico1</td>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).pronostico2</td>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).marcador2</td>
-                                        <td>@Model.vm_pronosticos.ElementAt(i).equipo2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).equipo1 - @Model.vm_pronosticos.ElementAt(i).equipo2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).marcador1 - @Model.vm_pronosticos.ElementAt(i).marcador2</td>
+                                        <td>@Model.vm_pronosticos.ElementAt(i).pronostico1 - @Model.vm_pronosticos.ElementAt(i).pronostico2</td>
                                         <td>@Model.vm_pronosticos.ElementAt(i).puntos</td>
                                     </tr>
                                 }

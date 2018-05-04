@@ -14,6 +14,7 @@ html, body {
   width: 100%;
   background-image: url("../images/foto.jpg");
   background-size: cover;
+  overflow-y: auto;
   color: #fff;
   font-family: "Comfortaa", "Helvetica", sans-serif;
 }

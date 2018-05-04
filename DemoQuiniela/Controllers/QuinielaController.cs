@@ -17,7 +17,7 @@ namespace DemoQuiniela.Controllers
         private GoogleUserOutputData userLogin = new GoogleUserOutputData();
         private User DatosLogin = new User();
         private string querys;
-        private string urlLogout = "~/Quiniela";
+        private string urlLogout = "~/Quiniela/Salir/";
 
         public ActionResult Index()
         {
