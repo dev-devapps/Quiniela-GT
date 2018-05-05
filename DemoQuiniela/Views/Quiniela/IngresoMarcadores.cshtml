@@ -221,12 +221,22 @@
                                         <table width="100%" cellpadding="5px" cellspacing="2" border="0">
                                             <tr>
                                                 <td colspan="2">&nbsp;</td>
-                                                <td align="center" width="55px"><b>Marcador</b></td>
+                                                <td align="center" colspan="3"><b>Marcador</b></td>
                                             </tr>
                                             <tr>
                                                 <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo1" /></td>
                                                 <td>@Model.vm_marcadorFinales.ElementAt(i).equipo1</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
                                                 <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador1</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3">&nbsp;</td>
@@ -234,7 +244,17 @@
                                             <tr>
                                                 <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo2" /></td>
                                                 <td>@Model.vm_marcadorFinales.ElementAt(i).equipo2</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
                                                 <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador2</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>

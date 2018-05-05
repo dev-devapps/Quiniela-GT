@@ -27,7 +27,7 @@ html, body {
 }
 
 .login-icon-field {
-  height: 350px;
+  height: 300px;
   width: 100%;
   padding-left:30%;
   padding-top:8%;
@@ -111,10 +111,10 @@ input::-moz-placeholder {
 }
 
 .call-to-action {
-  margin: -50px 33%;
   height: 130px;
   width: 100%;
-  /*padding-left:33%;*/
+  padding-left:33%;
+  padding-top:-50px;
   /*background-color: blue;*/
 }
 
