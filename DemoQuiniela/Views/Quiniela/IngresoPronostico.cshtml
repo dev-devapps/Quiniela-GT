@@ -216,6 +216,69 @@
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">today</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            @for (int i = 0; i < Model.vm_pronosticos.Count(); i++)
+                            {
+                                if(fechaActual != Model.vm_pronosticos.ElementAt(i).fecha){
+                                fechaActual = Model.vm_pronosticos.ElementAt(i).fecha;
+
+                                fecha = fechaActual.Split('/');
+
+                                switch(Convert.ToInt32(fecha[1])){
+                                    case 1:
+                                        mes = "Enero";
+                                        break;
+                                    case 2:
+                                        mes = "Febrero";
+                                        break;
+                                    case 3:
+                                        mes = "Marzo";
+                                        break;
+                                    case 4:
+                                        mes = "Abril";
+                                        break;
+                                    case 5:
+                                        mes = "Mayo";
+                                        break;
+                                    case 6:
+                                        mes = "Junio";
+                                        break;
+                                    case 7:
+                                        mes = "Julio";
+                                        break;
+                                    case 8:
+                                        mes = "Agosto";
+                                        break;
+                                    case 9:
+                                        mes = "Septiembre";
+                                        break;
+                                    case 10:
+                                        mes = "Octubre";
+                                        break;
+                                    case 11:
+                                        mes = "Noviembre";
+                                        break;
+                                    case 12:
+                                        mes = "Diciembre";
+                                        break;
+                                }
+
+                                refFecha = "#" + fecha[0] + fecha[1];
+                                <li>
+                                   <a href='@refFecha'>@fecha[0] de @mes</a>
+                                </li>
+                                }
+                            }
+
+                            @{
+                                fechaActual = "";
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">more_vert</i>
                         </a>
                         <ul class="dropdown-menu pull-right">
@@ -227,6 +290,7 @@
                             }
                         </ul>
                     </li>
+
                 </ul>
             </div>
             <div class="body">
