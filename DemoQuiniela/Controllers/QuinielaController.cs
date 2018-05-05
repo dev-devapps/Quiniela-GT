@@ -713,7 +713,7 @@ namespace DemoQuiniela.Controllers
 
             
 
-            if (partido.pa_estado == "I")
+            if (partido.pa_estado == "I" ||  partido.pa_estado == "T")
             {
                 querys = "update Partido "
                            + "set pa_marcador1 = @marcador1, pa_marcador2 = @marcador2 "
