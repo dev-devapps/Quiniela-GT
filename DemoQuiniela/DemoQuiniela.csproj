@@ -3847,6 +3847,7 @@
     <Content Include="fonts\raleway\Raleway-Thin.ttf" />
     <Content Include="fonts\raleway\Raleway-ThinItalic.ttf" />
     <Content Include="Views\Quiniela\Salir.cshtml" />
+    <Content Include="Views\Quiniela\Ayuda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
