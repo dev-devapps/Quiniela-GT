@@ -433,6 +433,7 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idEquipo2 = E2.eq_id "
                         + "and ma_idAlias = al_id "
                         + "and al_id = @id "
+                        + "and pa_estado in ('I', 'T') "
                         + "order by pa_fecha; ";
 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id", id)).ToList<Pronosticos>();
