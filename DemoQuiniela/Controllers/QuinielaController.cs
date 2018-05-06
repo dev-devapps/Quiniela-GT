@@ -17,7 +17,7 @@ namespace DemoQuiniela.Controllers
         private GoogleUserOutputData userLogin = new GoogleUserOutputData();
         private User DatosLogin = new User();
         private string querys;
-        private string urlLogout = "~/Quiniela";
+        private string urlLogout = "~/Quiniela/Salir/";
 
         public ActionResult Index()
         {
@@ -28,6 +28,16 @@ namespace DemoQuiniela.Controllers
         {
             DatosLogin = (User)TempData["DatosLogin"];
             ViewBag.DatosLogin = DatosLogin;
+
+            return View();
+        }
+
+        [SessionCheck(Transaccion = 4)]
+        public ActionResult Ayuda()
+        {
+            DatosLogin = (User)TempData["DatosLogin"];
+            ViewBag.DatosLogin = DatosLogin;
+            DatosLogin.id_menu = 4;
 
             return View();
         }
@@ -112,8 +122,6 @@ namespace DemoQuiniela.Controllers
                                     permisosMenu.Add(trn.tr_id_transaccion);
                                 }
 
-                                //Session["Menu"] = permisosMenu;
-                                //Session["Menu"] = tranRol;
                                 DatosLogin.permisos = permisosMenu;
 
                                 querys = "SELECT *"
@@ -131,6 +139,8 @@ namespace DemoQuiniela.Controllers
                                 }
                             }
                         }
+                    }else{
+                        return Redirect(urlLogout);
                     }
 
                     ViewBag.DatosLogin = DatosLogin;
@@ -374,27 +384,31 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idEquipo2 = E2.eq_id "
                         + "and ma_idAlias = al_id "
                         + "and pa_id = @id_partido "
+                        + "and pa_estado in ('C', 'I', 'T')"
                         + "order by pa_fecha; ";
                 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id_partido", id)).ToList<Pronosticos>();
-                foreach (Pronosticos itemPronostico in tablaPronosticos)
+                if (tablaPronosticos.Count > 0)
                 {
+                    foreach (Pronosticos itemPronostico in tablaPronosticos)
+                    {
                     itemPronostico.puntos = itemPronostico.CalcularPuntosDetallePartido();
-                }
+                    }
                 
 
-                qvm.vm_pronosticos = tablaPronosticos;
+                    qvm.vm_pronosticos = tablaPronosticos;
 
-                return View(qvm);
-
+                    return View(qvm);
+                }else
+                {
+                    return Redirect("/Quiniela/Error");
+                }
             }
             else
             {
                 return Redirect(urlLogout);
             }
-
         }
-
         [SessionCheck(Transaccion = 1)]
         public ActionResult DetallePorAlias(int id)
         {
@@ -419,6 +433,7 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idEquipo2 = E2.eq_id "
                         + "and ma_idAlias = al_id "
                         + "and al_id = @id "
+                        + "and pa_estado in ('I', 'T') "
                         + "order by pa_fecha; ";
 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id", id)).ToList<Pronosticos>();
@@ -698,7 +713,7 @@ namespace DemoQuiniela.Controllers
 
             
 
-            if (partido.pa_estado == "I")
+            if (partido.pa_estado == "I" ||  partido.pa_estado == "T")
             {
                 querys = "update Partido "
                            + "set pa_marcador1 = @marcador1, pa_marcador2 = @marcador2 "

@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{6ED54AE7-1BC3-44B0-AA6D-C465B9667D8B}|" GitUserInfo="UsingMD">
   <MonoDevelop.Ide.Workbench ActiveDocument="Quiniela-GT.git Status">
     <Files>
-      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="11" Column="5" />
-      <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="324" Column="26" />
       <File FileName="DemoQuiniela/Web.config" Line="1" Column="1" />
-      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="386" Column="53" />
       <File FileName="DemoQuiniela/Models/Login.cs" Line="1" Column="1" />
-      <File FileName="DemoQuiniela/Views/Quiniela/Login.cshtml" Line="40" Column="74" />
+      <File FileName="DemoQuiniela/Views/Quiniela/Login.cshtml" Line="47" Column="28" />
       <File FileName="DemoQuiniela/Views/Quiniela/Posiciones.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Models/Quiniela.cs" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/Ayuda.cshtml" Line="73" Column="68" />
+      <File FileName="DemoQuiniela/Views/Quiniela/DetallePorPartido.cshtml" Line="43" Column="33" />
+      <File FileName="DemoQuiniela/Views/Quiniela/IngresoMarcadores.cshtml" Line="149" Column="52" />
       <File FileName="Quiniela-GT.git Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>

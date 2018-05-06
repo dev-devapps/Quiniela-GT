@@ -14,6 +14,7 @@ html, body {
   width: 100%;
   background-image: url("../images/foto.jpg");
   background-size: cover;
+  overflow-y: auto;
   color: #fff;
   font-family: "Comfortaa", "Helvetica", sans-serif;
 }
@@ -110,10 +111,10 @@ input::-moz-placeholder {
 }
 
 .call-to-action {
-  margin: -50px 33%;
+
   height: 130px;
   width: 100%;
-  /*padding-left:33%;*/
+  padding-left:33%;
   /*background-color: blue;*/
 }
 
@@ -186,10 +187,11 @@ button {
 	   width: 400px;
 	   height: 95px;
 	   background-size:400px 95px;
+
 	 }
 	 
 .call-to-action {
-  margin: -50px 8%;
+    padding-left:5%;
 }  
 
 

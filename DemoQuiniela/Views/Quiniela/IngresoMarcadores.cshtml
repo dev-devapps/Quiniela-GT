@@ -1,7 +1,9 @@
-﻿@model MvcQuiniela.ViewModel.QuinielaViewModel
+@model MvcQuiniela.ViewModel.QuinielaViewModel
 @{
     TempData["DatosLogin"] = ViewBag.DatosLogin;
     Layout = "~/Views/Shared/_LayoutQuiniela.cshtml";
+
+    ViewBag.Title = "Ingreso de Marcadores";
 
     string idEquipo1 = "";
     string idEquipo2 = "";
@@ -142,6 +144,10 @@
                                 descEstado = "No iniciado";
                                 classCard = "header";
                                 break;
+                            case "C":
+                                descEstado = "Cierre de ingreso de pronosticos";
+                                classCard = "header bg-lime";
+                                break;
                             case "I":
                                 descEstado = "Iniciado";
                                 classCard = "header bg-light-green";
@@ -156,7 +162,7 @@
                                 break;
                         }
 
-                        if (estado == "I")
+                        if (estado == "I" || estado == "T")
                         {
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="card">
@@ -169,9 +175,8 @@
                                         <table width="100%" cellpadding="2" cellspacing="2" border="0">
                                             <tr>
                                                 <td colspan="2">&nbsp;</td>
-                                                <td align="center" colspan="3"><b>Mi Pron&oacute;stico</b></td>
+                                                <td align="center" colspan="3"><b>Marcador</b></td>
                                             </tr>
-
                                             <tr>
                                                 <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo1" /></td>
                                                 <td>@Model.vm_marcadorFinales.ElementAt(i).equipo1</td>
@@ -220,21 +225,40 @@
                                         <table width="100%" cellpadding="5px" cellspacing="2" border="0">
                                             <tr>
                                                 <td colspan="2">&nbsp;</td>
-                                                <td align="center" width="55px"><b>Pron&oacute;stico</b></td>
-                                                <td align="center" width="55px"><b>Partido</b></td>
+                                                <td align="center" colspan="3"><b>Marcador</b></td>
                                             </tr>
                                             <tr>
                                                 <td width="50px"><img src="~/images/flags/@idEquipo1" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo1" /></td>
                                                 <td>@Model.vm_marcadorFinales.ElementAt(i).equipo1</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
                                                 <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador1</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4">&nbsp;</td>
+                                                <td colspan="3">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td width="50px"><img src="~/images/flags/@idEquipo2" alt="@Model.vm_marcadorFinales.ElementAt(i).equipo2" /></td>
                                                 <td>@Model.vm_marcadorFinales.ElementAt(i).equipo2</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">add</i>
+                                                    </button>
+                                                </td>
                                                 <td align="center">@Model.vm_marcadorFinales.ElementAt(i).marcador2</td>
+                                                <td style="visibility:hidden;">
+                                                    <button type="button" class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
+                                                        <i class="material-icons">remove</i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>

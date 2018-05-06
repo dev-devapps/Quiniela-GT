@@ -102,6 +102,7 @@ namespace MvcQuiniela.Models
         public string al_nickname { get; set; }
 
         public int al_codigoDeposito { get; set; }
+
         public int al_puntos { get; set; }
 
         public string al_estado { get; set; }
