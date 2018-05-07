@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MvcQuiniela.Models;
 using System.Data.SqlClient;
 using MvcQuiniela.ViewModel;
+using System.Xml;
 
 namespace DemoQuiniela.Controllers
 {
@@ -139,6 +140,10 @@ namespace DemoQuiniela.Controllers
                                     AliasUsuario alias = aliasDB.First();
 
                                     return Redirect("/Quiniela/Posiciones/" + alias.al_id.ToString());
+                                }else{
+                                    if(aliasDB.Count == 0){
+                                        return Redirect(urlLogout);
+                                    }
                                 }
                             }
                         }
@@ -319,7 +324,8 @@ namespace DemoQuiniela.Controllers
 
                 querys = "SELECT *"
                         + "FROM AliasUsuario "
-                        + "WHERE al_id=@idalias ";
+                        + "WHERE al_id=@idalias "
+                        + "AND al_estado = 'V' ";
 
                 AliasUsuario aliasSeleccionado = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@idalias", id)).FirstOrDefault();
 
@@ -331,14 +337,14 @@ namespace DemoQuiniela.Controllers
                     querys = "SELECT *"
                              + "FROM AliasUsuario "
                              + "WHERE al_idUsuario=@iduser "
-                             + "AND  al_codigoDeposito is not null "
-                             + "AND  al_estado = 'V'";
+                             + "AND  al_codigoDeposito is not null";
 
                     vm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", aliasSeleccionado.al_idUsuario)).ToList();
 
                     querys = "SELECT id_alias=al_id, alias=al_nickname, puntos = al_puntos "
                                  + "FROM AliasUsuario "
-                                 + "WHERE al_codigoDeposito is not null";
+                                 + "WHERE al_codigoDeposito is not null "
+                                 + "AND al_estado = 'V' ";
 
                     List<TablaPosiciones> tablaPosiciones = db.Database.SqlQuery<TablaPosiciones>(querys).ToList<TablaPosiciones>();
 
@@ -388,7 +394,8 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idEquipo2 = E2.eq_id "
                         + "and ma_idAlias = al_id "
                         + "and pa_id = @id_partido "
-                        + "and pa_estado in ('C', 'I', 'T')"
+                        + "and pa_estado in ('C', 'I', 'T') "
+                        + "and al_estado = 'V' "
                         + "order by pa_fecha; ";
                 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id_partido", id)).ToList<Pronosticos>();
@@ -438,6 +445,7 @@ namespace DemoQuiniela.Controllers
                         + "and ma_idAlias = al_id "
                         + "and al_id = @id "
                         + "and pa_estado in ('I', 'T') "
+                        + "and al_estado = 'V' "
                         + "order by pa_fecha; ";
 
                 List<Pronosticos> tablaPronosticos = db.Database.SqlQuery<Pronosticos>(querys, new SqlParameter("@id", id)).ToList<Pronosticos>();
@@ -495,8 +503,7 @@ namespace DemoQuiniela.Controllers
             querys = "SELECT *"
                      + "FROM AliasUsuario "
                      + "WHERE al_idUsuario=@iduser "
-                     + "AND al_id=@idalias "
-                     + "AND  al_estado = 'V'";
+                     + "AND al_id=@idalias";
 
             //aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
 
@@ -537,8 +544,7 @@ namespace DemoQuiniela.Controllers
 
                 querys = "SELECT *"
                          + "FROM AliasUsuario "
-                         + "WHERE al_idUsuario=@iduser "
-                         + "AND  al_estado = 'V'";
+                         + "WHERE al_idUsuario=@iduser ";
 
                 qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
 
@@ -676,6 +682,65 @@ namespace DemoQuiniela.Controllers
             db.Database.ExecuteSqlCommand(querys, new SqlParameter("@nickname", NullHandler(alias.al_nickname)), new SqlParameter("@numeroDeposito", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@estado", NullHandler(alias.al_estado)), new SqlParameter("@id", NullHandler(alias.al_id)), new SqlParameter("@idUsuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@usuario", "1"));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("Quiniela/CorreoBienvenida")]
+        [HttpPost]
+        [SessionCheck(Transaccion = 6)]
+        public JsonResult CorreoBienvenida(int n)
+        {
+            string resEnvioMail = "", mensaje = "", querys = "";
+            EnvioCorreo mail = new EnvioCorreo();
+
+            querys = "select * from Usuario where us_id = @idUsuario";
+            Usuario usuario = db.Database.SqlQuery<Usuario>(querys, new SqlParameter("@idUsuario", n)).FirstOrDefault();
+
+            if(usuario == null){
+                return Json(new { Error = false, responseText = "Ocurrio un error al enviar el correo..." }, JsonRequestBehavior.AllowGet);
+            }else{
+                mail.HOST = "smtp.office365.com";
+                mail.PORT = 587;
+
+                mail.SMTP_USERNAME = "info@devappsgt.com";
+                mail.SMTP_PASSWORD = "N@sh_2018";
+                mail.ENABLESSL = true;
+
+                mensaje = "<html>" +
+                                    "<head>" +
+                                        "<title>Quiniela</title>" +
+                                    "</head>" +
+                                    "<body>" +
+                                    "<p style=\"font-family:Verdana;font-size:11px;\">" +
+                                    "¡Bienvenid@ <b>" + usuario.us_primerNombre + "</b> a la Quiniela Rusia 2018!, es un gusto para nosotros contar con tu participaci&oacute;n en esta quiniela.<br /><br />" +
+                                    "Para que puedas ingresar tus pron&oacute;sticos en la p&aacute;gina debes de ingresar al siguiente <a href=\"https://www.devappsgt.com/Quiniela\">link</a> o haz clic sobre la imagen, y para ingresar debes de hacerlo con el correo que te registraste.<br /><br /> " +
+                                    "¡Te deseamos la mejor de las suertes!<br /><br />" +
+                                    "<a href=\"https://www.devappsgt.com/Quiniela\"><img width=\"100%\" src=\"http://www.devappsgt.com/img/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
+                                    "</p>" +
+                                    "</body>" +
+                           "</html>";
+
+
+                resEnvioMail = mail.SendMail("DevApps", "info@devappsgt.com", usuario.us_correoElectronico, "", "", "Bienvenida a la Quiniela 2018", true, mensaje, "");
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(resEnvioMail);
+
+                XmlNode errorNode = xmlDoc.DocumentElement.SelectSingleNode("/envio_correo/resultado");
+
+                string errorCode = errorNode.Attributes["codigo"].Value;
+                string errorMessage = errorNode.InnerText;
+
+                if (errorCode == "1")
+                {
+                    return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { Error = false, responseText = errorMessage }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+
         }
 
         [Route("Quiniela/ActualizaPronostico")]

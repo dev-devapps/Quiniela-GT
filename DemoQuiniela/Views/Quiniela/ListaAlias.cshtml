@@ -8,6 +8,35 @@
     string estado = "";
     string descEstado = "";
 }
+<script type="text/javascript">
+    function mensajeError(mensaje, color){
+        showNotification(color, mensaje, "top", "center", "animated bounceInDown", "animated bounceOutDown");
+    }
+    
+    function CorreoBienvenida(n){
+        var btnBienvenida = document.getElementById("btnCorreoBienvenida");
+
+        btnBienvenida.disabled = true;
+    
+        $.ajax({
+            type: "POST",
+            url: "/Quiniela/CorreoBienvenida?n=" + n,
+            data: null,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                //alert('ok');
+                //document.getElementById("form_validation").submit();
+                mensajeError("Correo enviado exitosamente :)", "bg-black");
+                btnBienvenida.disabled = false;
+            },
+            error: function(err) {
+                mensajeError("Ocurrio un error al enviar el correo: " + err.responseText, "bg-red");
+                btnBienvenida.disabled = false;
+            }
+        });
+    }
+</script>
 <!-- Basic Table -->
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,6 +56,11 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+            <div class="body">
+                <div class="demo-button">
+                    <button id="btnCorreoBienvenida" type="button" class="btn btn-block btn-lg btn-primary waves-effect" onclick="CorreoBienvenida(@Model.vm_usuarios.ElementAt(0).us_id);">Enviar correo de bienvenida</button>
+                </div>
             </div>
             <div class="body table-responsive">
                 <table class="table">
@@ -72,3 +106,8 @@
 </div>
 <!-- #END# Basic Table -->
 
+@section CustomJs {
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../../plugins/bootstrap-notify/bootstrap-notify.js"></script>
+    <script src="../../js/pages/ui/notifications.js"></script>
+}
