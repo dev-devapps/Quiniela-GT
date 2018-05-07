@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<MvcQuiniela.Models.AliasUsuario>
+
 @{
     TempData["DatosLogin"] = ViewBag.DatosLogin;
     Layout = null;
+
+    int numAlias;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -45,13 +48,14 @@
                     <span class="login100-form-title p-t-20 p-b-25">
                         Bienvenido @ViewBag.DatosLogin.nombre
                     </span>
-
+                    
                     <span class="login100-form-text p-t-10 p-b-20">
                         Selecciona tu alias para continuar
                     </span>
-
+                    
                     @foreach (var Alias in Model)
                     {
+                        
                         <div class="container-login100-form-btn p-t-10">
                             <button type="button" class="login100-form-btn" onclick="a(@Alias.al_id);">
                                 @Alias.al_nickname

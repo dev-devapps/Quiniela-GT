@@ -33,12 +33,12 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
+                                        <th> </th>
                                         <th>Nombres</th>
                                         <th>Apellidos</th>
                                         <th>Correo electronico</th>
-                                        <th>Identificacion</th>
                                         <th>Estado</th>
-                                        <th> </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,15 +58,15 @@
                                                 break;
                                         }
                                         <tr>
-                                            <td>@Model.vm_usuarios.ElementAt(i).us_primerNombre</td>
-                                            <td>@Model.vm_usuarios.ElementAt(i).us_primerApellido</td>
-                                            <td>@Model.vm_usuarios.ElementAt(i).us_correoElectronico</td>
-                                            <td>@Model.vm_usuarios.ElementAt(i).us_cui</td>
-                                            <td>@descEstado</td>
                                             <td>
                                                 <a href="~/Quiniela/ListaAlias/@Model.vm_usuarios.ElementAt(i).us_id" class="btn btn-warning waves-effect" data-toggle="tooltip" title="Alias"><i class="material-icons">assignment_ind</i></a>
-                                                <a href="~/Quiniela/EditarUsuario/@Model.vm_usuarios.ElementAt(i).us_id" class="btn btn-info waves-effectt"  data-toggle="tooltip" title="Editar"><i class="material-icons">mode_edit</i></a>
+                                                <a href="~/Quiniela/EditarUsuario/@Model.vm_usuarios.ElementAt(i).us_id" class="btn btn-info waves-effectt" data-toggle="tooltip" title="Editar"><i class="material-icons">mode_edit</i></a>
                                             </td>
+                                            <td>@Model.vm_usuarios.ElementAt(i).us_primerNombre @Model.vm_usuarios.ElementAt(i).us_segundoNombre</td>
+                                            <td>@Model.vm_usuarios.ElementAt(i).us_primerApellido @Model.vm_usuarios.ElementAt(i).us_segundoApellido</td>
+                                            <td>@Model.vm_usuarios.ElementAt(i).us_correoElectronico</td>
+                                            
+                                            <td>@descEstado</td>
 </tr>
                                     }
                                 </tbody>
