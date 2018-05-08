@@ -25,10 +25,11 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                //alert('ok');
-                //document.getElementById("form_validation").submit();
-                mensajeError("Correo enviado exitosamente :)", "bg-black");
-                btnBienvenida.disabled = false;
+                if(response.success){
+                    mensajeError("Correo enviado exitosamente :)", "bg-black");
+                }else{
+                    mensajeError("Ocurrio un error en el envio del correo: " + response.responseText, "bg-red");
+                }
             },
             error: function(err) {
                 mensajeError("Ocurrio un error al enviar el correo: " + err.responseText, "bg-red");
