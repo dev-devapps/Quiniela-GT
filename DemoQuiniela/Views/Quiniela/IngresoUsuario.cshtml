@@ -28,7 +28,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Quiniela/GuardarUsuario?rol=" + rol,
+            url: "/Quiniela/GuardarUsuario?rol=" + rol + "&idUsuario="+ @ViewBag.DatosLogin.id_login,
             data: JSON.stringify(_usuario ),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
