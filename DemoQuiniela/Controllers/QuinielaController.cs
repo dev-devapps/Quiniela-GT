@@ -739,7 +739,7 @@ namespace DemoQuiniela.Controllers
                 }
                 else
                 {
-                    return Json(new { Error = false, responseText = errorMessage }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success = false, responseText = errorMessage }, JsonRequestBehavior.AllowGet);
                 }
             }
 
