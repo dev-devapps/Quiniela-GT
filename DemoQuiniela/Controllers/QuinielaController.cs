@@ -337,7 +337,8 @@ namespace DemoQuiniela.Controllers
                     querys = "SELECT *"
                              + "FROM AliasUsuario "
                              + "WHERE al_idUsuario=@iduser "
-                             + "AND  al_codigoDeposito is not null";
+                             + "AND  al_codigoDeposito is not null "
+                             + "AND al_estado = 'V'";
 
                     vm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", aliasSeleccionado.al_idUsuario)).ToList();
 
@@ -503,7 +504,8 @@ namespace DemoQuiniela.Controllers
             querys = "SELECT *"
                      + "FROM AliasUsuario "
                      + "WHERE al_idUsuario=@iduser "
-                     + "AND al_id=@idalias";
+                     + "AND al_id=@idalias "
+                     + "AND al_estado='V'";
 
             //aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
 
@@ -544,7 +546,8 @@ namespace DemoQuiniela.Controllers
 
                 querys = "SELECT *"
                          + "FROM AliasUsuario "
-                         + "WHERE al_idUsuario=@iduser ";
+                         + "WHERE al_idUsuario=@iduser "
+                         + "AND al_estado='V'";
 
                 qvm.vm_alias = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@iduser", DatosLogin.id_login)).ToList();
 
