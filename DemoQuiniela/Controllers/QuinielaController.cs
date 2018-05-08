@@ -8,6 +8,7 @@ using MvcQuiniela.Models;
 using System.Data.SqlClient;
 using MvcQuiniela.ViewModel;
 using System.Xml;
+using System.Configuration;
 
 namespace DemoQuiniela.Controllers
 {
@@ -693,6 +694,8 @@ namespace DemoQuiniela.Controllers
         public JsonResult CorreoBienvenida(int n)
         {
             string resEnvioMail = "", mensaje = "", querys = "";
+            string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString();
+
             EnvioCorreo mail = new EnvioCorreo();
 
             querys = "select * from Usuario where us_id = @idUsuario";
@@ -704,8 +707,8 @@ namespace DemoQuiniela.Controllers
                 mail.HOST = "smtp.office365.com";
                 mail.PORT = 587;
 
-                mail.SMTP_USERNAME = "info@devappsgt.com";
-                mail.SMTP_PASSWORD = "N@sh_2018";
+                mail.SMTP_USERNAME = c;
+                mail.SMTP_PASSWORD = p;
                 mail.ENABLESSL = true;
 
                 mensaje = "<html>" +
@@ -723,7 +726,7 @@ namespace DemoQuiniela.Controllers
                            "</html>";
 
 
-                resEnvioMail = mail.SendMail("DevApps", "info@devappsgt.com", usuario.us_correoElectronico, "", "", "Bienvenida a la Quiniela 2018", true, mensaje, "");
+                resEnvioMail = mail.SendMail("Quiniela", c, usuario.us_correoElectronico, "", "", "Bienvenida a la Quiniela 2018", true, mensaje, "");
 
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(resEnvioMail);

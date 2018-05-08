@@ -28,11 +28,13 @@
                 if(response.success){
                     mensajeError("Correo enviado exitosamente :)", "bg-black");
                 }else{
-                    mensajeError("Ocurrio un error en el envio del correo: " + response.responseText, "bg-red");
+                    mensajeError("Ocurrio un error en el envio del correo: " + response.responseText, "bg-orange");
                 }
+
+                btnBienvenida.disabled = false;
             },
             error: function(err) {
-                mensajeError("Ocurrio un error al enviar el correo: " + err.responseText, "bg-red");
+                mensajeError("Ocurrio un error al enviar el correo: " + err.responseText, "bg-orange");
                 btnBienvenida.disabled = false;
             }
         });
