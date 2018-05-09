@@ -122,8 +122,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    Ingreso de Pron&oacute;sticos
-                    <small>Instrucciones para cambiar de alias.</small>
+                    Ingreso de Marcadores
                 </h2>
 
             </div>
@@ -143,6 +142,10 @@
                             case "V":
                                 descEstado = "No iniciado";
                                 classCard = "header";
+                                break;
+                            case "C":
+                                descEstado = "Cierre de ingreso de pronosticos";
+                                classCard = "header bg-lime";
                                 break;
                             case "I":
                                 descEstado = "Iniciado";

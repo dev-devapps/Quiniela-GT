@@ -76,19 +76,12 @@ namespace MvcQuiniela.Models
         [Key]
         public int us_id { get; set; }
         public string us_primerNombre { get; set; }
-
         public string us_segundoNombre { get; set; }
-
         public string us_primerApellido { get; set; }
-
         public string us_segundoApellido { get; set; }
-
         public string us_correoElectronico { get; set; }
-
         public string us_cui { get; set; }
         public string us_estado { get; set; }
-
-
     }
 
     [Table("AliasUsuario")]

@@ -34,6 +34,8 @@ namespace MvcQuiniela.Models
         public string googleplus_client_id = "173582404619-rgk3mtkbas4qu927lj9steu13b3stnbc.apps.googleusercontent.com";    // Replace this with your Client ID
         private string googleplus_client_sceret = "tQzvtBajNUpsdkgQCn-UF-rT";                                               // Replace this with your Client Secret
         public string googleplus_redirect_url = "http://localhost:54012/Quiniela/Login";                                    // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
+       // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
+
         private string Parameters;
         private string accessToken;
 

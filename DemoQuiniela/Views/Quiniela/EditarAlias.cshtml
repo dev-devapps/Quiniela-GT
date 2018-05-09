@@ -22,7 +22,7 @@
         _alias.al_estado = estado;
         $.ajax({
             type: "POST",
-            url: "/Quiniela/ModificarAlias",
+            url: "/Quiniela/ModificarAlias?idUsuario=" +  @ViewBag.DatosLogin.id_login,
             data: JSON.stringify(_alias),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

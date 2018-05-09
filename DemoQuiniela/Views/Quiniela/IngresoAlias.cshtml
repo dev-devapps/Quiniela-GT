@@ -16,7 +16,7 @@
         _alias.al_codigoDeposito = numBoleta;
         $.ajax({
             type: "POST",
-            url: "/Quiniela/GuardarAlias",
+            url: "/Quiniela/GuardarAlias?idUsuario="+@ViewBag.DatosLogin.id_login,
             data: JSON.stringify(_alias),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
