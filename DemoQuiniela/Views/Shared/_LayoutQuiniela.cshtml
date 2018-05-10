@@ -44,7 +44,8 @@
     bool ingresoMarcador = false;
     bool creaUsuario = false;
     List<int> permisos = ViewBag.DatosLogin.permisos;
-    
+    List<String> premios = ViewBag.DatosLogin.premios;
+
     switch (idMenu){
         case 1:
             classTablaPosiciones = "active";
@@ -93,12 +94,46 @@
     <nav class="navbar">
         <div class="container-fluid">
             <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="~/Quiniela/Posiciones/@ViewBag.DatosLogin.id_alias">QUINIELA 2018</a>
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">
+                            <i class="material-icons">account_balance</i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" >
+                            <div class="email">
+                            1ro. Q. @premios.ElementAt(0)
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle">
+                            <div class="email">
+                                2do. Q. @premios.ElementAt(1)
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle">
+                            <div class="email">
+                                3ro. Q. @premios.ElementAt(2)
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
         </div>
-    </nav>
+
+</nav>
     <!-- #Top Bar -->
     <section>
         <!-- Left Sidebar -->

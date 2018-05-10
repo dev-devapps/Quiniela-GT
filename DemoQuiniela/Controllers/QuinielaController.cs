@@ -73,6 +73,7 @@ namespace DemoQuiniela.Controllers
             List<UsuarioRol> userRol = new List<UsuarioRol>();
             List<TransaccionRol> tranRol = new List<TransaccionRol>();
             List<int> permisosMenu = new List<int>();
+            List<String> premiosFe = new List<String>();
 
             if (url != "")
             {
@@ -127,6 +128,21 @@ namespace DemoQuiniela.Controllers
                                 }
 
                                 DatosLogin.permisos = permisosMenu;
+
+                                querys = "select convert(varchar(20), convert(decimal(6,2), (count(1) * 50) * 0.5))  primerLugar, convert(varchar(20), convert(decimal(6,2),(count(1) * 50) * 0.3))  segundoLugar, convert(varchar(20), convert(decimal(6,2), (count(1) * 50) * 0.2)) tercerLugar "
+                                       + "from AliasUsuario "
+                                       + "where al_estado = 'V' ";
+
+                                  List <Premios> premios = db.Database.SqlQuery<Premios>(querys).ToList<Premios>();
+
+                                foreach (Premios prem in premios)
+                                {
+                                    premiosFe.Add(prem.primerLugar);
+                                    premiosFe.Add(prem.segundoLugar);
+                                    premiosFe.Add(prem.tercerLugar);
+                                }
+
+                                DatosLogin.premios = premiosFe;
 
                                 querys = "SELECT *"
                                 + "FROM AliasUsuario "

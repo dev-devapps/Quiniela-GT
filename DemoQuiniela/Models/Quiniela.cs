@@ -181,6 +181,17 @@ namespace MvcQuiniela.Models
 
         public int idPartido { get; set; }
     }
+
+    public class Premios
+    {
+        public string primerLugar { get; set; }
+
+        public string segundoLugar { get; set; }
+
+        public string tercerLugar { get; set; }
+
+    }
+
     public class TablaPosiciones
     {
 
