@@ -130,8 +130,10 @@ namespace DemoQuiniela.Controllers
                                 DatosLogin.permisos = permisosMenu;
 
                                 querys = "select convert(varchar(20), convert(decimal(6,2), (count(1) * 50) * 0.5))  primerLugar, convert(varchar(20), convert(decimal(6,2),(count(1) * 50) * 0.3))  segundoLugar, convert(varchar(20), convert(decimal(6,2), (count(1) * 50) * 0.2)) tercerLugar "
-                                       + "from AliasUsuario "
-                                       + "where al_estado = 'V' ";
+                                       + "from AliasUsuario, Usuario "
+                                       + "where al_estado = 'V' "
+                                       + "and al_idUsuario = us_id "
+                                       + "and us_estado = 'V' ";
 
                                   List <Premios> premios = db.Database.SqlQuery<Premios>(querys).ToList<Premios>();
 
