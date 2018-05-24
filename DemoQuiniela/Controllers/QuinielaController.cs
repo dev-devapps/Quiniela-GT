@@ -774,11 +774,29 @@ namespace DemoQuiniela.Controllers
             string res = "Ocurrio un error inesperado";
             int idPartido = miPronostico.idPartido;
 
+            //ViewBag.DatosLogin = TempData["DatosLogin"];
+            DatosLogin = (User)Session["UserInfo"];
+
             /*
              * Aqui debe de ir una validación de sesión
             */
 
             try{
+
+                querys = "SELECT *"
+                     + "FROM AliasUsuario "
+                     + "WHERE al_id=@idalias "
+                     + "AND al_estado='V'";
+
+                //aliasDB = db.AliasUsuario.SqlQuery(querys, new SqlParameter("@iduser", DatosLogin.id_login), new SqlParameter("@idalias", id)).ToList();
+
+                AliasUsuario aliasPronostico = db.Database.SqlQuery<AliasUsuario>(querys, new SqlParameter("@idalias", miPronostico.idAlias)).FirstOrDefault();
+
+                if (aliasPronostico.al_idUsuario != DatosLogin.id_login)
+                {
+                    return "Whoa, whoa, whoa... No hagas trampa porque seras descalificado :(";
+                }
+
                 querys = "SELECT *"
                         + "FROM Partido "
                         + "WHERE pa_id=@idpartido ";
