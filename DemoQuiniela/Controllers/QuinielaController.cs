@@ -157,7 +157,7 @@ namespace DemoQuiniela.Controllers
                                 if (aliasDB.Count == 1)
                                 {
                                     AliasUsuario alias = aliasDB.First();
-
+                                    ViewBag.DatosLogin = DatosLogin;
                                     return Redirect("/Quiniela/Posiciones/" + alias.al_id.ToString());
                                 }else{
                                     if(aliasDB.Count == 0){
