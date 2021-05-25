@@ -589,6 +589,7 @@ namespace DemoQuiniela.Controllers
         public ActionResult Salir()
         {
             Session["UserInfo"] = null;
+            TempData["DatosLogin"] = null;
             return View();
         }
 
