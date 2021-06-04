@@ -713,7 +713,7 @@ namespace DemoQuiniela.Controllers
         public JsonResult CorreoBienvenida(int n)
         {
             string resEnvioMail = "", mensaje = "", querys = "";
-            string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString(), u = ConfigurationManager.AppSettings["URL"].ToString(), s = ConfigurationManager.AppSettings["S"].ToString();
+            string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString(), u = ConfigurationManager.AppSettings["URL"].ToString(), s = ConfigurationManager.AppSettings["S"].ToString(), i = ConfigurationManager.AppSettings["IMG"].ToString();
             int po = Int32.Parse(ConfigurationManager.AppSettings["PO"].ToString());
 
             EnvioCorreo mail = new EnvioCorreo();
@@ -740,7 +740,7 @@ namespace DemoQuiniela.Controllers
                                     "¡Bienvenid@ <b>" + usuario.us_primerNombre + "</b> a la Quiniela!, es un gusto para nosotros contar con tu participaci&oacute;n en esta quiniela.<br /><br />" +
                                     "Para que puedas ingresar tus pron&oacute;sticos en la p&aacute;gina debes de ingresar al siguiente <a href=\"" + u + "\">link</a> o haz clic sobre la imagen, y para ingresar debes de hacerlo con el correo que te registraste.<br /><br /> " +
                                     "¡Te deseamos la mejor de las suertes!<br /><br />" +
-                                    "<a href=\"" + u + "\"><img width=\"100%\" src=\"" + u + "/images/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
+                                    "<a href=\"" + u + "\"><img width=\"100%\" src=\"" + i + "/images/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
                                     "</p>" +
                                     "</body>" +
                            "</html>";

@@ -3849,6 +3849,7 @@
     <Content Include="fonts\raleway\Raleway-ThinItalic.ttf" />
     <Content Include="Views\Quiniela\Salir.cshtml" />
     <Content Include="Views\Quiniela\Ayuda.cshtml" />
+    <Content Include="images\welcomemail.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
