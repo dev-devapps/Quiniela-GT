@@ -713,7 +713,8 @@ namespace DemoQuiniela.Controllers
         public JsonResult CorreoBienvenida(int n)
         {
             string resEnvioMail = "", mensaje = "", querys = "";
-            string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString();
+            string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString(), u = ConfigurationManager.AppSettings["URL"].ToString(), s = ConfigurationManager.AppSettings["S"].ToString();
+            int po = Int32.Parse(ConfigurationManager.AppSettings["PO"].ToString());
 
             EnvioCorreo mail = new EnvioCorreo();
 
@@ -723,8 +724,8 @@ namespace DemoQuiniela.Controllers
             if(usuario == null){
                 return Json(new { Error = false, responseText = "Ocurrio un error al enviar el correo..." }, JsonRequestBehavior.AllowGet);
             }else{
-                mail.HOST = "smtp.office365.com";
-                mail.PORT = 587;
+                mail.HOST = s;
+                mail.PORT = po;
 
                 mail.SMTP_USERNAME = c;
                 mail.SMTP_PASSWORD = p;
@@ -736,16 +737,16 @@ namespace DemoQuiniela.Controllers
                                     "</head>" +
                                     "<body>" +
                                     "<p style=\"font-family:Verdana;font-size:11px;\">" +
-                                    "¡Bienvenid@ <b>" + usuario.us_primerNombre + "</b> a la Quiniela Rusia 2018!, es un gusto para nosotros contar con tu participaci&oacute;n en esta quiniela.<br /><br />" +
-                                    "Para que puedas ingresar tus pron&oacute;sticos en la p&aacute;gina debes de ingresar al siguiente <a href=\"https://www.devappsgt.com/Quiniela\">link</a> o haz clic sobre la imagen, y para ingresar debes de hacerlo con el correo que te registraste.<br /><br /> " +
+                                    "¡Bienvenid@ <b>" + usuario.us_primerNombre + "</b> a la Quiniela!, es un gusto para nosotros contar con tu participaci&oacute;n en esta quiniela.<br /><br />" +
+                                    "Para que puedas ingresar tus pron&oacute;sticos en la p&aacute;gina debes de ingresar al siguiente <a href=\"" + u + "\">link</a> o haz clic sobre la imagen, y para ingresar debes de hacerlo con el correo que te registraste.<br /><br /> " +
                                     "¡Te deseamos la mejor de las suertes!<br /><br />" +
-                                    "<a href=\"https://www.devappsgt.com/Quiniela\"><img width=\"100%\" src=\"http://www.devappsgt.com/img/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
+                                    "<a href=\"" + u + "\"><img width=\"100%\" src=\"" + u + "/images/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
                                     "</p>" +
                                     "</body>" +
                            "</html>";
 
 
-                resEnvioMail = mail.SendMail("Quiniela", c, usuario.us_correoElectronico, "", "", "Bienvenida a la Quiniela 2018", true, mensaje, "");
+                resEnvioMail = mail.SendMail("Quiniela", c, usuario.us_correoElectronico, "", "", "Bienvenida a la Quiniela", true, mensaje, "");
 
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(resEnvioMail);

@@ -7,6 +7,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Configuration;
 
 namespace MvcQuiniela.Models
 {
@@ -31,10 +32,10 @@ namespace MvcQuiniela.Models
 
     public class GoogleLogin
     {
-        public string googleplus_client_id = "173582404619-rgk3mtkbas4qu927lj9steu13b3stnbc.apps.googleusercontent.com";    // Replace this with your Client ID
-        private string googleplus_client_sceret = "tQzvtBajNUpsdkgQCn-UF-rT";                                               // Replace this with your Client Secret
-        public string googleplus_redirect_url = "http://localhost:54012/Quiniela/Login";                                    // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
-       // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
+        public string googleplus_client_id = "173582404619-r9dai85bro00m5tudnrslnuugsnjdpd8.apps.googleusercontent.com";    // Replace this with your Client ID
+        private string googleplus_client_sceret = "xaDo34L9lWlV1ys-uPU7DDC-";                                               // Replace this with your Client Secret
+        public string googleplus_redirect_url = ConfigurationManager.AppSettings["DO"].ToString() + "/Login";                                    // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
+                                                                                                                           // Replace this with your Redirect URL; Your Redirect URL from your developer.google application should match this URL.
 
         private string Parameters;
         private string accessToken;
