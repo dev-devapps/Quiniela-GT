@@ -338,6 +338,10 @@
                 descEstado = "Iniciado";
                 classCard = "header bg-light-green";
                 break;
+            case "S":
+                descEstado = "Suspendido";
+                classCard = "header bg-amber";
+                break;
             case "T":
                 descEstado = "Finalizado";
                 classCard = "header bg-blue-grey";
@@ -394,7 +398,7 @@
 
             refFecha = "#" + fecha[0] + fecha[1];
             idFecha = fecha[0] + fecha[1];
-                    
+
                     <div id="@idFecha" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="alert bg-indigo" align="center">
                             @fecha[0] de @mes

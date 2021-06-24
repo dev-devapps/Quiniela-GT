@@ -277,28 +277,31 @@ namespace MvcQuiniela.Models
         {
             int rPuntos = 0;
 
-            if (pronostico.ma_marcador1 == this.marcador1 && pronostico.ma_marcador2 == this.marcador2)
+            //Si los partidos estan iniciados o terminados calcula el detalle de puntos
+            if ((this.estado == "I") || (this.estado == "T"))
             {
-                rPuntos = 5;
+                if (pronostico.ma_marcador1 == this.marcador1 && pronostico.ma_marcador2 == this.marcador2)
+                {
+                    rPuntos = 5;
+                }
+                else
+                {
+                    if (this.marcador1 == pronostico.ma_marcador1)
+                        rPuntos++;
+
+                    if (this.marcador2 == pronostico.ma_marcador2)
+                        rPuntos++;
+
+                    if (this.marcador1 == this.marcador2 && pronostico.ma_marcador1 == pronostico.ma_marcador2)
+                        rPuntos += 3;
+
+                    if (this.marcador1 > this.marcador2 && pronostico.ma_marcador1 > pronostico.ma_marcador2)
+                        rPuntos += 3;
+
+                    if (this.marcador2 > this.marcador1 && pronostico.ma_marcador2 > pronostico.ma_marcador1)
+                        rPuntos += 3;
+                }
             }
-            else
-            {
-                if (this.marcador1 == pronostico.ma_marcador1)
-                    rPuntos++;
-
-                if (this.marcador2 == pronostico.ma_marcador2)
-                    rPuntos++;
-
-                if (this.marcador1 == this.marcador2 && pronostico.ma_marcador1 == pronostico.ma_marcador2)
-                    rPuntos += 3;
-                
-                if (this.marcador1 > this.marcador2 && pronostico.ma_marcador1 > pronostico.ma_marcador2)
-                    rPuntos += 3;
-
-                if (this.marcador2 > this.marcador1 && pronostico.ma_marcador2 > pronostico.ma_marcador1)
-                    rPuntos += 3;
-            }
-
 
             return rPuntos;
         }
@@ -306,26 +309,30 @@ namespace MvcQuiniela.Models
         {
             int rPuntos = 0;
 
-            if (this.pronostico1 == this.marcador1 && this.pronostico2 == this.marcador2)
+            //Si los partidos estan iniciados o terminados calcula el detalle de puntos
+            if((this.estado == "I") || (this.estado == "T"))
             {
-                rPuntos = 5;
-            }
-            else
-            {
-                if (this.marcador1 == this.pronostico1)
-                    rPuntos++;
+                if (this.pronostico1 == this.marcador1 && this.pronostico2 == this.marcador2)
+                {
+                    rPuntos = 5;
+                }
+                else
+                {
+                    if (this.marcador1 == this.pronostico1)
+                        rPuntos++;
 
-                if (this.marcador2 == this.pronostico2)
-                    rPuntos++;
+                    if (this.marcador2 == this.pronostico2)
+                        rPuntos++;
 
-                if (this.marcador1 == this.marcador2 && this.pronostico1 == this.pronostico2)
-                    rPuntos += 3;
+                    if (this.marcador1 == this.marcador2 && this.pronostico1 == this.pronostico2)
+                        rPuntos += 3;
 
-                if (this.marcador1 > this.marcador2 && this.pronostico1 > this.pronostico2)
-                    rPuntos += 3;
+                    if (this.marcador1 > this.marcador2 && this.pronostico1 > this.pronostico2)
+                        rPuntos += 3;
 
-                if (this.marcador2 > this.marcador1 && this.pronostico2 > this.pronostico1)
-                    rPuntos += 3;
+                    if (this.marcador2 > this.marcador1 && this.pronostico2 > this.pronostico1)
+                        rPuntos += 3;
+                }
             }
 
 
