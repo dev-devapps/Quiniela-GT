@@ -1,19 +1,24 @@
-﻿<Properties GitUserInfo="UsingMD" StartupConfiguration="{6ED54AE7-1BC3-44B0-AA6D-C465B9667D8B}|">
-  <MonoDevelop.Ide.Workbench>
+﻿<Properties StartupConfiguration="{6ED54AE7-1BC3-44B0-AA6D-C465B9667D8B}|" GitUserInfo="UsingMD">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml">
     <Files>
       <File FileName="DemoQuiniela/Views/Shared/_LayoutQuiniela.cshtml" Line="168" Column="53" />
       <File FileName="DemoQuiniela/Views/Quiniela/IngresoPronostico.cshtml" Line="506" Column="1" />
-      <File FileName="DemoQuiniela/Web.config" Line="14" Column="110" />
+      <File FileName="DemoQuiniela/Web.config" Line="13" Column="110" />
       <File FileName="DemoQuiniela/Controllers/QuinielaController.cs" Line="11" Column="1" />
       <File FileName="DemoQuiniela/Models/Login.cs" Line="24" Column="39" />
-      <File FileName="DemoQuiniela/Views/Quiniela/Login.cshtml" />
-      <File FileName="DemoQuiniela/Views/Quiniela/Posiciones.cshtml" />
+      <File FileName="DemoQuiniela/Views/Quiniela/Login.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/Posiciones.cshtml" Line="1" Column="1" />
       <File FileName="DemoQuiniela/Models/Quiniela.cs" Line="1" Column="1" />
-      <File FileName="DemoQuiniela/Views/Quiniela/Ayuda.cshtml" />
-      <File FileName="DemoQuiniela/Views/Quiniela/DetallePorPartido.cshtml" />
-      <File FileName="DemoQuiniela/Views/Quiniela/IngresoMarcadores.cshtml" />
-      <File FileName="DemoQuiniela/Views/Quiniela/ListaAlias.cshtml" />
-      <File FileName="DemoQuiniela/Views/Quiniela/EditarUsuario.cshtml" />
+      <File FileName="DemoQuiniela/Views/Quiniela/Ayuda.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/DetallePorPartido.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/IngresoMarcadores.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/ListaAlias.cshtml" Line="1" Column="1" />
+      <File FileName="DemoQuiniela/Views/Quiniela/EditarUsuario.cshtml" Line="1" Column="1" />
       <File FileName="DemoQuiniela/Views/Quiniela/Index.cshtml" Line="9" Column="20" />
     </Files>
     <Pads>
@@ -22,9 +27,7 @@
           <Node name="DemoQuiniela" expanded="True">
             <Node name="DemoQuiniela" expanded="True">
               <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Login.cs" selected="True" />
-              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Views" expanded="True">
                 <Node name="Quiniela" expanded="True" />
                 <Node name="Shared" expanded="True" />
@@ -33,13 +36,11 @@
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.DemoQuiniela PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
