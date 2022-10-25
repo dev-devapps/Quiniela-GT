@@ -619,7 +619,7 @@ namespace DemoQuiniela.Controllers
                     + "@deposito = '',"
                     + "@usuario = @usuario";
 
-            Resultado = db.Database.ExecuteSqlCommand(querys, new SqlParameter("@txtPrimerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@txtSegundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@txtPrimerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@txtSegundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@txtCorreo", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@txtCui", NullHandler(usuario.us_cui)), new SqlParameter("@txtEstado", 'V'),new SqlParameter("@txtRol", rol), new SqlParameter("@usuario", idUsuario));
+            Resultado = db.Database.ExecuteSqlCommand(querys, new SqlParameter("@txtPrimerNombre", NullHandler(usuario.us_primerNombre)), new SqlParameter("@txtSegundoNombre", NullHandler(usuario.us_segundoNombre)), new SqlParameter("@txtPrimerApellido", NullHandler(usuario.us_primerApellido)), new SqlParameter("@txtSegundoApellido", NullHandler(usuario.us_segundoApellido)), new SqlParameter("@txtCorreo", NullHandler(usuario.us_correoElectronico)), new SqlParameter("@txtCui", "0"), new SqlParameter("@txtEstado", 'V'),new SqlParameter("@txtRol", rol), new SqlParameter("@usuario", idUsuario));
             if (Resultado == 0) {
                 return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
             }
@@ -676,9 +676,10 @@ namespace DemoQuiniela.Controllers
                    + "@idAlias = '',"
                    + "@alias = @alias,"
                    + "@deposito = @boleta,"
-                   + "@usuario = @usuario";
+                   + "@usuario = @usuario, "
+                   + "@banco = @banco ";
 
-            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@id_usuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@alias", NullHandler(alias.al_nickname)), new SqlParameter("@boleta", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@usuario", idUsuario));
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@id_usuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@alias", NullHandler(alias.al_nickname)), new SqlParameter("@boleta", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@usuario", idUsuario), new SqlParameter("@banco", NullHandler(alias.al_banco)));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
         }
@@ -700,9 +701,10 @@ namespace DemoQuiniela.Controllers
                    + "@idAlias = @id,"
                    + "@alias = @nickname,"
                    + "@deposito = @numeroDeposito,"
-                   + "@usuario = @usuario";
+                   + "@usuario = @usuario, "
+                   + "@banco = @banco ";
 
-            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@nickname", NullHandler(alias.al_nickname)), new SqlParameter("@numeroDeposito", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@estado", NullHandler(alias.al_estado)), new SqlParameter("@id", NullHandler(alias.al_id)), new SqlParameter("@idUsuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@usuario", idUsuario));
+            db.Database.ExecuteSqlCommand(querys, new SqlParameter("@nickname", NullHandler(alias.al_nickname)), new SqlParameter("@numeroDeposito", NullHandler(alias.al_codigoDeposito)), new SqlParameter("@estado", NullHandler(alias.al_estado)), new SqlParameter("@id", NullHandler(alias.al_id)), new SqlParameter("@idUsuario", NullHandler(alias.al_idUsuario)), new SqlParameter("@usuario", idUsuario), new SqlParameter("@banco", NullHandler(alias.al_banco)));
 
             return Json(new { success = true, responseText = "true" }, JsonRequestBehavior.AllowGet);
         }
