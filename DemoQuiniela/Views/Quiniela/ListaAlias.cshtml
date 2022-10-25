@@ -29,6 +29,7 @@
                     mensajeError("Correo enviado exitosamente :)", "bg-black");
                 }else{
                     mensajeError("Ocurrio un error en el envio del correo: " + response.responseText, "bg-orange");
+                    console.log(response.responseText);
                 }
 
                 btnBienvenida.disabled = false;
