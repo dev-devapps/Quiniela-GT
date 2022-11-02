@@ -1,7 +1,9 @@
 ﻿// EnvioCorreo.cs
 using System;
-using System.Net.Mail;
-
+using System.IO;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace DemoQuiniela.Controllers
 {
@@ -40,48 +42,81 @@ namespace DemoQuiniela.Controllers
             String strAttachments = "";
             String strAttachDetail = "";
 
+            InternetAddressList listaCorreo = new InternetAddressList();
+
             try
             {
 
-                MailAddress mailFrom = new MailAddress(strFrom, strDisplayName);
-                MailAddressCollection mailTo = new MailAddressCollection();
-                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
-                mailTo.Add(strTo);
+                var message = new MimeMessage();
 
-                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(HOST, PORT);
+                message.From.Add(new MailboxAddress(strDisplayName, strFrom));
 
-                if (!SMTP_USERNAME.Equals(""))
+                //Lista de correo destinatario
+                String[] cDestinatario = strTo.Split(',');
+
+                if (cDestinatario.Length > 0)
                 {
-                    client.UseDefaultCredentials = false;
-                    client.Credentials = new System.Net.NetworkCredential(SMTP_USERNAME, SMTP_PASSWORD, "");
-
+                    foreach (String mail in cDestinatario)
+                    {
+                        listaCorreo.Add(new MailboxAddress(mail, mail));
+                    }
+                }
+                else
+                {
+                    listaCorreo.Add(new MailboxAddress(strTo, strTo));
                 }
 
-                client.EnableSsl = ENABLESSL;
+                message.To.AddRange(listaCorreo);
 
-                //Asignacion de variables
-                message.IsBodyHtml = isHTML;
-                message.From = mailFrom;
+                //Lista de correo copia
 
-                message.To.Add(strTo);
-                message.Subject = strSubject;
-                message.Body = strBody;
-
-                //Copia
-                if (!strCc.Equals(""))
+                if (!strTo.Equals(""))
                 {
-                    message.CC.Add(strCc);
+                    String[] cCopia = strTo.Split(',');
+
+                    if (cCopia.Length > 0)
+                    {
+                        foreach (String mail in cCopia)
+                        {
+                            listaCorreo.Add(new MailboxAddress(mail, mail));
+                        }
+                    }
+                    else
+                    {
+                        listaCorreo.Add(new MailboxAddress(strCc, strCc));
+                    }
                 }
 
-                //Copia oculta
+
+                message.Cc.AddRange(listaCorreo);
+
+                //Lista de correo oculta
+
                 if (!strBcc.Equals(""))
                 {
-                    message.Bcc.Add(strBcc);
+                    String[] cOculta = strBcc.Split(',');
+
+                    if (cOculta.Length > 0)
+                    {
+                        foreach (String mail in cOculta)
+                        {
+                            listaCorreo.Add(new MailboxAddress(mail, mail));
+                        }
+                    }
+                    else
+                    {
+                        listaCorreo.Add(new MailboxAddress(strBcc, strBcc));
+                    }
+                    message.Bcc.AddRange(listaCorreo);
                 }
+
+                message.Subject = strSubject;
+
+                var bodyBuilder = new BodyBuilder();
+                bodyBuilder.HtmlBody = strBody;
 
                 if (!strAttachmentPath.Equals(""))
                 {
-
                     String[] arrFileName;
 
                     arrFileName = strAttachmentPath.Split(',');
@@ -92,7 +127,10 @@ namespace DemoQuiniela.Controllers
                         {
                             try
                             {
-                                message.Attachments.Add(new Attachment(arrFileName[i]));
+
+                                byte[] dataF = File.ReadAllBytes(arrFileName[i]);
+
+                                bodyBuilder.Attachments.Add(Path.GetFileName(arrFileName[i]), dataF);
 
                                 strAttachDetail += "<adjunto resultado=\"1\">" +
                                                         "<mensaje>OK</mensaje>" +
@@ -114,8 +152,9 @@ namespace DemoQuiniela.Controllers
                     {
                         try
                         {
-                            Attachment adjunto = new Attachment(strAttachmentPath);
-                            message.Attachments.Add(adjunto);
+                            byte[] dataF = File.ReadAllBytes(strAttachmentPath);
+
+                            bodyBuilder.Attachments.Add(Path.GetFileName(strAttachmentPath), dataF);
 
                             strAttachDetail += "<adjunto resultado=\"1\">" +
                                                     "<mensaje>OK</mensaje>" +
@@ -136,19 +175,24 @@ namespace DemoQuiniela.Controllers
                     strAttachments = "<adjuntos>" +
                                         strAttachDetail +
                                      "</adjuntos>";
+                }
 
-                }
-                else
-                {
-                    strAttachments = "<adjuntos/>";
-                }
+                message.Body = bodyBuilder.ToMessageBody();
+
+                var client = new SmtpClient();
+
+                client.Connect(HOST, PORT, SecureSocketOptions.Auto);
+                client.Authenticate(SMTP_USERNAME, SMTP_PASSWORD);
 
                 client.Send(message);
+                client.Disconnect(true);
 
                 strResultado = "<envio_correo>" +
                                     "<resultado codigo=\"1\">Envio de correo exitoso.</resultado>" +
                                     strAttachments +
                                "</envio_correo>";
+
+
             }
             catch (Exception ex)
             {
