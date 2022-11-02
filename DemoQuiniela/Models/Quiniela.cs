@@ -99,6 +99,8 @@ namespace MvcQuiniela.Models
         public int al_puntos { get; set; }
 
         public string al_estado { get; set; }
+
+        public string al_banco { get; set; }
     }
 
     [Table("Partido")]

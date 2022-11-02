@@ -10,10 +10,14 @@
     function guardarAlias(id) {
         var nombreALias = document.getElementById("alias").value;
         var numBoleta = document.getElementById("num_boleta").value;
+        var banco = document.getElementById("banco").value;
+
         var _alias = {};
         _alias.al_idUsuario = id;
         _alias.al_nickname = nombreALias;
         _alias.al_codigoDeposito = numBoleta;
+        _alias.al_banco = banco;
+
         $.ajax({
             type: "POST",
             url: "/Quiniela/GuardarAlias?idUsuario="+@ViewBag.DatosLogin.id_login,
@@ -31,6 +35,14 @@
         });
     }
 </script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<!-- Bootstrap Select Css -->
+<link href="../../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+<!-- Waves Effect Css -->
+<link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
 
 <!-- Vertical Layout -->
 <div class="row clearfix">
@@ -64,6 +76,16 @@
                     <div class="form-group">
                         <div class="form-line">
                             <input type="text" id="num_boleta" class="form-control" placeholder="Ingrese numero de boleta de pago">
+                        </div>
+                    </div>
+                    <label for="email_address">Banco</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control" id="banco" name="banco">
+                                <option value="" selected>-- Seleccione un banco --</option>
+                                <option value="BI">Industrial</option>
+                                <option value="BDR">Banrural</option>
+                            </select>
                         </div>
                     </div>
                     <br>
