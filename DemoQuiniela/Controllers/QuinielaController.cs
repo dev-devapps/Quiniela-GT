@@ -717,6 +717,7 @@ namespace DemoQuiniela.Controllers
             string resEnvioMail = "", mensaje = "", querys = "";
             string c = ConfigurationManager.AppSettings["C"].ToString(), p = ConfigurationManager.AppSettings["P"].ToString(), u = ConfigurationManager.AppSettings["URL"].ToString(), s = ConfigurationManager.AppSettings["S"].ToString(), i = ConfigurationManager.AppSettings["IMG"].ToString(), att = ConfigurationManager.AppSettings["ATT"].ToString();
             int po = Int32.Parse(ConfigurationManager.AppSettings["PO"].ToString());
+            string inviteDiscord = ConfigurationManager.AppSettings["DI"].ToString();
 
             EnvioCorreo mail = new EnvioCorreo();
 
@@ -741,6 +742,7 @@ namespace DemoQuiniela.Controllers
                                     "<p style=\"font-family:Verdana;font-size:11px;\">" +
                                     "¡Bienvenid@ <b>" + usuario.us_primerNombre + "</b> a la Quiniela!, es un gusto para nosotros contar con tu participaci&oacute;n en esta quiniela.<br /><br />" +
                                     "Para que puedas ingresar tus pron&oacute;sticos en la p&aacute;gina debes de ingresar al siguiente <a href=\"" + u + "\">link</a> o haz clic sobre la imagen, y para ingresar debes de hacerlo con el correo que te registraste.<br /><br />Adjunto a este correo encontrar&aacute;s un PDF con las instrucciones y reglas de la quiniela.<br /><br />" +
+                                    "Ahora también puedes unirte al canal de Discord haciendo clic en el siguiente <a href=\"" + inviteDiscord + "\">link</a>, por este medio también estaremos enviando los pronósticos ingresados por los participantes media hora de cada partido y el ranking posterior a cada partido.<br /><br />" +
                                     "¡Te deseamos la mejor de las suertes!<br /><br />" +
                                     "<a href=\"" + u + "\"><img width=\"100%\" src=\"" + i + "/images/welcomemail.png\" border=\"0\" alt=\"Bienvenida\" /></a>" +
                                     "</p>" +
